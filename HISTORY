@@ -1,3 +1,10 @@
+sBNC Interface v0.5 Beta (August 15, 2010)
+    * Removed Urdu because the translation is not complete anymore.
+    * Added Norwegian
+    * Added Theme changer.
+    * Fixed language + IE change bug.
+    * Fixed so users dont get logged out when changing password.
+
 sBNC Interface v0.4 Beta (February 27, 2010)
 
     * Added the ability to change language.
