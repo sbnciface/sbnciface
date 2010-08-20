@@ -1,7 +1,7 @@
 <?php
 
 /*
- * $Id: settings.php 238 2010-05-04 20:54:56Z biohzn $
+ * $Id$
  *
  * Copyright (C) 2010 Conny Sjï¿½blom <biohzn@mustis.org>
  *
