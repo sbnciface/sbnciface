@@ -1,0 +1,16 @@
+sBNC Interface v0.4 Beta (February 27, 2010)
+
+    * Added the ability to change language.
+    * Added Swedish, Finnish, English, German and Urdu.
+    * Some minor fixes with the design (padding, margin).
+    * Added ability for admin to check user channels.
+    * Added "Remember me" function.
+
+sBNC Interface v0.2 Beta (February 15, 2010)
+
+    * Major changes to the design.
+    * Added adminpage.
+
+sBNC Interface v0.1 Beta (February 12, 2010)
+
+    * First public version.
