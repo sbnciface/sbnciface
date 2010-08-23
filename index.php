@@ -25,18 +25,28 @@ session_start();
 //Include Settings
 include('inc/settings.php');
 
-//Check if there is only one server in the array
-
-if (count($bncServers) < 2) {
-    $_SESSION['bncserver'] = "0";
+//Language selector
+if (isset($_POST['langselect'])) {
+    if ($_POST['langselect'] == 1) {
+        if (isset($_POST['lang'])) {
+            setcookie("lang", $_POST['lang'], $expire);
+            $lang = $_POST['lang'];
+        }
+    }
 }
 
-//Check for language
-if (!empty($_COOKIE['lang'])) {
-    $lang = $_COOKIE['lang'];
-} else {
-    setcookie("lang", "$default_lang", $expire);
-    $lang = $default_lang;
+//Set Language
+if (isset($lang)) {
+    include("inc/lang/".$lang.".php");
+}elseif (isset($_COOKIE['lang'])){
+    include("inc/lang/".$_COOKIE['lang'].".php");
+}else{
+    include("inc/lang/".$default_lang.".php");
+}
+
+//Check if there is only one server in the array
+if (count($bncServers) < 2) {
+    $_SESSION['bncserver'] = "0";
 }
 
 //Changestyle
@@ -73,13 +83,9 @@ if (empty($_SESSION['username'])) {
     }
 }
 
-//Include the rest
-if (isset($_COOKIE['lang'])) {
-    include('inc/lang/' . $lang . '.php');
-}
-else {
-    include('inc/lang/' . $default_lang . '.php');
-}
+//Check for language
+
+
 include('inc/functions.php');
 include('inc/sbnc.php');
 include('inc/header.php');
