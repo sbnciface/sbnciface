@@ -2,7 +2,7 @@
 /*
  * $Id$
  *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010 Conny SjÃ¶blom <biohzn@mustis.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
     <head>
         <meta name="description" content="" />
         <meta name="keywords" content="" />
-        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link href="css/<?php echo $style; ?>.css" rel="stylesheet" type="text/css" />
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
         <title><?php echo $name; ?></title>
@@ -68,6 +68,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
                     <a href="javascript:" onclick="pickLanguage('no');"><img src="img/lang/no.png" /></a>
                     <a href="javascript:" onclick="pickLanguage('sv');"><img src="img/lang/sv.png" /></a>
                     <a href="javascript:" onclick="pickLanguage('fi');"><img src="img/lang/fi.png" /></a>
+                    <a href="javascript:" onclick="pickLanguage('pl');"><img src="img/lang/pl.png" /></a>
                 </form>
             </div>
             <?php

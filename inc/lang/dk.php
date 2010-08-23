@@ -2,7 +2,7 @@
 /*
  * $Id$
  *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010 Conny SjÃ¶blom <biohzn@mustis.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,23 +26,23 @@
 <?php
 $lang = array(
         //v0.2 Beta
-        "if_password_empty"     =>  "Bemærk: Efterlades adgangskode-feltet tomt, vil der automatisk blive oprettet en tilfældig adgangskode.",
+        "if_password_empty"     =>  "BemÃ¦rk: Efterlades adgangskode-feltet tomt, vil der automatisk blive oprettet en tilfÃ¦ldig adgangskode.",
         "ident"                 =>  "Ident",
         "password"              =>  "Adgangskode",
-        "add_user"              =>  "Tilføj bruger",
+        "add_user"              =>  "TilfÃ¸j bruger",
         "awaynick"              =>  "Awaynick",
         "awaymessage"           =>  "Away besked",
         "quit_as_away"          =>  "Brug quit istedet for away",
         "on"                    =>  "Til",
         "off"                   =>  "Fra",
-        "save_changes"          =>  "Gem ændringer",
+        "save_changes"          =>  "Gem Ã¦ndringer",
         "join_channel"          =>  "Join en kanal.",
         "channel"               =>  "Kanal",
         "join"                  =>  "Join",
         "modes"                 =>  "Modes",
         "action"                =>  "Muligheder",
         "part"                  =>  "Forlad",
-        "changing_options"      =>  "Ændre indstillinger for bruger",
+        "changing_options"      =>  "Ã†ndre indstillinger for bruger",
         "access"                =>  "Adgangsniveau",
         "realname"              =>  "Rigtigt navn",
         "nickname"              =>  "Nicknavn",
@@ -58,8 +58,8 @@ $lang = array(
         "send"                  =>  "Send",
         "ip"                    =>  "IP",
         "delip"                 =>  "Fjern IP",
-        "addip"                 =>  "Tilføj IP",
-        "empty_log"             =>  "Tøm logfilen",
+        "addip"                 =>  "TilfÃ¸j IP",
+        "empty_log"             =>  "TÃ¸m logfilen",
         "log_empty"             =>  "Loggen er tom",
         "uptime"                =>  "Oppetid",
         "disconnected"          =>  "Disconnected",
@@ -69,9 +69,9 @@ $lang = array(
         "last_seen"             =>  "Sidst set",
         "delete"                =>  "Slet",
         "users"                 =>  "Brugerliste",
-        "user_limit"            =>  "Bruger begrænsning",
+        "user_limit"            =>  "Bruger begrÃ¦nsning",
         "host"                  =>  "Host",
-        "add_vhost"             =>  "Tilføj vHost",
+        "add_vhost"             =>  "TilfÃ¸j vHost",
         "del_vhost"             =>  "Fjern vHost",
         "status"                =>  "Status",
         "settings"              =>  "Indstillinger",
@@ -84,22 +84,22 @@ $lang = array(
         "logout"                =>  "Log ud",
         "username"              =>  "Brugernavn",
         "login"                 =>  "Login",
-        "remember_me"           =>  "Husk mig på denne computer",
+        "remember_me"           =>  "Husk mig pÃ¥ denne computer",
         //process.php
         "joined"                =>  "Joinede",
         "parted"                =>  "Forlod",
         "global_message_sent"   =>  "Global besked afsendt.",
         "settings_saved"        =>  "Indstillingerne blev gemt.",
         "vhost_deleted"         =>  "vHost fjernet.",
-        "vhost_added"           =>  "vHost tilføjet",
+        "vhost_added"           =>  "vHost tilfÃ¸jet",
         "ip_removed"            =>  "IP fjernet.",
-        "ip_added"              =>  "IP tilføjet.",
+        "ip_added"              =>  "IP tilfÃ¸jet.",
         "reconnecting_user"     =>  "Genforbinder bruger...",
-        "done"                  =>  "Udført.",
+        "done"                  =>  "UdfÃ¸rt.",
         "user_deleted"          =>  "Brugeren blev slettet med success.",
-        "log_erased"            =>  "Loggen blev tømt..",
-        "ident_taken"           =>  "Der er allerede en bruger med dette ident, vælg venligst et andet.",
-        "bnc_added"             =>  "BNC'en blev tilføjet med ident:",
+        "log_erased"            =>  "Loggen blev tÃ¸mt..",
+        "ident_taken"           =>  "Der er allerede en bruger med dette ident, vÃ¦lg venligst et andet.",
+        "bnc_added"             =>  "BNC'en blev tilfÃ¸jet med ident:",
         "password_added"        =>  "og adgangskoden",
         "reconnecting"          =>  "Genforbinder...",
         "wrong_user_pass"       =>  "Forkert brugernavn eller adgangskode."

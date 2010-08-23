@@ -2,7 +2,7 @@
 /*
  * $Id$
  *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010 Conny SjÃ¶blom <biohzn@mustis.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,10 +26,10 @@
 <?php
 $lang = array(
         //v0.2 Beta
-        "if_password_empty"     =>  "Hinweis. Wenn Passwort-Feld leer gelassen wird, wird ein zufälliges Passwort generiert.",
+        "if_password_empty"     =>  "Hinweis. Wenn Passwort-Feld leer gelassen wird, wird ein zufÃ¤lliges Passwort generiert.",
         "ident"                 =>  "Ident",
         "password"              =>  "Passwort",
-        "add_user"              =>  "User hinzufügen",
+        "add_user"              =>  "User hinzufÃ¼gen",
         "awaynick"              =>  "Awaynick",
         "awaymessage"           =>  "Away nachricht",
         "quit_as_away"          =>  "quit as Away",
@@ -42,7 +42,7 @@ $lang = array(
         "modes"                 =>  "Modes",
         "action"                =>  "Aktionen",
         "part"                  =>  "verlassen",
-        "changing_options"      =>  "Ändern der Optionen für den Benutzer",
+        "changing_options"      =>  "Ã„ndern der Optionen fÃ¼r den Benutzer",
         "access"                =>  "Zugang",
         "realname"              =>  "Realname",
         "nickname"              =>  "Nickname",
@@ -57,8 +57,8 @@ $lang = array(
         "message"               =>  "nachricht",
         "send"                  =>  "senden",
         "ip"                    =>  "IP",
-        "delip"                 =>  "IP löschen",
-        "addip"                 =>  "IP hinzufügen",
+        "delip"                 =>  "IP lÃ¶schen",
+        "addip"                 =>  "IP hinzufÃ¼gen",
         "empty_log"             =>  "logs leeren",
         "log_empty"             =>  "keine logs vorhanden",
         "uptime"                =>  "Uptime",
@@ -67,12 +67,12 @@ $lang = array(
         "jump"                  =>  "Jump",
         "send_jump"             =>  "jump senden",
         "last_seen"             =>  "zuletzt gesehen",
-        "delete"                =>  "löschen",
+        "delete"                =>  "lÃ¶schen",
         "users"                 =>  "Benutzer",
         "user_limit"            =>  "Benutzerlimit",
         "host"                  =>  "Host",
-        "add_vhost"             =>  "vHost hinzufügen",
-        "del_vhost"             =>  "vHost löschen",
+        "add_vhost"             =>  "vHost hinzufÃ¼gen",
+        "del_vhost"             =>  "vHost lÃ¶schen",
         "status"                =>  "Status",
         "settings"              =>  "Einstellungen",
         "away"                  =>  "Away einstellungen",
@@ -90,18 +90,18 @@ $lang = array(
         "parted"                =>  "verlasse",
         "global_message_sent"   =>  "Globale nachricht wurde gesendet.",
         "settings_saved"        =>  "Einstellungen wurden gespeichert.",
-        "vhost_deleted"         =>  "vHost gelöscht",
-        "vhost_added"           =>  "vHost hinzugefügt",
-        "ip_removed"            =>  "IP gelöscht",
-        "ip_added"              =>  "IP hinzugefügt.",
+        "vhost_deleted"         =>  "vHost gelÃ¶scht",
+        "vhost_added"           =>  "vHost hinzugefÃ¼gt",
+        "ip_removed"            =>  "IP gelÃ¶scht",
+        "ip_added"              =>  "IP hinzugefÃ¼gt.",
         "reconnecting_user"     =>  "User wird neuconnectet.",
         "done"                  =>  "abgeschlossen.",
-        "ident_taken"           =>  "Ident bereits vorhanden. Bitte wähle einen anderen.",
-        "bnc_added"             =>  "BNC hinzugefügt mit dem Ident:",
+        "ident_taken"           =>  "Ident bereits vorhanden. Bitte wÃ¤hle einen anderen.",
+        "bnc_added"             =>  "BNC hinzugefÃ¼gt mit dem Ident:",
         "password_added"        =>  "und dem Passwort",
         "reconnecting"          =>  "neuverbinden...",
         "wrong_user_pass"       =>  "Username falsch oder Passwort falsch.",
-        "user_deleted"          =>  "User erfolgreich gelöscht.",
-        "log_erased"            =>  "Log erfolgreich gelöscht",
+        "user_deleted"          =>  "User erfolgreich gelÃ¶scht.",
+        "log_erased"            =>  "Log erfolgreich gelÃ¶scht",
 );
 ?>

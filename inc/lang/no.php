@@ -2,7 +2,7 @@
 /*
  * $Id$
  *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010 Conny SjÃ¶blom <biohzn@mustis.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -59,8 +59,8 @@ $lang = array(
         "ip"                    =>  "IP",
         "delip"                 =>  "Slett IP",
         "addip"                 =>  "Legg til IP",
-        "empty_log"             =>  "Tøm logg",
-        "log_empty"             =>  "Logg tømt",
+        "empty_log"             =>  "TÃ¸m logg",
+        "log_empty"             =>  "Logg tÃ¸mt",
         "uptime"                =>  "Oppetid",
         "disconnected"          =>  "Disconnected",
         "traffic"               =>  "Traffik",
@@ -84,7 +84,7 @@ $lang = array(
         "logout"                =>  "Logg ut",
         "username"              =>  "Username",
         "login"                 =>  "Login",
-        "remember_me"           =>  "Husk meg på denne datamaskinen",
+        "remember_me"           =>  "Husk meg pÃ¥ denne datamaskinen",
         //process.php
         "joined"                =>  "Joined",
         "parted"                =>  "Parted",
@@ -102,6 +102,6 @@ $lang = array(
         "reconnecting"          =>  "Reconnecter...",
         "wrong_user_pass"       =>  "Feil brukernavn eller passord.",
         "user_deleted"          =>  "Brukern ble tatt bort",
-        "log_erased"            =>  "Log tømtes",
+        "log_erased"            =>  "Log tÃ¸mtes",
 );
 ?>
