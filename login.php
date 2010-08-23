@@ -23,12 +23,6 @@
 
 session_start();
 
-//How long should a cookie be active? Default 30 days
-$expire = time() + 60 * 60 * 24 * 30;
-
-//Include langfile
-include('inc/lang/' . $_COOKIE['lang'] . '.php');
-
 //Include sBNC Class
 include('inc/sbnc.php');
 
@@ -48,21 +42,17 @@ $ident = $_SESSION['username'];
 $password = $_SESSION['password'];
 $sbnc = new SBNC("$ip", "$port", "$ident", "$password");
 
-//Commands to execute
-
-//LOGOUT
+//Login and Logout
 if (isset($_GET['logout'])) {
     if (isset($_COOKIE['ident'])) {
         setcookie("ident", "", time() - 3600);
         setcookie("password", "", time() - 3600);
     }
     session_destroy();
-    header('Location: ' . $webroot . '');
-}
-//LOGIN
-elseif (!empty($_POST['login'])) {
+    header('Location:'.$webroot);
+} elseif (!empty($_POST['login'])) {
 
-    global $bncServers;
+    global $expire;
 
     //Get vars from form
     $ident = $_POST['ident'];
@@ -93,9 +83,6 @@ elseif (!empty($_POST['login'])) {
         $_SESSION['username'] = "$ident";
         $_SESSION['password'] = "$password";
     }
-
-    header('Location: ' . $webroot . '');
-} else {
-    header('Location: ' . $webroot . '');
+    header('Location:'.$webroot);
 }
 ?>

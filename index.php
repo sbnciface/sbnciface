@@ -2,7 +2,7 @@
 /*
  * $Id$
  *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010 Conny Sjï¿½blom <biohzn@mustis.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -100,7 +100,7 @@ if (empty($_SESSION['username'])) {
         echo "</div>";
     }
 ?>
-    <form action="process.php" method="POST">
+    <form action="login.php" method="POST">
         <table cellpadding="4" align="center">
         <?php
         if (!empty($_SESSION['msg'])) {

@@ -16,7 +16,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 ?>
 <?php
 header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
@@ -59,13 +59,13 @@ if (isset($_POST['langselect'])) {
         </script>
     </head>
     <body>
-        <?php
-        if ($page == main && empty($_SESSION['username'])) {
-            echo "<div id=\"loginbody\">\n";
-        }else {
-            echo "<div id=\"pagebody\">\n";
-        }
-        ?>
+<?php
+if ($page == main && empty($_SESSION['username'])) {
+    echo "<div id=\"loginbody\">\n";
+} else {
+    echo "<div id=\"pagebody\">\n";
+}
+?>
         <div id="container">
             <div id="langselect">
                 <form action="" method="POST" name="langselector">
@@ -80,16 +80,17 @@ if (isset($_POST['langselect'])) {
                     <a href="javascript:" onclick="pickLanguage('pl');"><img src="img/lang/pl.png" /></a>
                 </form>
             </div>
+<?php
+if ($page == main && empty($_SESSION['username'])) {
+    echo "        <div id=\"loginheader\">\n";
+} else {
+    echo "        <div id=\"header\">\n";
+}
+?>
             <?php
-            if ($page == main && empty($_SESSION['username'])) {
-                echo "        <div id=\"loginheader\">\n";
-            }else {
-                echo "        <div id=\"header\">\n";
-            }
-            ?>
-            <?php if (empty($_SESSION['username'])) {
+            if (empty($_SESSION['username'])) {
                 echo "<div id=\"loginheadpic\"></div>";
-            }else {
+            } else {
                 echo "<div id=\"headpic\"></div>";
-            }?>
+            } ?>
         </div>

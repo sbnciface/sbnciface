@@ -3,7 +3,7 @@
 /*
  * $Id$
  *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010 Conny Sjï¿½blom <biohzn@mustis.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,5 +41,5 @@ $default_style = "grey";        //Available styles are simple_blue, simple_black
 
 $name = "shroudBNC Webinterface";
 
-$expire = time() + 60 * 60 * 24;
+$expire = time() + 60 * 60 * 24 * 30;
 ?>
