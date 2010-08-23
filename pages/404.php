@@ -2,7 +2,7 @@
 /*
  * $Id$
  *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010 Conny Sjï¿½blom <biohzn@mustis.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@
  */
 ?>
 <div class="mid center">
-    <b>404</b><br />Sorry, I couldn´t find the page you were looking for, but hey, I found some music<br /><br />
+    <b>404</b><br />Sorry, I couldn't find the page you were looking for, but hey, I found some music<br /><br />
     <object width="500" height="375">
         <param name="movie" value="http://mirror.servut.us/flash/rickroll.swf">
         <embed src="http://mirror.servut.us/flash/rickroll.swf" width="500" height="375">

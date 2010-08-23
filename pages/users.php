@@ -2,7 +2,7 @@
 /*
  * $Id$
  *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010 Conny Sjï¿½blom <biohzn@mustis.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,6 +22,14 @@
 /*
  * List all sBNC users / Del BNC user.
 */
+?>
+<?php
+if (isset($_POST['deluser'])) {
+
+    $sbnc->Call('deluser', array($_POST['delident']));
+
+    $_SESSION['msg'] = $lang['user_deleted'];
+}
 ?>
 <?php
 if ($admin == '1'){
@@ -46,7 +54,7 @@ if (!empty($_SESSION['username'])) {
             <td colspan="4" align="center"><b><?php echo $lang['administrators']; ?></b></td>
         </tr>
         <tr>
-            <td width="20%"><b><?php echo $lang['ident']; ?></b></td><td width="20%"><b><?php echo $lang['nickname']; ?></b></td><td width="35%"><b><?php echo $lang['last_seen']; ?></b></td><td width="1%"><b><?php echo $lang['action']; ?></b></td>
+            <td width="20%"><b><?php echo $lang['ident']; ?></b></td><td width="20%"><b><?php echo $lang['nickname']; ?></b></td><td width="35%"><b><?php echo $lang['last_seen']; ?></b></td><td width="13%"><b><?php echo $lang['action']; ?></b></td>
         </tr>
             <?php
             $i = 0;
@@ -69,9 +77,9 @@ if (!empty($_SESSION['username'])) {
 
                     echo "					</tr>";
                     if (strtolower($ident) != strtolower($_SESSION['username'])) {
-                        echo "						<td>$ident</td><td class=\"bold\">$nick</td><td>$seen</td><td style=\"text-align:center;\"><form action=\"process.php\" method=\"POST\"><input type=\"hidden\" value=\"$ident\" name=\"delident\" /><input class=\"input-image\" type=\"image\" src=\"img/icons/delete.png\" value=\"".$lang['delete']."\" name=\"deluser\" /><a href=\"?p=edit&amp;u=$ident\"> <img src=\"img/icons/pencil.png\"></a></form></td>";
+                        echo "						<td>$ident</td><td class=\"bold\">$nick</td><td>$seen</td><td style=\"text-align:center;\"><form action=\"\" method=\"POST\"><input type=\"hidden\" value=\"$ident\" name=\"delident\" /><input class=\"input-image\" type=\"image\" src=\"img/icons/delete.png\" value=\"".$lang['delete']."\" name=\"deluser\" /><a href=\"?p=edit&amp;u=$ident\"> <img src=\"img/icons/pencil.png\"></a></form></td>";
                     }else {
-                        echo "						<td>$ident</td><td class=\"bold\">$nick</td><td>$seen</td><td style=\"text-align:center;\"><form action=\"process.php\" method=\"POST\"><input type=\"hidden\" value=\"$ident\" name=\"delident\" /><input class=\"input-image\" type=\"image\" src=\"img/icons/delete_disabled.png\" value=\"".$lang['delete']."\" name=\"deluser\" disabled /><a href=\"?p=edit&amp;u=$ident\"> <img src=\"img/icons/pencil.png\"></a></form></td>";
+                        echo "						<td>$ident</td><td class=\"bold\">$nick</td><td>$seen</td><td style=\"text-align:center;\"><form action=\"\" method=\"POST\"><input type=\"hidden\" value=\"$ident\" name=\"delident\" /><input class=\"input-image\" type=\"image\" src=\"img/icons/delete_disabled.png\" value=\"".$lang['delete']."\" name=\"deluser\" disabled /><a href=\"?p=edit&amp;u=$ident\"> <img src=\"img/icons/pencil.png\"></a></form></td>";
                     }
                     echo "					</tr>";
                 }
@@ -91,7 +99,7 @@ if (!empty($_SESSION['username'])) {
             <td colspan="4" align="center"><b><?php echo $lang['users']; ?></b></td>
         </tr>
         <tr>
-            <td width="20%"><b><?php echo $lang['ident']; ?></b></td><td width="20%"><b><?php echo $lang['nickname']; ?></b></td><td width="35%"><b><?php echo $lang['last_seen']; ?></b></td><td width="1%"><b><?php echo $lang['action']; ?></b></td>
+            <td width="20%"><b><?php echo $lang['ident']; ?></b></td><td width="20%"><b><?php echo $lang['nickname']; ?></b></td><td width="35%"><b><?php echo $lang['last_seen']; ?></b></td><td width="13%"><b><?php echo $lang['action']; ?></b></td>
         </tr>
             <?php
             $i = 0;
@@ -113,7 +121,7 @@ if (!empty($_SESSION['username'])) {
                     }
 
                     echo "					</tr>";
-                    echo "						<td>$ident</td><td class=\"bold\">$nick</td><td>$seen</td><td style=\"text-align:center;\"><form action=\"process.php\" method=\"POST\"><input type=\"hidden\" value=\"$ident\" name=\"delident\" /><input class=\"input-image\" type=\"image\" src=\"img/icons/delete.png\" value=\"".$lang['delete']."\" name=\"deluser\" /><a href=\"?p=edit&amp;u=$ident\"> <img src=\"img/icons/pencil.png\"></a></form></td>";
+                    echo "						<td>$ident</td><td class=\"bold\">$nick</td><td>$seen</td><td style=\"text-align:center;\"><form action=\"\" method=\"POST\"><input type=\"hidden\" value=\"$ident\" name=\"delident\" /><input class=\"input-image\" type=\"image\" src=\"img/icons/delete.png\" value=\"".$lang['delete']."\" name=\"deluser\" /><a href=\"?p=edit&amp;u=$ident\"> <img src=\"img/icons/pencil.png\"></a></form></td>";
                     echo "					</tr>";
                 }
                 $i++;

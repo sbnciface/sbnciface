@@ -2,7 +2,7 @@
 /*
  * $Id$
  *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010 Conny Sjï¿½blom <biohzn@mustis.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,25 @@
  * List/join/part Channels.
 */
 ?>
+<?php
+if (isset($_POST['join'])) {
+    $channel = $_POST['channel'];
+
+    $sbnc->Call("raw", array("join $channel"));
+    $_SESSION['msg'] = $lang["joined"] . " $channel.";
+} elseif (isset($_POST['adminpart'])) {
+    $channel = $_POST['channel'];
+    $ident = $_POST['ident'];
+
+    $sbnc->CallAs("$ident", "raw", array("part $channel"));
+    $_SESSION['msgpart'] = $lang["parted"] . " $channel.";
+} elseif (isset($_POST['part'])) {
+    $channel = $_POST['channel'];
+
+    $sbnc->Call("raw", array("part $channel"));
+    $_SESSION['msgpart'] = $lang["parted"] . " $channel.";
+}
+?>
 <?php if (!empty($_SESSION['username'])) { ?>
 <div id="content">
         <?php if (!empty($_SESSION['msg'])) {
@@ -32,7 +51,7 @@
             echo "</div>";
         }
         ?>
-    <form action="process.php" method="POST">
+    <form action="" method="POST">
         <table id="tbl" align="center" width="400">
             <tr>
                 <td colspan="2" align="center"><b><?php echo $lang['join_channel']; ?></b></td>
@@ -60,7 +79,7 @@
             <?php
             foreach ($sbnc->Call("getchannels") as $channel) {
                 echo "<tr>";
-                echo "<form action=\"process.php\" method=\"POST\"><input type=\"hidden\" name=\"channel\" value=\"$channel\" /><td>$channel</td><td>".$sbnc->Call("getchanmodes", array($channel))."</td><td align=\"center\"><input class=\"input-image\" type=\"image\" src=\"img/icons/delete.png\"  value=\"".$lang['part']."\" name=\"part\" /></td></form>\n";
+                echo "<form action=\"\" method=\"POST\"><input type=\"hidden\" name=\"channel\" value=\"$channel\" /><td>$channel</td><td>".$sbnc->Call("getchanmodes", array($channel))."</td><td align=\"center\"><input class=\"input-image\" type=\"image\" src=\"img/icons/delete.png\"  value=\"".$lang['part']."\" name=\"part\" /></td></form>\n";
                 echo "</tr>";
             }
             ?>

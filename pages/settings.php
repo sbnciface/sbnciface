@@ -2,7 +2,7 @@
 /*
  * $Id$
  *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010 Conny Sjï¿½blom <biohzn@mustis.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,45 @@
  * Change the main settings of the BNC.
 */
 ?>
+<?php
+if (isset($_POST['settings'])) {
+
+    $admin = $sbnc->Call('getvalue', array('admin'));
+
+    if ($admin == 1) {
+        if (!empty($_POST['realname'])) {
+            $sbnc->CallAs("$ident", "setvalue", array("realname", $_POST['realname']));
+        }
+        if (!empty($_POST['nickname'])) {
+            $sbnc->CallAs("$ident", "raw", array("nick $_POST[nickname]"));
+        }
+        if (!empty($_POST['password'])) {
+            $sbnc->CallAs("$ident", "setvalue", array("password", $_POST['password']));
+            if (isset($_COOKIE['password'])) {
+                setcookie("password", $_POST['password'], $expire);
+            } else {
+                $_SESSION['password'] = $_POST['password'];
+            }
+        }
+    } else {
+        if (!empty($_POST['realname'])) {
+            $sbnc->Call("setvalue", array("realname", $_POST['realname']));
+        }
+        if (!empty($_POST['nickname'])) {
+            $sbnc->Call("raw", array("nick $_POST[nickname]"));
+        }
+        if (!empty($_POST['password'])) {
+            $sbnc->Call("setvalue", array("password", $_POST['password']));
+            if (isset($_COOKIE['password'])) {
+                setcookie("password", $_POST['password'], $expire);
+            } else {
+                $_SESSION['password'] = $_POST['password'];
+            }
+        }
+    }
+    $_SESSION['msg'] = $lang['settings_saved'];
+}
+?>
 <?php if (!empty($_SESSION['username'])) { ?>
 <div id="content">
         <?php if (!empty($_SESSION['msg'])) {
@@ -32,7 +71,7 @@
             echo "</div>";
         }
         ?>
-    <form action="process.php" method="POST">
+    <form action="" method="POST">
         <table id="tbl" align="center" width="400">
             <tr>
                 <td width="40%"><?php echo $lang['realname']; ?>:</td><td width="60%"><input type="text" name="realname" size="33" value="<?php echo $sbnc->Call("getvalue", array("realname")); ?>" /></td>

@@ -2,7 +2,7 @@
 /*
  * $Id$
  *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010 Conny Sjï¿½blom <biohzn@mustis.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,27 @@
  * Add a BNC User.
 */
 ?>
+<?php
+if (isset($_POST['adduser'])) {
+
+    $usrs = $sbnc->Call('tcl', array('bncuserlist'));
+    $users = explode(" ", $usrs);
+
+    if (in_array($_POST['ident'], $users)) {
+        $_SESSION['msg'] = $lang['ident_taken'];
+    } else {
+        if (empty($_POST['password'])) {
+            $password = generatePassword('8');
+        } else {
+            $password = $_POST['password'];
+        }
+
+        $sbnc->Call('adduser', array($_POST['ident'], $password));
+
+        $_SESSION['msg'] = $lang['bnc_added'] . " " . $_POST['ident'] . " " . $lang['password_added'] . " " . $password;
+    }
+}
+?>
 <?php if ($admin == 1) { ?>
 <div id="content">
         <?php if (!empty($_SESSION['msg'])) {
@@ -33,7 +54,7 @@
         }
         ?>
     <div class="info"><?php echo $lang['if_password_empty']; ?></div>
-    <form action="process.php" method="POST">
+    <form action="" method="POST">
         <table id="tbl" align="center" width="400">
             <tr>
                 <td width="40%"><?php echo $lang['ident']; ?>:</td><td width="60%"><input type="text" name="ident" size="33" /></td>

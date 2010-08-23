@@ -22,6 +22,15 @@
 header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
 header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
 ?>
+<?php
+if (isset($_POST['langselect'])) {
+    if ($_POST['langselect'] == 1) {
+        if (isset($_POST['lang'])) {
+            setcookie("lang", $_POST['lang'], $expire);
+        }
+    }
+}
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -59,7 +68,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
         ?>
         <div id="container">
             <div id="langselect">
-                <form action="process.php" method="POST" name="langselector">
+                <form action="" method="POST" name="langselector">
                     <input type="hidden" name="langselect" value="1" />
                     <input type="hidden" name="lang" value="" />
                     <a href="javascript:" onclick="pickLanguage('en');"><img src="img/lang/en.png" /></a>

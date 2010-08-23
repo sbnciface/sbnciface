@@ -2,7 +2,7 @@
 /*
  * $Id$
  *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010 Conny Sjï¿½blom <biohzn@mustis.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,75 @@
  * Edit a users settings.
 */
 ?>
+<?php
+if (isset($_POST['join'])) {
+    $channel = $_POST['channel'];
+
+    $sbnc->Call("raw", array("join $channel"));
+    $_SESSION['msg'] = $lang["joined"] . " $channel.";
+} elseif (isset($_POST['adminpart'])) {
+    $channel = $_POST['channel'];
+    $ident = $_POST['ident'];
+
+    $sbnc->CallAs("$ident", "raw", array("part $channel"));
+    $_SESSION['msgpart'] = $lang["parted"] . " $channel.";
+} elseif (isset($_POST['part'])) {
+    $channel = $_POST['channel'];
+
+    $sbnc->Call("raw", array("part $channel"));
+    $_SESSION['msgpart'] = $lang["parted"] . " $channel.";
+} elseif (isset($_POST['edituser'])) {
+
+    $ident = $_POST['ident'];
+    $admin = $sbnc->CallAs($ident, 'getvalue', array('admin'));
+    $quitaway = $sbnc->CallAs($ident, "getvalue", array("quitasaway"));
+
+    if ($_POST['access'] != $admin) {
+        if ($_POST['access'] == 1) {
+            $sbnc->Call("admin", array("$ident"));
+        } else {
+            $sbnc->Call("unadmin", array("$ident"));
+        }
+    }
+    if (!empty($_POST['server'])) {
+        $sbnc->CallAs($ident, "setvalue", array("server", $_POST['server']));
+    }
+    if (!empty($_POST['port'])) {
+        $sbnc->CallAs($ident, "setvalue", array("port", $_POST['port']));
+    }
+    if (isset($_POST['serverpassword'])) {
+        $sbnc->CallAs($ident, "setvalue", array("serverpassword", $_POST['password']));
+    }
+    if (isset($_POST['awaynick'])) {
+        $sbnc->CallAs($ident, "setvalue", array("awaynick", $_POST['awaynick']));
+    }
+    if (isset($_POST['awaymessage'])) {
+        $sbnc->CallAs($ident, "setvalue", array("awaymessage", $_POST['awaymessage']));
+    }
+    if ($quitaway != $_POST['quitaway']) {
+        $sbnc->CallAs($ident, "setvalue", array("quitasaway", $_POST['quitaway']));
+    }
+    if (!empty($_POST['vhost'])) {
+        $sbnc->CallAs($ident, "setvalue", array("vhost", $_POST['vhost']));
+    }
+    if (!empty($_POST['realname'])) {
+        $sbnc->CallAs("$ident", "setvalue", array("realname", $_POST['realname']));
+    }
+    if (!empty($_POST['nickname'])) {
+        $sbnc->CallAs("$ident", "raw", array("nick $_POST[nickname]"));
+    }
+    if (!empty($_POST['password'])) {
+        $sbnc->CallAs("$ident", "setvalue", array("password", $_POST['password']));
+    }
+    $_SESSION['msg'] = $lang['settings_saved'];
+} elseif (isset($_POST['dojump'])) {
+
+    $ident = $_POST['ident'];
+
+    $sbnc->CallAs($ident, 'jump');
+    $_SESSION['msg'] = $lang['reconnecting_user'];
+}
+?>
 <?php if ($admin == 1) {
     echo "<div id=\"content\">";
     if (isset($_POST['edit'])) {
@@ -39,7 +108,7 @@
         echo "</div>";
     }
     ?>
-<form action="process.php" method="POST">
+<form action="" method="POST">
     <table id="tbl" align="center" width="400">
         <tr>
             <td colspan="2" align="center"><?php echo $lang['changing_options']; ?> <b><?php echo $ident; ?></b>.</td>
@@ -101,10 +170,15 @@
             <td width="55%"><b><?php echo $lang['channel']; ?></b></td><td><b><?php echo $lang['modes']; ?></b></td><td width="1%"><b><?php echo $lang['action']; ?></b></td>
         </tr>
             <?php
-            foreach ($sbnc->CallAs("$ident", "getchannels") as $channel) {
-                echo "<tr>";
-                echo "<form action=\"process.php\" method=\"POST\"><input type=\"hidden\" name=\"channel\" value=\"$channel\" /><td>$channel</td><td>".$sbnc->CallAs("$ident", "getchanmodes", array($channel))."</td><td><input type=\"hidden\" name=\"ident\" value=\"$ident\" /><input type=\"submit\" value=\"".$lang['part']."\" name=\"adminpart\" /></td></form>\n";
-                echo "</tr>";
+            $channels = $sbnc->CallAs("$ident", "getchannels");
+            if (is_a($channels, itype_exception)) {
+                echo "<tr><td colspan=\"3\">The bouncer is not connected</td></tr>";
+            } else {
+                foreach ($sbnc->CallAs("$ident", "getchannels") as $channel) {
+                   echo "<tr>";
+                   echo "<form action=\"\" method=\"POST\"><input type=\"hidden\" name=\"channel\" value=\"$channel\" /><td>$channel</td><td>".$sbnc->CallAs("$ident", "getchanmodes", array($channel))."</td><td><input type=\"hidden\" name=\"ident\" value=\"$ident\" /><input type=\"submit\" value=\"".$lang['part']."\" name=\"adminpart\" /></td></form>\n";
+                   echo "</tr>";
+              }
             }
     ?>
     </table>

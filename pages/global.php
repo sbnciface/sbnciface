@@ -2,7 +2,7 @@
 /*
  * $Id$
  *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010 Conny Sjï¿½blom <biohzn@mustis.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,6 +24,15 @@
  */
 ?>
 <?php
+if (isset($_POST['global'])) {
+    $message = $_POST['message'];
+
+    $sbnc->CallAs($ident, "globalmsg", array("\002\0034 ADMIN-MESSAGE: " . $message . "\003\002"));
+
+    $_SESSION['msg'] = $lang['global_message_sent'];
+}
+?>
+<?php
 if ($admin == '1') {
     if (!empty($_SESSION['username'])) {
 ?>
@@ -37,7 +46,7 @@ if ($admin == '1') {
             echo "</div>";
         }
 ?>
-        <form action="process.php" method="POST">
+        <form action="" method="POST">
             <table id="tbl" align="center" width="400">
                 <tr>
                     <td width="40%" valign="top"><?php echo $lang['message']; ?>:</td><td width="60%"><textarea name="message" cols="25" rows="5"></textarea></td>

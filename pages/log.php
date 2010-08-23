@@ -3,7 +3,7 @@
 /*
  * $Id$
  *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010 Conny Sjï¿½blom <biohzn@mustis.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,10 +20,16 @@
  */
 ?>
 <?php
-
 /*
  * View the offline log
  */
+?>
+<?php
+if (isset($_POST['dellog'])) {
+
+    $sbnc->Call('eraselog');
+    $_SESSION['msg'] = $lang['log_erased'];
+}
 ?>
 <?php
 
@@ -53,7 +59,7 @@ if (!empty($_SESSION['username'])) {
                 }
                 $i = $i + 2;
             }
-            echo "<div class=\"button\"><form action=\"process.php\" method=\"POST\"><input type=\"submit\" value=\"" . $lang['empty_log'] . "\" name=\"dellog\" /></form></div>";
+            echo "<div class=\"button\"><form action=\"\" method=\"POST\"><input type=\"submit\" value=\"" . $lang['empty_log'] . "\" name=\"dellog\" /></form></div>";
         }
     }
 }

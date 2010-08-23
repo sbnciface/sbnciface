@@ -2,7 +2,7 @@
 /*
  * $Id$
  *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010 Conny Sjï¿½blom <biohzn@mustis.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,6 +22,25 @@
 /*
  * Manage vHosts.
  */
+?>
+<?php
+if (isset($_POST['delvhost'])) {
+
+    $ip = $_POST['ip'];
+
+    $sbnc->Call('delvhost', array($ip));
+
+    $_SESSION['msg'] = $lang['vhost_deleted'];
+} elseif (isset($_POST['addvhost'])) {
+
+    $ip = $_POST['ip'];
+    $users = $_POST['users'];
+    $host = $_POST['host'];
+
+    $sbnc->Call('addvhost', array($ip, $users, $host));
+
+    $_SESSION['addmsg'] = $lang['vhost_added'];
+}
 ?>
 <?php
 if ($admin == 1) {
@@ -47,7 +66,7 @@ if ($admin == 1) {
     }
 ?>
     <table id="tbl" align="center" width="400">
-        <form action="process.php" method="POST">
+        <form action="" method="POST">
             <tr>
                 <td width="40%"><?php echo $lang['ip']; ?></td><td width="40%"><input type="text" name="ip" size="33"/></td>
             </tr>
@@ -78,7 +97,7 @@ if ($admin == 1) {
     $i = 0;
     while ($i < $numvhosts) {
         echo "					<tr>";
-        echo "						<form action=\"process.php\" method=\"POST\"><td>" . $vhosts[$i]['0'] . "</td><td>" . $vhosts[$i]['1'] . "/" . $vhosts[$i]['2'] . "</td><td>" . $vhosts[$i]['3'] . "</td><td align=\"center\"><input type=\"hidden\" name=\"ip\" value=\"" . $vhosts[$i]['0'] . "\" /><input class=\"input-image\" type=\"image\" src=\"img/icons/delete.png\" value=\"" . $lang['del_vhost'] . "\" name=\"delvhost\" /></td></form>";
+        echo "						<form action=\"\" method=\"POST\"><td>" . $vhosts[$i]['0'] . "</td><td>" . $vhosts[$i]['1'] . "/" . $vhosts[$i]['2'] . "</td><td>" . $vhosts[$i]['3'] . "</td><td align=\"center\"><input type=\"hidden\" name=\"ip\" value=\"" . $vhosts[$i]['0'] . "\" /><input class=\"input-image\" type=\"image\" src=\"img/icons/delete.png\" value=\"" . $lang['del_vhost'] . "\" name=\"delvhost\" /></td></form>";
         echo "					</td>";
 
         $i++;

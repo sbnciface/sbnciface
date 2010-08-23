@@ -2,7 +2,7 @@
 /*
  * $Id$
  *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010 Conny Sjï¿½blom <biohzn@mustis.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,36 @@
  * Change the away settings of the BNC
 */
 ?>
+<?php
+if (isset($_POST['away'])) {
+
+    $admin = $sbnc->Call('getvalue', array('admin'));
+    $quitaway = $sbnc->Call("getvalue", array("quitasaway"));
+
+    if ($admin == 1) {
+        if (isset($_POST['awaynick'])) {
+            $sbnc->CallAs($ident, "setvalue", array("awaynick", $_POST['awaynick']));
+        }
+        if (isset($_POST['awaymessage'])) {
+            $sbnc->CallAs($ident, "setvalue", array("awaymessage", $_POST['awaymessage']));
+        }
+        if ($quitaway != $_POST['quitaway']) {
+            $sbnc->CallAs($ident, "setvalue", array("quitasaway", $_POST['quitaway']));
+        }
+    } else {
+        if (isset($_POST['awaynick'])) {
+            $sbnc->Call("setvalue", array("awaynick", $_POST['awaynick']));
+        }
+        if (isset($_POST['awaymessage'])) {
+            $sbnc->Call("setvalue", array("awaymessage", $_POST['awaymessage']));
+        }
+        if ($quitaway != $_POST['quitaway']) {
+            $sbnc->Call("setvalue", array("quitasaway", $_POST['quitaway']));
+        }
+    }
+    $_SESSION['msg'] = $lang['settings_saved'];
+}
+?>
 <?php if (!empty($_SESSION['username'])) { ?>
 <div id="content">
         <?php if (!empty($_SESSION['msg'])) {
@@ -32,7 +62,7 @@
             echo "</div>";
         }
         ?>
-    <form action="process.php" method="POST">
+    <form action="" method="POST">
         <table id="tbl" align="center" width="400">
             <tr>
                 <td width="40%"><?php echo $lang['awaynick']; ?>:</td><td width="60%"><input type="text" name="awaynick" size="33" value="<?php echo $sbnc->Call("getvalue", array("awaynick")); ?>" /></td>
