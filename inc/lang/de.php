@@ -1,6 +1,6 @@
 <?php
 /*
- * $Id: de.php 237 2010-03-05 18:55:15Z biohzn $
+ * $Id$
  *
  * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
  *

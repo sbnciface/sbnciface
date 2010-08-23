@@ -1,8 +1,8 @@
 <?php
 /*
- * $Id: en.php 224 2010-02-22 19:54:57Z biohzn $
+ * $Id$
  *
- * Copyright (C) 2010 Conny Sjï¿½blom <biohzn@mustis.org>
+ * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
