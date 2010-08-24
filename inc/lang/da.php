@@ -1,8 +1,9 @@
 <?php
 /*
- * $Id$
+ * $Id: da.php 7 2010-08-23 16:22:45Z biohzn $
  *
  * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010 Arne Jensen <darkdevil@darkdevil.dk>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
