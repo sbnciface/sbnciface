@@ -83,6 +83,10 @@ if (isset($_GET['logout'])) {
         $_SESSION['username'] = "$ident";
         $_SESSION['password'] = "$password";
     }
+    $_SESSION['bnclocks'] = $sbnc->Call("getuserlocks");
+    if ($sbnc->Call("getvalue", array('admin'))) {
+        $_SESSION['globallocks'] = explode(",", $sbnc->Call('getglobaltag', array('globallocks')));
+    }
     header('Location:'.$webroot);
 }
 ?>

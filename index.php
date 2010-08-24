@@ -136,6 +136,7 @@ if (empty($_SESSION['username'])) {
         $admin = $sbnc->Call('getvalue', array('admin'));
 
         if ($admin == 1) {
+            $_SESSION['globallocks'] = explode(",", $sbnc->Call('getglobaltag', array('globallocks')));
             $trustip = $sbnc->Call('gettrustedips');
         }
 

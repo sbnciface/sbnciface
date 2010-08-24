@@ -4,6 +4,7 @@
  * $Id$
  *
  * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010 Arne Jensen <darkdevil@darkdevil.dk>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,13 +38,46 @@ function setServerToUse() {
     }
 }
 
+// Is setting locked globally?
+function getGlobalLockSetting($setting) {
+    $i = 0;
+    while($i < count($_SESSION['globallocks'])) {
+      if ($_SESSION['globallocks'][$i] == $setting) {
+        return 2;
+      }
+      $i++;
+    }
+    global $sbnc, $ident;
+    $userlocks = explode(",", $sbnc->CallAs($ident, "gettag", array("locksetting")));
+    $i = 0;
+    while($i < count($userlocks)) {
+      if ($userlocks[$i] == $setting) {
+        return 1;
+      }
+      $i++;
+    }
+    return 0;
+}
+
+// Is setting locked?
+function getLockSetting($setting) {
+    $i = 0;
+    while($i < count($_SESSION['bnclocks'])) {
+      if ($_SESSION['bnclocks'][$i] == $setting) {
+        return "disabled";
+      }
+      $i++;
+    }
+    return "";
+}
+
 //User Access Select
 function getQuitAway($status) {
     global $lang;
     if ($status == 1) {
-        return "<select name=\"quitaway\" style=\"width:225px;\"><option value=\"1\" selected>{$lang['on']}</option><option value=\"0\">{$lang['off']}</option></select>";
+        return "<select name=\"quitaway\" style=\"width:225px;\" ". getLockSetting("usequitasaway") ."><option value=\"1\" selected>{$lang['on']}</option><option value=\"0\">{$lang['off']}</option></select>";
     } else {
-        return "<select name=\"quitaway\" style=\"width:225px;\"><option value=\"1\">{$lang['on']}</option><option value=\"0\" selected>{$lang['off']}</option></select>";
+        return "<select name=\"quitaway\" style=\"width:225px;\" ". getLockSetting("usequitasaway") ."><option value=\"1\">{$lang['on']}</option><option value=\"0\" selected>{$lang['off']}</option></select>";
     }
 }
 

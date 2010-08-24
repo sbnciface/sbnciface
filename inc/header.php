@@ -64,7 +64,7 @@ if ($page == main && empty($_SESSION['username'])) {
                     <input type="hidden" name="lang" value="" />
                     <a href="javascript:" onclick="pickLanguage('en');"><img src="img/lang/en.png" /></a>
                     <a href="javascript:" onclick="pickLanguage('de');"><img src="img/lang/de.png" /></a>
-                    <a href="javascript:" onclick="pickLanguage('dk');"><img src="img/lang/dk.png" /></a>
+                    <a href="javascript:" onclick="pickLanguage('da');"><img src="img/lang/da.png" /></a>
                     <a href="javascript:" onclick="pickLanguage('no');"><img src="img/lang/no.png" /></a>
                     <a href="javascript:" onclick="pickLanguage('sv');"><img src="img/lang/sv.png" /></a>
                     <a href="javascript:" onclick="pickLanguage('fi');"><img src="img/lang/fi.png" /></a>

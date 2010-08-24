@@ -3,6 +3,7 @@
  * $Id$
  *
  * Copyright (C) 2010 Conny Sj�blom <biohzn@mustis.org>
+ * Copyright (C) 2010 Arne Jensen <darkdevil@darkdevil.dk>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -65,10 +66,10 @@ if (isset($_POST['away'])) {
     <form action="" method="POST">
         <table id="tbl" align="center" width="400">
             <tr>
-                <td width="40%"><?php echo $lang['awaynick']; ?>:</td><td width="60%"><input type="text" name="awaynick" size="33" value="<?php echo $sbnc->Call("getvalue", array("awaynick")); ?>" /></td>
+                <td width="40%"><?php echo $lang['awaynick']; ?>:</td><td width="60%"><input type="text" name="awaynick" size="33" value="<?php echo $sbnc->Call("getvalue", array("awaynick")); ?>" <?php echo getLockSetting("awaynick"); ?>/></td>
             </tr>
             <tr>
-                <td width="40%"><?php echo $lang['awaymessage']; ?>:</td><td width="60%"><input type="text" name="awaymessage" size="33" value="<?php echo $sbnc->Call("getvalue", array("awaymessage")); ?>" /></td>
+                <td width="40%"><?php echo $lang['awaymessage']; ?>:</td><td width="60%"><input type="text" name="awaymessage" size="33" value="<?php echo $sbnc->Call("getvalue", array("awaymessage")); ?>" <?php echo getLockSetting("awaymessage"); ?>/></td>
             </tr>
             <tr>
                 <td width="40%"><?php echo $lang['quit_as_away']; ?>:</td><td width="60%"><?php echo getQuitAway($sbnc->Call("getvalue", array("quitasaway"))); ?></td>

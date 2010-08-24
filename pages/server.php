@@ -3,6 +3,7 @@
  * $Id$
  *
  * Copyright (C) 2010 Conny Sj�blom <biohzn@mustis.org>
+ * Copyright (C) 2010 Arne Jensen <darkdevil@darkdevil.dk>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -80,16 +81,16 @@ if (isset($_POST['jump'])) {
     <form action="" method="POST">
         <table id="tbl" align="center" width="400">
             <tr>
-                <td width="40%"><?php echo $lang['server']; ?>:</td><td width="60%"><input type="text" name="server" size="33" value="<?php echo $sbnc->Call("getvalue", array("server")); ?>" /></td>
+                <td width="40%"><?php echo $lang['server']; ?>:</td><td width="60%"><input type="text" name="server" size="33" value="<?php echo $sbnc->Call("getvalue", array("server")); ?>" <?php echo getLockSetting("server"); ?>/></td>
             </tr>
             <tr>
-                <td width="40%"><?php echo $lang['port']; ?>:</td><td width="60%"><input type="text" name="port" size="33" value="<?php echo $sbnc->Call("getvalue", array("port")); ?>" /></td>
+                <td width="40%"><?php echo $lang['port']; ?>:</td><td width="60%"><input type="text" name="port" size="33" value="<?php echo $sbnc->Call("getvalue", array("port")); ?>" <?php echo getLockSetting("port"); ?>/></td>
             </tr>
             <tr>
-                <td width="40%"><?php echo $lang['password']; ?>:</td><td width="60%"><input type="text" name="password" size="33" value="<?php echo $sbnc->Call("getvalue", array("serverpass")); ?>" /></td>
+                <td width="40%"><?php echo $lang['password']; ?>:</td><td width="60%"><input type="text" name="password" size="33" value="<?php echo $sbnc->Call("getvalue", array("serverpass")); ?>" <?php echo getLockSetting("serverpass"); ?>/></td>
             </tr>
             <tr>
-                <td width="40%"><?php echo $lang['vhost']; ?>:</td><td width="60%"><select name="vhost" style="width:225px;"><?php foreach($sbnc->Call("getvhosts") as $vhost) {
+                <td width="40%"><?php echo $lang['vhost']; ?>:</td><td width="60%"><select name="vhost" style="width:225px;" <?php echo getLockSetting("vhost"); ?>><?php foreach($sbnc->Call("getvhosts") as $vhost) {
                                 echo '<option value="'.$vhost[0].'"';
                                 if($sbnc->CallAs($user, "getvalue", array("vhost"))==$vhost[0]) {
                                     echo ' selected';
