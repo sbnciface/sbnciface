@@ -96,8 +96,10 @@ if (isset($_POST['join'])) {
     echo "<div id=\"content\">";
     if (isset($_POST['edit'])) {
         $ident = $_POST['edituser'];
+        $userlocks = explode(",", $sbnc->CallAs($ident, "gettag", array("locksetting")));
     }elseif (isset($_GET['u'])) {
         $ident = $_GET['u'];
+        $userlocks = explode(",", $sbnc->CallAs($ident, "gettag", array("locksetting")));
     }
     ?>
 
@@ -117,41 +119,113 @@ if (isset($_POST['join'])) {
             <td width="40%"><?php echo $lang['access']; ?>:</td><td width="60%"><?php echo getUserAccess($sbnc->CallAs($ident, 'getvalue', array('admin')), $ident, $_SESSION['username']); ?></td>
         </tr>
         <tr>
-            <td width="40%"><?php echo $lang['realname']; ?>:</td><td width="60%"><input type="text" name="realname" size="33" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("realname")); ?>" /></td>
+            <td width="40%"><?php echo $lang['realname']; ?>:</td><td width="60%"><input type="text" name="realname" size="30" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("realname")); ?>" />
+<?php if (getGlobalLockSetting("realname") == 2) { ?>
+              <img class="disabled" src="img/icons/lock.png">
+<?php } else if (getGlobalLockSetting("realname") == 1) { ?>
+              <img src="img/icons/lock.png">
+<?php } else { ?>
+              <img src="img/icons/lock_open.png">
+<?php } ?>
+            </td>
         </tr>
         <tr>
-            <td width="40%"><?php echo $lang['nickname']; ?>:</td><td width="60%"><input type="text" name="nickname" size="33" value="<?php echo $sbnc->CallAs($ident, "getnick"); ?>" /></td>
+            <td width="40%"><?php echo $lang['nickname']; ?>:</td><td width="60%"><input type="text" name="nickname" size="30" value="<?php echo $sbnc->CallAs($ident, "getnick"); ?>" /></td>
         </tr>
         <tr>
-            <td width="40%"><?php echo $lang['password']; ?>:</td><td width="60%"><input type="text" name="password" size="33" /></td>
+            <td width="40%"><?php echo $lang['password']; ?>:</td><td width="60%"><input type="text" name="password" size="30" />
+<?php if (getGlobalLockSetting("password") == 2) { ?>
+              <img class="disabled" src="img/icons/lock.png">
+<?php } else if (getGlobalLockSetting("password") == 1) { ?>
+              <img src="img/icons/lock.png">
+<?php } else { ?>
+              <img src="img/icons/lock_open.png">
+<?php } ?>
+            </td>
         </tr>
         <tr>
-            <td width="40%"><?php echo $lang['server']; ?>:</td><td width="60%"><input type="text" name="server" size="33" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("server")); ?>" /></td>
+            <td width="40%"><?php echo $lang['server']; ?>:</td><td width="60%"><input type="text" name="server" size="30" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("server")); ?>" />
+<?php if (getGlobalLockSetting("server") == 2) { ?>
+              <img class="disabled" src="img/icons/lock.png">
+<?php } else if (getGlobalLockSetting("server") == 1) { ?>
+              <img src="img/icons/lock.png">
+<?php } else { ?>
+              <img src="img/icons/lock_open.png">
+<?php } ?>
+            </td>
         </tr>
         <tr>
-            <td width="40%"><?php echo $lang['port']; ?>:</td><td width="60%"><input type="text" name="port" size="33" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("port")); ?>" /></td>
+            <td width="40%"><?php echo $lang['port']; ?>:</td><td width="60%"><input type="text" name="port" size="30" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("port")); ?>" />
+<?php if (getGlobalLockSetting("port") == 2) { ?>
+              <img class="disabled" src="img/icons/lock.png">
+<?php } else if (getGlobalLockSetting("port") == 1) { ?>
+              <img src="img/icons/lock.png">
+<?php } else { ?>
+              <img src="img/icons/lock_open.png">
+<?php } ?>
+            </td>
         </tr>
         <tr>
-            <td width="40%"><?php echo $lang['server_password']; ?>:</td><td width="60%"><input type="text" name="serverpassword" size="33" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("serverpass")); ?>" /></td>
+            <td width="40%"><?php echo $lang['server_password']; ?>:</td><td width="60%"><input type="text" name="serverpassword" size="30" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("serverpass")); ?>" />
+<?php if (getGlobalLockSetting("serverpass") == 2) { ?>
+              <img class="disabled" src="img/icons/lock.png">
+<?php } else if (getGlobalLockSetting("serverpass") == 1) { ?>
+              <img src="img/icons/lock.png">
+<?php } else { ?>
+              <img src="img/icons/lock_open.png">
+<?php } ?>
+            </td>
         </tr>
         <tr>
-            <td width="40%"><?php echo $lang['awaynick']; ?>:</td><td width="60%"><input type="text" name="awaynick" size="33" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("awaynick")); ?>" /></td>
+            <td width="40%"><?php echo $lang['awaynick']; ?>:</td><td width="60%"><input type="text" name="awaynick" size="30" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("awaynick")); ?>" />
+<?php if (getGlobalLockSetting("awaynick") == 2) { ?>
+              <img class="disabled" src="img/icons/lock.png">
+<?php } else if (getGlobalLockSetting("awaynick") == 1) { ?>
+              <img src="img/icons/lock.png">
+<?php } else { ?>
+              <img src="img/icons/lock_open.png">
+<?php } ?>
+            </td>
         </tr>
         <tr>
-            <td width="40%"><?php echo $lang['awaymessage']; ?>:</td><td width="60%"><input type="text" name="awaymessage" size="33" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("awaymessage")); ?>" /></td>
+            <td width="40%"><?php echo $lang['awaymessage']; ?>:</td><td width="60%"><input type="text" name="awaymessage" size="30" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("awaymessage")); ?>" />
+<?php if (getGlobalLockSetting("awaymessage") == 2) { ?>
+              <img class="disabled" src="img/icons/lock.png">
+<?php } else if (getGlobalLockSetting("awaymessage") == 1) { ?>
+              <img src="img/icons/lock.png">
+<?php } else { ?>
+              <img src="img/icons/lock_open.png">
+<?php } ?>
+            </td>
         </tr>
         <tr>
-            <td width="40%"><?php echo $lang['quit_as_away']; ?>:</td><td width="60%"><?php echo getQuitAway($sbnc->CallAs($ident, "getvalue", array("quitasaway"))); ?></td>
+            <td width="40%"><?php echo $lang['quit_as_away']; ?>:</td><td width="60%"><?php echo getQuitAway($sbnc->CallAs($ident, "getvalue", array("quitasaway"))); ?>
+<?php if (getGlobalLockSetting("usequitasaway") == 2) { ?>
+              <img class="disabled" src="img/icons/lock.png">
+<?php } else if (getGlobalLockSetting("usequitasaway") == 1) { ?>
+              <img src="img/icons/lock.png">
+<?php } else { ?>
+              <img src="img/icons/lock_open.png">
+<?php } ?>
+            </td>
         </tr>
         <tr>
-            <td width="40%"><?php echo $lang['vhost']; ?>:</td><td width="60%"><select name="vhost" style="width:225px;"><?php foreach($sbnc->CallAs($ident, "getvhosts") as $vhost) {
+            <td width="40%"><?php echo $lang['vhost']; ?>:</td><td width="60%"><select name="vhost" style="width:205px;"><?php foreach($sbnc->CallAs($ident, "getvhosts") as $vhost) {
                             echo '<option value="'.$vhost[0].'"';
                             if($sbnc->CallAs($ident, "getvalue", array("vhost"))==$vhost[0]) {
                                 echo ' selected';
                             } echo
 
                             '>'.$vhost[3].'</option>';
-    } ?></select></td>
+    } ?></select>
+<?php if (getGlobalLockSetting("vhost") == 2) { ?>
+              <img class="disabled" src="img/icons/lock.png">
+<?php } else if (getGlobalLockSetting("vhost") == 1) { ?>
+              <img src="img/icons/lock.png">
+<?php } else { ?>
+              <img src="img/icons/lock_open.png">
+<?php } ?>
+            </td>
         </tr>
         <tr>
             <td colspan="2" align="center"><input type="hidden" value="<?php echo $ident; ?>" name="ident" /><input type="submit" value="<?php echo $lang['save_changes']; ?>" name="edituser" /> <input type="submit" value="<?php echo $lang['send_jump']; ?>" name="dojump" /></td>

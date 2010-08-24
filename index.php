@@ -26,13 +26,9 @@ session_start();
 include('inc/settings.php');
 
 //Language selector
-if (isset($_POST['langselect'])) {
-    if ($_POST['langselect'] == 1) {
-        if (isset($_POST['lang'])) {
-            setcookie("lang", $_POST['lang'], $expire);
-            $lang = $_POST['lang'];
-        }
-    }
+if (isset($_POST['lang'])) {
+    setcookie("lang", $_POST['lang'], $expire);
+    $lang = $_POST['lang'];
 }
 
 //Set Language

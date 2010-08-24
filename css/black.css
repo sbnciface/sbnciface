@@ -264,3 +264,10 @@ select {
 .menu p{
     clear:left;
 }
+
+.disabled {
+    opacity : 0.3;
+    /* IE opacity */
+    filter: alpha(opacity=30);
+}
+

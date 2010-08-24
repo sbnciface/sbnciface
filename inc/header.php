@@ -60,7 +60,6 @@ if ($page == main && empty($_SESSION['username'])) {
         <div id="container">
             <div id="langselect">
                 <form action="" method="POST" name="langselector">
-                    <input type="hidden" name="langselect" value="1" />
                     <input type="hidden" name="lang" value="" />
                     <a href="javascript:" onclick="pickLanguage('en');"><img src="img/lang/en.png" /></a>
                     <a href="javascript:" onclick="pickLanguage('de');"><img src="img/lang/de.png" /></a>

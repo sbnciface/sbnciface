@@ -47,8 +47,7 @@ function getGlobalLockSetting($setting) {
       }
       $i++;
     }
-    global $sbnc, $ident;
-    $userlocks = explode(",", $sbnc->CallAs($ident, "gettag", array("locksetting")));
+    global $userlocks;
     $i = 0;
     while($i < count($userlocks)) {
       if ($userlocks[$i] == $setting) {
@@ -75,9 +74,9 @@ function getLockSetting($setting) {
 function getQuitAway($status) {
     global $lang;
     if ($status == 1) {
-        return "<select name=\"quitaway\" style=\"width:225px;\" ". getLockSetting("usequitasaway") ."><option value=\"1\" selected>{$lang['on']}</option><option value=\"0\">{$lang['off']}</option></select>";
+        return "<select name=\"quitaway\" style=\"width:205px;\" ". getLockSetting("usequitasaway") ."><option value=\"1\" selected>{$lang['on']}</option><option value=\"0\">{$lang['off']}</option></select>";
     } else {
-        return "<select name=\"quitaway\" style=\"width:225px;\" ". getLockSetting("usequitasaway") ."><option value=\"1\">{$lang['on']}</option><option value=\"0\" selected>{$lang['off']}</option></select>";
+        return "<select name=\"quitaway\" style=\"width:205px;\" ". getLockSetting("usequitasaway") ."><option value=\"1\">{$lang['on']}</option><option value=\"0\" selected>{$lang['off']}</option></select>";
     }
 }
 
@@ -85,13 +84,13 @@ function getUserAccess($access, $user, $admin) {
     global $lang;
     if ($user == $admin) {
         if ($access == 1) {
-            return "<select name=\"access\" style=\"width:225px;\" disabled><option value=\"1\" selected>{$lang['administrator']}</option><option value=\"0\">{$lang['user']}</option></select>";
+            return "<select name=\"access\" style=\"width:205px;\" disabled><option value=\"1\" selected>{$lang['administrator']}</option><option value=\"0\">{$lang['user']}</option></select>";
         }
     } else {
         if ($access == 1) {
-            return "<select name=\"access\" style=\"width:225px;\"><option value=\"1\" selected>{$lang['administrator']}</option><option value=\"0\">{$lang['user']}</option></select>";
+            return "<select name=\"access\" style=\"width:205px;\"><option value=\"1\" selected>{$lang['administrator']}</option><option value=\"0\">{$lang['user']}</option></select>";
         } else {
-            return "<select name=\"access\" style=\"width:225px;\"><option value=\"1\">{$lang['administrator']}</option><option value=\"0\" selected>{$lang['user']}</option></select>";
+            return "<select name=\"access\" style=\"width:205px;\"><option value=\"1\">{$lang['administrator']}</option><option value=\"0\" selected>{$lang['user']}</option></select>";
         }
     }
 }
