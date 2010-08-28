@@ -68,6 +68,7 @@ if ($page == main && empty($_SESSION['username'])) {
                     <a href="javascript:" onclick="pickLanguage('sv');"><img src="img/lang/sv.png" /></a>
                     <a href="javascript:" onclick="pickLanguage('fi');"><img src="img/lang/fi.png" /></a>
                     <a href="javascript:" onclick="pickLanguage('pl');"><img src="img/lang/pl.png" /></a>
+                    <a href="javascript:" onclick="pickLanguage('lt');"><img src="img/lang/lt.png" /></a>
                 </form>
             </div>
 <?php
