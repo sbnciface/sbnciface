@@ -26,7 +26,7 @@
 <?php
 $lang = array(
         //v0.2 Beta
-        "if_password_empty"     =>  "Note. If password field is left empty, a random password is generated.",
+        "if_password_empty"     =>  "Pastaba. Jeigu laukas paliktas tuščias, bus sukurtas atsitiktinis slaptažodis.",
         "ident"                 =>  "Slapyvardis",
         "password"              =>  "Slaptaþodis",
         "add_user"              =>  "Pridëti vartotojà",
