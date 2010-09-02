@@ -53,6 +53,7 @@ if (isset($_POST['join'])) {
             $sbnc->Call("unadmin", array("$ident"));
         }
     }
+    
     if (!empty($_POST['server'])) {
         $sbnc->CallAs($ident, "setvalue", array("server", $_POST['server']));
     }

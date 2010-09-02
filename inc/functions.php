@@ -3,7 +3,7 @@
 /*
  * $Id$
  *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010 Conny Sjï¿½blom <biohzn@mustis.org>
  * Copyright (C) 2010 Arne Jensen <darkdevil@darkdevil.dk>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -84,7 +84,7 @@ function getUserAccess($access, $user, $admin) {
     global $lang;
     if ($user == $admin) {
         if ($access == 1) {
-            return "<select name=\"access\" style=\"width:205px;\" disabled><option value=\"1\" selected>{$lang['administrator']}</option><option value=\"0\">{$lang['user']}</option></select>";
+            return "<select name=\"access\" style=\"width:205px;\" disabled><option value=\"1\" selected>{$lang['administrator']}</option><option value=\"0\">{$lang['user']}</option></select><input type=\"hidden\" name=\"access\" value=\"1\" />";
         }
     } else {
         if ($access == 1) {
