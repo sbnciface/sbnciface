@@ -53,15 +53,15 @@ if (isset($_POST['join'])) {
             $sbnc->Call("unadmin", array("$ident"));
         }
     }
-    
+
     if (!empty($_POST['server'])) {
         $sbnc->CallAs($ident, "setvalue", array("server", $_POST['server']));
     }
     if (!empty($_POST['port'])) {
         $sbnc->CallAs($ident, "setvalue", array("port", $_POST['port']));
     }
-    if (isset($_POST['serverpassword'])) {
-        $sbnc->CallAs($ident, "setvalue", array("serverpassword", $_POST['password']));
+    if (isset($_POST['serverpass'])) {
+        $sbnc->CallAs($ident, "setvalue", array("serverpass", $_POST['serverpass']));
     }
     if (isset($_POST['awaynick'])) {
         $sbnc->CallAs($ident, "setvalue", array("awaynick", $_POST['awaynick']));
@@ -84,7 +84,27 @@ if (isset($_POST['join'])) {
     if (!empty($_POST['password'])) {
         $sbnc->CallAs("$ident", "setvalue", array("password", $_POST['password']));
     }
+    if (!empty($_POST['lock'])) {
+        $locks = $_POST['lock'];
+        foreach ($locks as $lock => $set) {
+          if ($set == 1) {
+            $lRes = GetResult($sbnc->Call("setuserlock", array($ident, $lock)));
+            if(!empty($lRes)) {
+              echo "($lock) ".$lRes."<br>";
+            }
+          } else if ($set == 0) {
+            /* To prevent incorrect error messages from sbnc, we'll call setuserlock before unsetuserlock. -- DD */
+            $sbnc->Call("setuserlock", array($ident, $lock));
+            $uRes = GetResult($sbnc->Call("unsetuserlock", array($ident, $lock)));
+            if(!empty($uRes)) {
+              echo "($lock) ".$uRes."<br>";
+            }
+          }
+        }
+    }
     $_SESSION['msg'] = $lang['settings_saved'];
+    /* We posted some stuff, but not always we get back to the origin. Let's make sure. -- DD  */
+    echo "<meta http-equiv='refresh' content='0;URL=".$_SERVER["REQUEST_URI"]."'>";
 } elseif (isset($_POST['dojump'])) {
 
     $ident = $_POST['ident'];
@@ -115,100 +135,54 @@ if (isset($_POST['join'])) {
     <table id="tbl" align="center" width="400">
         <tr>
             <td colspan="2" align="center"><?php echo $lang['changing_options']; ?> <b><?php echo $ident; ?></b>.</td>
+            <td><img src="img/icons/lock_open.png"></td>
+            <td><img src="img/icons/lock.png"></td>
         </tr>
         <tr>
             <td width="40%"><?php echo $lang['access']; ?>:</td><td width="60%"><?php echo getUserAccess($sbnc->CallAs($ident, 'getvalue', array('admin')), $ident, $_SESSION['username']); ?></td>
         </tr>
         <tr>
-            <td width="40%"><?php echo $lang['realname']; ?>:</td><td width="60%"><input type="text" name="realname" size="30" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("realname")); ?>" />
-<?php if (getGlobalLockSetting("realname") == 2) { ?>
-              <img class="disabled" src="img/icons/lock.png">
-<?php } else if (getGlobalLockSetting("realname") == 1) { ?>
-              <img src="img/icons/lock.png">
-<?php } else { ?>
-              <img src="img/icons/lock_open.png">
-<?php } ?>
-            </td>
+            <td width="40%"><?php echo $lang['realname']; ?>:</td><td width="60%"><input type="text" name="realname" size="30" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("realname")); ?>" /></td>
+            <td><input type="radio" name="lock[realname]" value="0" <?php echo getUserLockStatus("open", "realname"); ?> <?php echo getGlobalLockSetting("realname"); ?>></td>
+            <td><input type="radio" name="lock[realname]" value="1" <?php echo getUserLockStatus("closed", "realname"); ?> <?php echo getGlobalLockSetting("realname"); ?>></td>
         </tr>
         <tr>
             <td width="40%"><?php echo $lang['nickname']; ?>:</td><td width="60%"><input type="text" name="nickname" size="30" value="<?php echo $sbnc->CallAs($ident, "getnick"); ?>" /></td>
         </tr>
         <tr>
-            <td width="40%"><?php echo $lang['password']; ?>:</td><td width="60%"><input type="text" name="password" size="30" />
-<?php if (getGlobalLockSetting("password") == 2) { ?>
-              <img class="disabled" src="img/icons/lock.png">
-<?php } else if (getGlobalLockSetting("password") == 1) { ?>
-              <img src="img/icons/lock.png">
-<?php } else { ?>
-              <img src="img/icons/lock_open.png">
-<?php } ?>
-            </td>
+            <td width="40%"><?php echo $lang['password']; ?>:</td><td width="60%"><input type="text" name="password" size="30" /></td>
+            <td><input type="radio" name="lock[password]" value="0" <?php echo getUserLockStatus("open", "password"); ?> <?php echo getGlobalLockSetting("password"); ?>></td>
+            <td><input type="radio" name="lock[password]" value="1" <?php echo getUserLockStatus("closed", "password"); ?> <?php echo getGlobalLockSetting("password"); ?>></td>
         </tr>
         <tr>
-            <td width="40%"><?php echo $lang['server']; ?>:</td><td width="60%"><input type="text" name="server" size="30" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("server")); ?>" />
-<?php if (getGlobalLockSetting("server") == 2) { ?>
-              <img class="disabled" src="img/icons/lock.png">
-<?php } else if (getGlobalLockSetting("server") == 1) { ?>
-              <img src="img/icons/lock.png">
-<?php } else { ?>
-              <img src="img/icons/lock_open.png">
-<?php } ?>
-            </td>
+            <td width="40%"><?php echo $lang['server']; ?>:</td><td width="60%"><input type="text" name="server" size="30" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("server")); ?>" /></td>
+            <td><input type="radio" name="lock[server]" value="0" <?php echo getUserLockStatus("open", "server"); ?> <?php echo getGlobalLockSetting("server"); ?>></td>
+            <td><input type="radio" name="lock[server]" value="1" <?php echo getUserLockStatus("closed", "server"); ?> <?php echo getGlobalLockSetting("server"); ?>></td>
         </tr>
         <tr>
-            <td width="40%"><?php echo $lang['port']; ?>:</td><td width="60%"><input type="text" name="port" size="30" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("port")); ?>" />
-<?php if (getGlobalLockSetting("port") == 2) { ?>
-              <img class="disabled" src="img/icons/lock.png">
-<?php } else if (getGlobalLockSetting("port") == 1) { ?>
-              <img src="img/icons/lock.png">
-<?php } else { ?>
-              <img src="img/icons/lock_open.png">
-<?php } ?>
-            </td>
+            <td width="40%"><?php echo $lang['port']; ?>:</td><td width="60%"><input type="text" name="port" size="30" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("port")); ?>" /></td>
+            <td><input type="radio" name="lock[port]" value="0" <?php echo getUserLockStatus("open", "port"); ?> <?php echo getGlobalLockSetting("port"); ?>></td>
+            <td><input type="radio" name="lock[port]" value="1" <?php echo getUserLockStatus("closed", "port"); ?> <?php echo getGlobalLockSetting("port"); ?>></td>
         </tr>
         <tr>
-            <td width="40%"><?php echo $lang['server_password']; ?>:</td><td width="60%"><input type="text" name="serverpassword" size="30" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("serverpass")); ?>" />
-<?php if (getGlobalLockSetting("serverpass") == 2) { ?>
-              <img class="disabled" src="img/icons/lock.png">
-<?php } else if (getGlobalLockSetting("serverpass") == 1) { ?>
-              <img src="img/icons/lock.png">
-<?php } else { ?>
-              <img src="img/icons/lock_open.png">
-<?php } ?>
-            </td>
+            <td width="40%"><?php echo $lang['server_password']; ?>:</td><td width="60%"><input type="text" name="serverpass" size="30" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("serverpass")); ?>" /></td>
+            <td><input type="radio" name="lock[serverpass]" value="0" <?php echo getUserLockStatus("open", "serverpass"); ?> <?php echo getGlobalLockSetting("serverpass"); ?>></td>
+            <td><input type="radio" name="lock[serverpass]" value="1" <?php echo getUserLockStatus("closed", "serverpass"); ?> <?php echo getGlobalLockSetting("serverpass"); ?>></td>
         </tr>
         <tr>
-            <td width="40%"><?php echo $lang['awaynick']; ?>:</td><td width="60%"><input type="text" name="awaynick" size="30" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("awaynick")); ?>" />
-<?php if (getGlobalLockSetting("awaynick") == 2) { ?>
-              <img class="disabled" src="img/icons/lock.png">
-<?php } else if (getGlobalLockSetting("awaynick") == 1) { ?>
-              <img src="img/icons/lock.png">
-<?php } else { ?>
-              <img src="img/icons/lock_open.png">
-<?php } ?>
-            </td>
+            <td width="40%"><?php echo $lang['awaynick']; ?>:</td><td width="60%"><input type="text" name="awaynick" size="30" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("awaynick")); ?>" /></td>
+            <td><input type="radio" name="lock[awaynick]" value="0" <?php echo getUserLockStatus("open", "awaynick"); ?> <?php echo getGlobalLockSetting("awaynick"); ?>></td>
+            <td><input type="radio" name="lock[awaynick]" value="1" <?php echo getUserLockStatus("closed", "awaynick"); ?> <?php echo getGlobalLockSetting("awaynick"); ?>></td>
         </tr>
         <tr>
-            <td width="40%"><?php echo $lang['awaymessage']; ?>:</td><td width="60%"><input type="text" name="awaymessage" size="30" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("awaymessage")); ?>" />
-<?php if (getGlobalLockSetting("awaymessage") == 2) { ?>
-              <img class="disabled" src="img/icons/lock.png">
-<?php } else if (getGlobalLockSetting("awaymessage") == 1) { ?>
-              <img src="img/icons/lock.png">
-<?php } else { ?>
-              <img src="img/icons/lock_open.png">
-<?php } ?>
-            </td>
+            <td width="40%"><?php echo $lang['awaymessage']; ?>:</td><td width="60%"><input type="text" name="awaymessage" size="30" value="<?php echo $sbnc->CallAs($ident, "getvalue", array("awaymessage")); ?>" /></td>
+            <td><input type="radio" name="lock[awaymessage]" value="0" <?php echo getUserLockStatus("open", "awaymessage"); ?> <?php echo getGlobalLockSetting("awaymessage"); ?>></td>
+            <td><input type="radio" name="lock[awaymessage]" value="1" <?php echo getUserLockStatus("closed", "awaymessage"); ?> <?php echo getGlobalLockSetting("awaymessage"); ?>></td>
         </tr>
         <tr>
-            <td width="40%"><?php echo $lang['quit_as_away']; ?>:</td><td width="60%"><?php echo getQuitAway($sbnc->CallAs($ident, "getvalue", array("quitasaway"))); ?>
-<?php if (getGlobalLockSetting("usequitasaway") == 2) { ?>
-              <img class="disabled" src="img/icons/lock.png">
-<?php } else if (getGlobalLockSetting("usequitasaway") == 1) { ?>
-              <img src="img/icons/lock.png">
-<?php } else { ?>
-              <img src="img/icons/lock_open.png">
-<?php } ?>
-            </td>
+            <td width="40%"><?php echo $lang['quit_as_away']; ?>:</td><td width="60%"><?php echo getQuitAway($sbnc->CallAs($ident, "getvalue", array("quitasaway"))); ?></td>
+            <td><input type="radio" name="lock[usequitasaway]" value="0" <?php echo getUserLockStatus("open", "usequitasaway"); ?> <?php echo getGlobalLockSetting("usequitasaway"); ?>></td>
+            <td><input type="radio" name="lock[usequitasaway]" value="1" <?php echo getUserLockStatus("closed", "usequitasaway"); ?> <?php echo getGlobalLockSetting("usequitasaway"); ?>></td>
         </tr>
         <tr>
             <td width="40%"><?php echo $lang['vhost']; ?>:</td><td width="60%"><select name="vhost" style="width:205px;"><?php foreach($sbnc->CallAs($ident, "getvhosts") as $vhost) {
@@ -218,15 +192,11 @@ if (isset($_POST['join'])) {
                             } echo
 
                             '>'.$vhost[3].'</option>';
-    } ?></select>
-<?php if (getGlobalLockSetting("vhost") == 2) { ?>
-              <img class="disabled" src="img/icons/lock.png">
-<?php } else if (getGlobalLockSetting("vhost") == 1) { ?>
-              <img src="img/icons/lock.png">
-<?php } else { ?>
-              <img src="img/icons/lock_open.png">
-<?php } ?>
+    } ?>
+              </select>
             </td>
+            <td><input type="radio" name="lock[vhost]" value="0" <?php echo getUserLockStatus("open", "vhost"); ?> <?php echo getGlobalLockSetting("vhost"); ?>></td>
+            <td><input type="radio" name="lock[vhost]" value="1" <?php echo getUserLockStatus("closed", "vhost"); ?> <?php echo getGlobalLockSetting("vhost"); ?>></td>
         </tr>
         <tr>
             <td colspan="2" align="center"><input type="hidden" value="<?php echo $ident; ?>" name="ident" /><input type="submit" value="<?php echo $lang['save_changes']; ?>" name="edituser" /> <input type="submit" value="<?php echo $lang['send_jump']; ?>" name="dojump" /></td>

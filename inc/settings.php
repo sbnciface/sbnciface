@@ -3,7 +3,7 @@
 /*
  * $Id$
  *
- * Copyright (C) 2010 Conny Sj�blom <biohzn@mustis.org>
+ * Copyright (C) 2010 Conny Sj.blom <biohzn@mustis.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,15 +20,14 @@
  */
 ?>
 <?php
-
 //sBNC Server Settings
-//$ip = 'localhost';              //sBNC IP
-//$port = '9000';                 //sBNC Port
-$webroot = '/sbnciface/';       //Where the Interface is located
-
-
 $bncServers = array(
-    $server1 = array(
+    $server = array(
+        $name = "DarkServ",
+        $ip = "bnc.darkserv.net",
+        $port = "9000"
+    ),
+    $server = array(
         $name = "Mustis BNCs",
         $ip = "localhost",
         $port = "9000"
@@ -36,10 +35,12 @@ $bncServers = array(
 );
 
 //Interface Settings
-$default_lang = "en";           //Available languages English - en, Swedish - sv, German - de.
-$default_style = "grey";        //Available styles are simple_blue, simple_black.
+$default_lang = "en";                   //Check inc/lang folder for available languages
+$default_style = "grey";                //Check css folder for available styles
 
-$name = "shroudBNC Webinterface";
+$webroot = '/sbnciface/';               //Where the Interface is located
+$name = "shroudBNC Webinterface";       //Name in <title></title>
 
-$expire = time() + 60 * 60 * 24 * 30;
+//Cookie settings
+$expire = time() + 60 * 60 * 24 * 30;   //Cookie lifetime
 ?>

@@ -43,7 +43,23 @@ function getGlobalLockSetting($setting) {
     $i = 0;
     while($i < count($_SESSION['globallocks'])) {
       if ($_SESSION['globallocks'][$i] == $setting) {
-        return 2;
+        return "disabled";
+      }
+      $i++;
+    }
+    return "";
+}
+
+// Is setting locked? (edit.php)
+function getUserLockStatus($position, $setting) {
+    $i = 0;
+    while($i < count($_SESSION['globallocks'])) {
+      if ($_SESSION['globallocks'][$i] == $setting) {
+        if ($position == "open") {
+          return "";
+        } else if ($position == "closed") {
+          return "checked";
+        }
       }
       $i++;
     }
@@ -51,12 +67,21 @@ function getGlobalLockSetting($setting) {
     $i = 0;
     while($i < count($userlocks)) {
       if ($userlocks[$i] == $setting) {
-        return 1;
+        if ($position == "open") {
+          return "";
+        } else if ($position == "closed") {
+          return "checked";
+        }
       }
       $i++;
     }
-    return 0;
+    if ($position == "open") {
+      return "checked";
+    } else if ($position == "closed") {
+      return "";
+    }
 }
+
 
 // Is setting locked?
 function getLockSetting($setting) {
