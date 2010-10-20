@@ -19,6 +19,9 @@ $webRoot = '/sbnciface3/';
 $defautLang = 'en';
 $defaultTemplate = 'sbnciface';
 
+//Cookie Settings
+$expire = time() + 60 * 60 * 24 * 30;   //Cookie lifetime Default: 30 days
+
 //BETA VARS
 $templateDir = $defaultTemplate;
 ?>

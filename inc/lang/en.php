@@ -97,11 +97,10 @@ $lang = array(
         "reconnecting_user"     =>  "Reconnecting user...",
         "done"                  =>  "Done.",
         "ident_taken"           =>  "There is already a user with that Ident, please choose another.",
-        "bnc_added"             =>  "BNC added with ident:",
-        "password_added"        =>  "and password",
+        "bnc_added"             =>  "BNC added with ident: %s and password %s.",
         "reconnecting"          =>  "Reconnecting...",
         "wrong_user_pass"       =>  "Wrong username or password.",
-        "user_deleted"          =>  "User successfully removed.",
+        "user_deleted"          =>  "User %s successfully removed.",
         "log_erased"            =>  "Log successfully erased.",
 
         //REV 19

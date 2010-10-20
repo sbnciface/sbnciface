@@ -97,11 +97,10 @@ $lang = array(
         "reconnecting_user"     =>  "Återansluter användare...",
         "done"                  =>  "Klart.",
         "ident_taken"           =>  "Det finns redan en användare med detta Ident, välj ett annat.",
-        "bnc_added"             =>  "BNC tillagd med ident:",
-        "password_added"        =>  "och lösenord",
+        "bnc_added"             =>  "BNC tillagd med ident: %s med lösendordet %s.",
         "reconnecting"          =>  "Återansluter...",
         "wrong_user_pass"       =>  "Fel användarnan eller lösenord.",
-        "user_deleted"          =>  "Användaren togs bort",
+        "user_deleted"          =>  "Användaren %s togs bort",
         "log_erased"            =>  "Loggen tömdes",
 
         //REV 19

@@ -98,19 +98,18 @@ $lang = array(
         "reconnecting_user"     =>  "Yhdistetään käyttäjää uudelleen...",
         "done"                  =>  "Tehty.",
         "ident_taken"           =>  "Samalla identillä on olemassa käyttäjä, ole hyvä ja valitse toinen.",
-        "bnc_added"             =>  "BNC lisätty identillä:",
-        "password_added"        =>  "ja salasanalla",
+        "bnc_added"             =>  "BNC lisätty identillä: %s salasanalla %s.",
         "reconnecting"          =>  "Yhdistetään uudelleen ...",
         "wrong_user_pass"       =>  "Väärä salasana tai käyttäjätunnus.",
-        "user_deleted"          =>  "Käyttäjä onnistuneesti poistettu.",
+        "user_deleted"          =>  "Käyttäjä %s onnistuneesti poistettu.",
         "log_erased"            =>  "Lokikirja onnistuneesti tyhjennetty.",
 
         //REV 19
-        "q_settings"            => "Q Asetukset",
-        "q_authname"            => "Q Käyttäjä",
-        "q_authpass"            => "Q Salasana",
-        "q_modex"               => "Käytä mode +x",
-        "yes"                   => "Kyllä",
-        "no"                    => "Ei",
+        "q_settings"            =>  "Q Asetukset",
+        "q_authname"            =>  "Q Käyttäjä",
+        "q_authpass"            =>  "Q Salasana",
+        "q_modex"               =>  "Käytä mode +x",
+        "yes"                   =>  "Kyllä",
+        "no"                    =>  "Ei",
 );
 ?>

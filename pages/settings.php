@@ -19,7 +19,7 @@ if (isset($_POST['do'])) {
 
     $isset = '1';
     $type = 'success';
-    $message = 'Settings saved';
+    $message = $lang['settings_saved'];
 }
 
 //Select template
