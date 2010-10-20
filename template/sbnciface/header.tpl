@@ -32,13 +32,8 @@
                     <form action="" method="post" name="langselector">
                         <input type="hidden" name="lang" value="" />
                         <a href="javascript:" onclick="pickLanguage('en');"><img src="img/lang/en.png" alt="en" /></a>
-                        <a href="javascript:" onclick="pickLanguage('de');"><img src="img/lang/de.png" alt="de" /></a>
-                        <a href="javascript:" onclick="pickLanguage('da');"><img src="img/lang/da.png" alt="da" /></a>
-                        <a href="javascript:" onclick="pickLanguage('no');"><img src="img/lang/no.png" alt="no" /></a>
                         <a href="javascript:" onclick="pickLanguage('sv');"><img src="img/lang/sv.png" alt="sv" /></a>
                         <a href="javascript:" onclick="pickLanguage('fi');"><img src="img/lang/fi.png" alt="fi" /></a>
-                        <a href="javascript:" onclick="pickLanguage('pl');"><img src="img/lang/pl.png" alt="pl" /></a>
-                        <a href="javascript:" onclick="pickLanguage('lt');"><img src="img/lang/lt.png" alt="lt" /></a>
                     </form>
                 </div>
                 <div id="header">
