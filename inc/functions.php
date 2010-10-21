@@ -85,4 +85,17 @@ function generatePassword($length) {
     return $password;
 }
 
+function userOnlineCheck($ident){
+
+    global $sbnc;
+
+    $check = explode("<", $sbnc->Call("tcl", array("getbncuser $ident sessions")));
+
+    if ($check['0'] == $ident) {
+        return 'online';
+    } else {
+        return 'offline';
+    }
+}
+
 ?>

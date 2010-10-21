@@ -111,5 +111,8 @@ $lang = array(
         "q_modex"               =>  "Käytä mode +x",
         "yes"                   =>  "Kyllä",
         "no"                    =>  "Ei",
+
+        // Version 1.0
+        "now"                   =>  "Käyttäjä kytketty",
 );
 ?>

@@ -110,5 +110,8 @@ $lang = array(
         "q_modex"               => "Use mode +x",
         "yes"                   => "Yes",
         "no"                    => "No",
+
+        // Version 1.0
+        "now"                   =>  "User connected",
 );
 ?>

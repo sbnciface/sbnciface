@@ -29,9 +29,10 @@ if (isset($_POST['lang'])) {
 if (isset($includeLang)) {
     include 'inc/lang/' . $includeLang . '.php';
 } elseif (!isset($_COOKIE['includeLang'])) {
-    $includeLang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-    if (!file_exists('inc/lang/' . $includeLang . '.php')) {
+    if (!file_exists('inc/lang/' . substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) . '.php')) {
         $includeLang = $defaultLang;
+    } else {
+        $includeLang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
     }
     include 'inc/lang/' . $includeLang . '.php';
     setcookie("includeLang", "$includeLang", $expire);

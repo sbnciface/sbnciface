@@ -110,5 +110,8 @@ $lang = array(
         "q_modex"               => "Använd mode +x",
         "yes"                   => "Ja",
         "no"                    => "Nej",
+
+        // Version 1.0
+        "now"                   =>  "Användaren ansluten",
 );
 ?>

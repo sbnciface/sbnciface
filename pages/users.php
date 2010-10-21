@@ -30,14 +30,24 @@ while ($i < count($users)) {
         $numAdmins++;
         $adminArray[$numAdmins]['ident'] = $users[$i];
         $adminArray[$numAdmins]['nick'] = $sbnc->CallAs($users[$i], 'getnick');
-        $adminArray[$numAdmins]['lastseen'] = date("d.m.Y H:i:s", $sbnc->Call('tcl', array("getbncuser $users[$i] seen")));
+
+        if (userOnlineCheck($users[$i]) == 'online'){
+            $adminArray[$numAdmins]['lastseen'] = $lang['now'];
+        } else {
+            $adminArray[$numAdmins]['lastseen'] = date("d.m.Y H:i:s", $sbnc->Call('tcl', array("getbncuser $users[$i] seen")));
+        }
         
     } else {
 
         $numUsers++;
         $userArray[$numUsers]['ident'] = $users[$i];
         $userArray[$numUsers]['nick'] = $sbnc->CallAs($users[$i], 'getnick');
-        $userArray[$numUsers]['lastseen'] = date("d.m.Y H:i:s", $sbnc->Call('tcl', array("getbncuser $users[$i] seen")));
+
+        if (userOnlineCheck($users[$i]) == 'online'){
+            $userArray[$numUsers]['lastseen'] = $lang['now'];
+        } else {
+            $userArray[$numUsers]['lastseen'] = date("d.m.Y H:i:s", $sbnc->Call('tcl', array("getbncuser $users[$i] seen")));
+        }
     }
     $i++;
 }
