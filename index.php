@@ -20,10 +20,13 @@
 ?>
 <?php
 
-error_reporting(E_ALL);
-
 //Start the session
 session_start();
+
+//Main includes
+include 'settings.php';
+include 'inc/functions.php';
+include 'inc/sbnc.php';
 
 //Language selector
 if (isset($_POST['lang'])) {
@@ -45,11 +48,6 @@ if (isset($includeLang)) {
 } else {
     include 'lang/' . $_COOKIE['includeLang'] . '.php';
 }
-
-//Main includes
-include 'settings.php';
-include 'inc/functions.php';
-include 'inc/sbnc.php';
 
 if (isset($_GET['logout'])) {
     session_destroy();

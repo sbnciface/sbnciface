@@ -30,7 +30,7 @@ $bncServers = array(
 );
 
 //Cookie Settings
-$expire = time() + 60 * 60 * 24 * 30;   //Cookie lifetime Default: 30 days
+$expire = time() + 60 * 60 * 24 * 30;
 
 //Template directory
 $interfaceRoot = '/sbnciface4';

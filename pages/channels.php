@@ -50,7 +50,7 @@ if (isset($_POST['part']) || isset($_POST['join'])) {
 
 $i = 0;
 $channels = $sbnc->Call("getchannels");
-if (is_a($channels, itype_exception)) {
+if (is_a($channels, 'itype_exception')) {
     $sbncChans[$i]['channel'] = $lang['notConnected'];
 } else {
     foreach ($channels as $channel) {

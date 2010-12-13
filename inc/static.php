@@ -1,4 +1,5 @@
 <?php
+
 /*
  * $Id$
  *
@@ -41,9 +42,15 @@ $data->assign('ifaceCodename', 'Bertha');
 $data->assign('ifaceRoot', $interfaceRoot);
 
 //Admin & Vadmin Vars
-$data->assign('sbncAdmin', $admin);
-$data->assign('sbncVAdmin', $vadmin);
-$data->assign('sbncVGroup', $vgroup);
+if (isset($admin)) {
+    $data->assign('sbncAdmin', $admin);
+}
+if (isset($vadmin)) {
+    $data->assign('sbncVAdmin', $vadmin);
+}
+if (isset($vgroup)) {
+    $data->assign('sbncVGroup', $vgroup);
+}
 
 //User Menu
 $data->assign('status', $lang['status']);

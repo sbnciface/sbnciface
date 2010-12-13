@@ -31,7 +31,7 @@ if (isset($_POST['do'])) {
 $log = $sbnc->Call('getlog', array("0", "999"));
 
 //Checks for the log, to make it all look nice, and give no errors
-if (is_a($log, itype_exception)) {
+if (is_a($log, 'itype_exception')) {
     $logState = "empty";
     $logString = "<div class=\"mid\"><b>" . $lang['logEmpty'] . ".</b></div>";
 } else {

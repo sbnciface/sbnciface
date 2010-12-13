@@ -22,7 +22,7 @@
 
 if ($admin == '1') {
 
-    if ($_POST['addvhost']) {
+    if (isset($_POST['addvhost'])) {
         $newVhostIp = $_POST['ip'];
         $newVhostLimit = $_POST['limit'];
         $newVhostHost = $_POST['host'];
@@ -51,7 +51,7 @@ if ($admin == '1') {
         }
     }
 
-    if ($_POST['delvhost']) {
+    if (isset($_POST['delvhost'])) {
 
         $delVhostIp = $_POST['delvhost'];
 

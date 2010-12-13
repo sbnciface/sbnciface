@@ -1,4 +1,5 @@
 <?php
+
 /*
  * $Id$
  *
@@ -29,13 +30,12 @@ if ($admin == '1') {
         $errorIsset = 1;
         $errorType = 'success';
         $errorMessage = $lang['logErased'];
-    
     }
 
     $log = $sbnc->Call('getmainlog', array("0", "999"));
 
     //Checks for the log, to make it all look nice, and give no errors
-    if (is_a($log, itype_exception)) {
+    if (is_a($log, 'itype_exception')) {
         $logState = "empty";
         $logString = "<div class=\"mid\"><b>" . $lang['logEmpty'] . ".</b></div>";
     } else {
@@ -54,7 +54,9 @@ if ($admin == '1') {
         $data->assign('errorMessage', $errorMessage);
     }
 
-    $data->assign('logState', $logState);
+    if (isset($logState)) {
+        $data->assign('logState', $logState);
+    }
     $data->assign('logString', $logString);
 
     $data->assign('submitValue', $lang['emptyLog']);
@@ -63,7 +65,6 @@ if ($admin == '1') {
     $data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));
     $data->assign('footer', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/footer.html'), $data));
     $dwoo->output(new Dwoo_Template_File('template/' . $template . '/log.html'), $data);
-
 } else {
 
     //No access, include error page.
