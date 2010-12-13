@@ -2,7 +2,7 @@
 
 /* * *****************************************************************************
  * shroudBNC - an object-oriented framework for IRC                            *
- * Copyright (C) 2005 Gunnar Beutner                                           *
+ * Copyright (C) 2005-2007,2010 Gunnar Beutner                                 *
  *                                                                             *
  * This program is free software; you can redistribute it and/or               *
  * modify it under the terms of the GNU General Public License                 *
@@ -44,7 +44,7 @@ class SBNC {
             }
 
             if (strstr($line, "[RPC_BLOCK]") != FALSE) {
-                die('Runtime error occured in the RPC system: This IP address is blocked.');
+                //die('Runtime error occured in the RPC system: This IP address is blocked.');
             }
         }
     }
@@ -68,8 +68,7 @@ class SBNC {
         $line = fgets($this->socket, 128000);
 
         if ($line === false) {
-            #die('Transport layer error occured in the RPC system: fgets() failed.');
-            $result = 'Transport layer error occured in the RPC system: fgets() failed.';
+            //die('Transport layer error occured in the RPC system: fgets() failed.');
         }
 
 
@@ -78,8 +77,7 @@ class SBNC {
         $parsedResponse = itype_parse($line);
 
         if ($parsedResponse[0] == 'empty') {
-            #die('IType parsing error occured in RPC system when parsing the string "' . $line . '"');
-            $response = $line;
+            //die('IType parsing error occured in RPC system when parsing the string "' . $line . '"');
         }
 
         $response = itype_flat($parsedResponse);
@@ -88,8 +86,7 @@ class SBNC {
             $code = GetCode($response);
 
             if ($code != 'RPC_ERROR') {
-                #die('Runtime error occured in the RPC system: [' . $code . '] ' . GetResult($response));
-                $response = $code;
+                //die('Runtime error occured in the RPC system: [' . $code . '] ' . GetResult($response));
             }
         }
 

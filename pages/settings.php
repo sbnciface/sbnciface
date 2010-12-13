@@ -1,49 +1,74 @@
 <?php
+/*
+ * $Id$
+ *
+ * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+?>
+<?php
 
 if (isset($_POST['do'])) {
+    $newRealname = $_POST['realname'];
+    $newNickname = $_POST['nickname'];
+    $newPassword = $_POST['password'];
 
-    if (!empty($_POST['realname'])) {
-        $sbnc->Call("setvalue", array("realname", $_POST['realname']));
-    }
-    if (!empty($_POST['nickname'])) {
-        $sbnc->Call("raw", array("nick $_POST[nickname]"));
-    }
-    if (!empty($_POST['password'])) {
-        $sbnc->Call("setvalue", array("password", $_POST['password']));
-        if (isset($_COOKIE['password'])) {
-            setcookie("password", $newPassword, $expire);
-        } else {
-            $_SESSION['password'] = $newPassword;
-        }
+    if ($admin == '1') {
+        $newSysnotices = $_POST['sysnotices'];
     }
 
-    $isset = '1';
-    $type = 'success';
-    $message = $lang['settings_saved'];
+    $sbnc->Call('setvalue', array('realname', $newRealname));
+    $sbnc->Call('raw', array('nick '. $newNickname));
+    $sbnc->Call('setvalue', array('sysnotices', $newSysnotices));
+
+    if (!empty($newPassword)) {
+        $sbnc->Call('setvalue', array('password', $newPassword));
+    }
+
+    $errorIsset = 1;
+    $errorType = 'success';
+    $errorMessage = $lang['settingsSaved'];
 }
 
-//Select template
-$tpl = new Dwoo_Template_File('template/'.$templateDir.'/settings.tpl');
-$data = new Dwoo_Data();
-
-$data->assign('errorSet', $isset);
-$data->assign('errorType', $type);
-$data->assign('errorMessage', $message);
+//Set data
+if (!empty($errorIsset)) {
+    $data->assign('errorSet', $errorIsset);
+    $data->assign('errorType', $errorType);
+    $data->assign('errorMessage', $errorMessage);
+}
 
 $data->assign('realnameText', $lang['realname']);
-$data->assign('realnameName', 'realname');
-$data->assign('realnameValue', $sbnc->Call("getvalue", array("realname")));
-
 $data->assign('nicknameText', $lang['nickname']);
-$data->assign('nicknameName', 'nickname');
-$data->assign('nicknameValue', $sbnc->Call("getnick"));
-
 $data->assign('passwordText', $lang['password']);
-$data->assign('passwordName', 'password');
+$data->assign('sysnoticesText', $lang['sysnotices']);
+$data->assign('onText', $lang['on']);
+$data->assign('offText', $lang['off']);
+
+$data->assign('realnameValue', $sbnc->Call("getvalue", array("realname")));
+$data->assign('nicknameValue', $sbnc->Call("getnick"));
 $data->assign('passwordValue', '');
 
-$data->assign('submitValue', $lang['save_changes']);
+if ($admin == '1') {
+    $data->assign('sysnoticesValue', $sbnc->Call("getvalue", array("sysnotices")));
+}
 
-//Get the page
-$content .= $dwoo->get($tpl, $data);
+$data->assign('submitValue', $lang['saveChanges']);
+
+//Output the page
+$data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));
+$data->assign('footer', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/footer.html'), $data));
+$dwoo->output(new Dwoo_Template_File('template/' . $template . '/settings.html'), $data);
+
 ?>

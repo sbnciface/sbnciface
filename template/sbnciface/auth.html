@@ -1,0 +1,15 @@
+{$header}
+                {if $errorSet == 1}
+                <div class="{$errorType}">
+                    {$errorMessage}
+                </div>
+                {/if}
+                <form action="" method="post">
+                    <table id="tbl" align="center" width="400">
+                        <tr><td width="40%">{$authText}:</td><td width="60%"><input type="text" name="auth" size="33" value="{$authValue}" /></td></tr>
+                        <tr><td width="40%">{$passText}:</td><td width="60%"><input type="password" name="pass" size="33" value="{if $passValue == 1}Kl45sD34R{/if}" /></td></tr>
+                        <tr><td width="40%">{$useAuthText}:</td><td width="60%"><select name="useAuth" style="width:224px;" >{if $useAuthValue == 1}<option value="1" selected>{$useAuthValueYes}</option><option value="0">{$useAuthValueNo}</option>{else}<option value="1">{$useAuthValueYes}</option><option value="0" selected>{$useAuthValueNo}</option>{/if}</select></td></tr>
+                        <tr><td colspan="2" align="center"><input type="submit" value="{$submitValue}" name="do" /></td></tr>
+                    </table>
+                </form>
+{$footer}

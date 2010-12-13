@@ -1,48 +1,71 @@
 <?php
+/*
+ * $Id$
+ *
+ * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+?>
+<?php
 
-if (isset($_POST['adduser'])) {
+if ($admin == 1) {
 
-    $usrs = $sbnc->Call('tcl', array('bncuserlist'));
-    $users = explode(" ", $usrs);
+    if (isset($_POST['do'])) {
 
-    if (in_array($_POST['ident'], $users)) {
-        $isset = '1';
-        $type = 'error';
-        $message = $lang['ident_taken'];
-    } else {
-        if (empty($_POST['password'])) {
-            $password = generatePassword('8');
-        } else {
-            $password = $_POST['password'];
+        $username = $_POST['ident'];
+        $password = $_POST['password'];
+
+        if (empty($password)) {
+            $password = generatePassword('10');
         }
 
-        $sbnc->Call('adduser', array($_POST['ident'], $password));
+        $sbnc->Call('adduser', array($username, $password));
 
-        $isset = '1';
-        $type = 'success';
-        $message = sprintf($lang['bnc_added'], $_POST['ident'], $password);
+        $errorIsset = 1;
+        $errorType = 'success';
+        $errorMessage = sprintf($lang['userAdded'], $username, $password);
     }
+    
+    //Set data
+    if (!empty($errorIsset)) {
+        $data->assign('errorSet', $errorIsset);
+        $data->assign('errorType', $errorType);
+        $data->assign('errorMessage', $errorMessage);
+    }
+
+    $data->assign('passwordEmptyText', $lang['ifPasswordEmpty']);
+    $data->assign('identText', $lang['ident']);
+    $data->assign('passwordText', $lang['password']);
+    $data->assign('submitValue', $lang['addUser']);
+
+    $data->assign('identName', 'ident');
+    $data->assign('passwordName', 'password');
+    $data->assign('adduserName', 'adduser');
+
+    //Output the page
+    $data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));
+    $data->assign('footer', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/footer.html'), $data));
+    $dwoo->output(new Dwoo_Template_File('template/' . $template . '/add.html'), $data);
+    
+} else {
+
+    //No access, include error page.
+    $errorIsset = '1';
+    $errorType = 'staticerror';
+    $errorMessage = $lang['noAccessToPage'];
+
+    include 'error.php';
 }
-
-//Select template
-$tpl = new Dwoo_Template_File('template/'.$templateDir.'/add.tpl');
-$data = new Dwoo_Data();
-
-$data->assign('errorSet', $isset);
-$data->assign('errorType', $type);
-$data->assign('errorMessage', $message);
-
-$data->assign('passwordEmptyText', $lang['if_password_empty']);
-
-$data->assign('identLangText', $lang['ident']);
-$data->assign('passwordLangText', $lang['password']);
-$data->assign('identName', 'ident');
-$data->assign('passwordName', 'password');
-$data->assign('adduserLangText', $lang['add_user']);
-$data->assign('adduserName', 'adduser');
-
-
-//Get the page
-$content .= $dwoo->get($tpl, $data);
-
 ?>

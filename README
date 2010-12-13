@@ -1,0 +1,45 @@
+sBNC Interface 0.5 Beta - <http://www.mustis.org/>
+
+Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+Configuration
+~~~~~~~~~~~~~~
+Make sure you have vhost.tcl added in sbnc.tcl,
+and edit the settings in settings.php
+
+Example configuration:
+
+//BNC Servers
+$bncServers = array(
+    $sbncsrv1 = array(
+        'name'  =>  'Mustis BNC',       // sBNC Server Name
+        'ip'    =>  'localhost',        // sBNC Server Host
+        'port'  =>  '9000'              // sBNC Server Port
+    ),
+);
+
+//Cookie Settings
+$expire = time() + 60 * 60 * 24 * 30;   // Cookie lifetime Default: 30 days
+
+//Template directory
+$interfaceRoot = '/sbnciface4';         // www.example.com/interface => /interface
+
+//Default language
+$defaultLang = 'en';                    // Default language for sbnciface.
+
+//Select template
+$template = 'sbnciface';                // Template that sbnciface uses.

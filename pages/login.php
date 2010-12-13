@@ -1,54 +1,68 @@
 <?php
+/*
+ * $Id$
+ *
+ * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+?>
+<?php
 
-if (isset($_POST['do'])){
+if (isset($_POST['do'])) {
     if (isset($_POST['username']) && isset($_POST['password'])) {
+
         $username = $_POST['username'];
         $password = $_POST['password'];
-        
-        $sbncServer = $bncServers['0']['1'];
-        $sbncPort = $bncServers['0']['2'];
 
-        $sbnc = new SBNC("$sbncServer", "$sbncPort", "$username", "$password");
+        $sbncServer = $bncServers['0']['ip'];
+        $sbncPort = $bncServers['0']['port'];
+
+        $sbnc = new SBNC($sbncServer, $sbncPort, $username, $password);
         $result = $sbnc->Call("commands");
-        
+
         if (strlen($result['0']) < 6) {
-            $error['set'] = '1';
-            $error['type'] = 'error';
-            $error['message'] = $lang['wrong_user_pass'];
-        } else if ($_POST['remember'] == '1') {
-            setcookie("username", "$username", $expire);
-            setcookie("password", "$password", $expire);
-            header('Location:'.$webRoot);
+
+            $isset = '1';
+            $type = 'error';
+            $message = $lang['wrongUserPass'];
         } else {
-            $_SESSION['username'] = "$username";
-            $_SESSION['password'] = "$password";
-            header('Location:'.$webRoot);
+
+            $_SESSION['username'] = $username;
+            $_SESSION['password'] = $password;
+            header('Location:' . $interfaceRoot);
         }
     } else {
+
         $error['set'] = '1';
         $error['type'] = 'error';
         $error['message'] = $lang['wrong_user_pass'];
     }
 }
 
-//Select template
-$tpl = new Dwoo_Template_File('template/'.$templateDir.'/login.tpl');
-
 //Set data
-$data = new Dwoo_Data();
+if (!empty($isset)) {
+    $data->assign('errorSet', $isset);
+    $data->assign('errorType', $type);
+    $data->assign('errorMessage', $message);
+}
 
 $data->assign('usernameText', $lang['username']);
 $data->assign('passwordText', $lang['password']);
-
-$data->assign('bncServers', $bncServers);
-$data->assign('bncServerCount', count($bncServers));
-
-$data->assign('rememberMeText', $lang['remember_me']);
+$data->assign('serverText', $lang['server']);
 $data->assign('submitText', $lang['login']);
 
-//Include static values
-include 'inc/static.php';
-
-//Show the page
-$dwoo->output($tpl, $data);
+//Get the page
+$dwoo->output(new Dwoo_Template_File('template/' . $template . '/login.html'), $data);
 ?>

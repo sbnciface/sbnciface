@@ -1,0 +1,16 @@
+{$header}
+                {if $errorSet == 1}
+                <div class="{$errorType}">
+                    {$errorMessage}
+                </div>
+                {/if}
+                <form action="" method="post">
+                    <table id="tbl" align="center" width="400">
+                        <tr><td width="40%">{$realnameText}:</td><td width="60%"><input type="text" name="realname" size="33" value="{$realnameValue}" /></td></tr>
+                        <tr><td width="40%">{$nicknameText}:</td><td width="60%"><input type="text" name="nickname" size="33" value="{$nicknameValue}" /></td></tr>
+                        <tr><td width="40%">{$passwordText}:</td><td width="60%"><input type="password" name="password" size="33" value="{$passwordValue}" /></td></tr>
+                        {if $sbncAdmin == 1}<tr><td width="40%">{$sysnoticesText}:</td><td width="60%"><select style="width:225px;" name="sysnotices">{if $sysnoticesValue == 1}<option value="1" selected>{$onText}</option><option value="0">{$offText}</option>{else}<option value="1">{$onText}</option><option value="0" selected>{$offText}</option>{/if}</select></td></tr>{/if}
+                        <tr><td colspan="2" align="center" ><input type="submit" value="{$submitValue}" name="do" /></td></tr>
+                    </table>
+                </form>
+{$footer}

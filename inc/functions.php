@@ -1,4 +1,24 @@
 <?php
+/*
+ * $Id$
+ *
+ * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+?>
+<?php
 
 function byte_format($byte, $pre = 1, $abbr = true, $array = false, $bit = false) {
     /* Check All Arguments */
@@ -59,33 +79,26 @@ function byte_format($byte, $pre = 1, $abbr = true, $array = false, $bit = false
 //Generate Random password
 function generatePassword($length) {
 
-    // start with a blank password
     $password = "";
 
-    // define possible characters
     $possible = "0123456789abcdfghjklmnopqrstvwxyzABCDEFGHIJKLMNOPQRSTUVXYZ";
 
-    // set up a counter
     $i = 0;
 
-    // add random characters to $password until $length is reached
     while ($i < $length) {
 
-        // pick a random character from the possible ones
         $char = substr($possible, mt_rand(0, strlen($possible) - 1), 1);
 
-        // we don't want this character if it's already in the password
         if (!strstr($password, $char)) {
+
             $password .= $char;
             $i++;
         }
     }
-
-    // done!
     return $password;
 }
 
-function userOnlineCheck($ident){
+function userOnlineCheck($ident) {
 
     global $sbnc;
 
@@ -96,6 +109,14 @@ function userOnlineCheck($ident){
     } else {
         return 'offline';
     }
+}
+
+function is_ip($address) {
+  $packed = inet_pton ($address);
+  if (FALSE == $packed || FALSE === inet_ntop ($packed)) {
+    return FALSE;
+  }
+  return TRUE;
 }
 
 ?>

@@ -1,25 +1,57 @@
 <?php
+/*
+ * $Id$
+ *
+ * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+?>
+<?php
 
 if (isset($_POST['join'])) {
-    $channel = $_POST['channel'];
+    $newChannel = $_POST['joinchannel'];
 
-    $sbnc->Call("raw", array("join $channel"));
+    if (substr($newChannel, 0, 1) != '#') {
+        $newChannel = '#' . $newChannel;
+    }
 
-    //Fucking stupid fix because sBNC cant join fast enough
-    header('Location:' . $webRoot . '?p=channels');
-} elseif (isset($_POST['part'])) {
-    $channel = $_POST['channel'];
+    $sbnc->Call('raw', array('join ' . $newChannel));
 
-    $sbnc->Call("raw", array("part $channel"));
+    $errorIsset = 1;
+    $errorType = 'success';
+    $errorMessage = sprintf($lang['successfullyJoined'], $newChannel);
+}
 
-    //Same thing with leave/part
-    header('Location:' . $webRoot . '?p=channels');
+if (isset($_POST['part'])) {
+    $partChannel = $_POST['channel'];
+
+    $sbnc->Call('raw', array('part ' . $partChannel));
+
+    $errorIsset = 1;
+    $errorType = 'success';
+    $errorMessage = sprintf($lang['successfullyParted'], $partChannel);
+}
+
+if (isset($_POST['part']) || isset($_POST['join'])) {
+    sleep(1);
 }
 
 $i = 0;
 $channels = $sbnc->Call("getchannels");
 if (is_a($channels, itype_exception)) {
-    $sbncChans[$i]['channel'] = $lang['not_connected'];
+    $sbncChans[$i]['channel'] = $lang['notConnected'];
 } else {
     foreach ($channels as $channel) {
         $sbncChans[$i]['channel'] = $channel;
@@ -30,32 +62,28 @@ if (is_a($channels, itype_exception)) {
 
 $sbncNumChans = count($channels);
 
-//Select template
-$tpl = new Dwoo_Template_File('template/'.$templateDir.'/channels.tpl');
-$data = new Dwoo_Data();
-
 //Set data
-$data->assign('joinchannelText', $lang['join_channel']);
+if (!empty($errorIsset)) {
+    $data->assign('errorSet', $errorIsset);
+    $data->assign('errorType', $errorType);
+    $data->assign('errorMessage', $errorMessage);
+}
 
+$data->assign('joinchannelText', $lang['joinChannel']);
 $data->assign('jchannelText', $lang['channel']);
-$data->assign('jchannelName', 'channel');
-
 $data->assign('submitJoinValue', $lang['join']);
 $data->assign('submitPartValue', $lang['part']);
-
-$data->assign('channelName', $lang['channel']);
-$data->assign('modesName', $lang['modes']);
-$data->assign('actionName', $lang['action']);
+$data->assign('channelText', $lang['channel']);
+$data->assign('modesText', $lang['modes']);
+$data->assign('actionText', $lang['action']);
 
 $data->assign('sbncChannels', $sbncChans);
 $data->assign('sbncNumChannels', $sbncNumChans);
 
-$data->assign('submitValue', $lang['save_changes']);
+$data->assign('submitValue', $lang['saveChanges']);
 
-//Include static values
-include 'inc/static.php';
-
-//Get the page
-$content .= $dwoo->get($tpl, $data);
-
+//Output the page
+$data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));
+$data->assign('footer', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/footer.html'), $data));
+$dwoo->output(new Dwoo_Template_File('template/' . $template . '/channels.html'), $data);
 ?>

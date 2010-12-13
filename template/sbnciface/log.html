@@ -1,0 +1,14 @@
+{$header}
+                {if $errorSet == 1}
+                <div class="{$errorType}">
+                    {$errorMessage}
+                </div>
+                {/if}
+                {if $logState == empty}
+                {$logString}
+                {else}
+{foreach $logString as row}<div class="{cycle values="one,two"}">{$row}</div>
+                {/foreach}
+                <div class="button"><form action="" method="post"><input type="submit" value="{$submitValue}" name="do" /></form></div>
+                {/if}
+{$footer}

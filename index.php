@@ -1,23 +1,29 @@
 <?php
+/*
+ * $Id$
+ *
+ * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+?>
+<?php
 
+error_reporting(E_ALL);
+
+//Start the session
 session_start();
-
-//Main includes
-include 'settings.php';
-include 'inc/functions.php';
-include 'inc/sbnc.php';
-
-//Load Dwoo
-include 'dwoo/dwooAutoload.php';
-
-if (isset($_GET['logout'])) {
-    if (isset($_COOKIE['username'])) {
-        setcookie("username", "", time() - 3600);
-        setcookie("password", "", time() - 3600);
-    }
-    session_destroy();
-    header('Location:' . $webRoot);
-}
 
 //Language selector
 if (isset($_POST['lang'])) {
@@ -27,77 +33,80 @@ if (isset($_POST['lang'])) {
 
 //Check for language
 if (isset($includeLang)) {
-    include 'inc/lang/' . $includeLang . '.php';
+    include 'lang/' . $includeLang . '.php';
 } elseif (!isset($_COOKIE['includeLang'])) {
-    if (!file_exists('inc/lang/' . substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) . '.php')) {
+    if (!file_exists('lang/' . substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) . '.php')) {
         $includeLang = $defaultLang;
     } else {
         $includeLang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
     }
-    include 'inc/lang/' . $includeLang . '.php';
+    include 'lang/' . $includeLang . '.php';
     setcookie("includeLang", "$includeLang", $expire);
 } else {
-    include 'inc/lang/' . $_COOKIE['includeLang'] . '.php';
+    include 'lang/' . $_COOKIE['includeLang'] . '.php';
 }
 
-//New page
+//Main includes
+include 'settings.php';
+include 'inc/functions.php';
+include 'inc/sbnc.php';
+
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header('Location:' . $interfaceRoot);
+}
+
+//Load Dwoo
+include 'dwoo/dwooAutoload.php';
+
+//New page & dataset
 $dwoo = new Dwoo();
+$data = new Dwoo_Data();
 
-if (!isset($_COOKIE['username']) && !isset($_SESSION['username'])) {
+//Check for user session
+if (!isset($_SESSION['username'])) {
+
+    //Include static values
+    include 'inc/static.php';
+    //Include login page
     include 'pages/login.php';
+
 } else {
-    if (!isset($_SESSION['username']) && isset($_COOKIE['username'])) {
-        $_SESSION['username'] = $_COOKIE['username'];
-        $_SESSION['password'] = $_COOKIE['password'];
-        $_SESSION['bncserver'] = $_COOKIE['bncserver'];
-    }
 
-    $username = $_SESSION['username'];
-    $password = $_SESSION['password'];
+    //Make the sBNC connection
+    /*
+    $username = ;
+    $password = ;
 
-    $sbncServer = $bncServers['0']['1'];
-    $sbncPort = $bncServers['0']['2'];
+    $sbncServer = ;
+    $sbncPort = ;
+    */
+    
+    $sbnc = new SBNC($bncServers['0']['ip'], $bncServers['0']['port'], $_SESSION['username'], $_SESSION['password']);
 
-    $sbnc = new SBNC("$sbncServer", "$sbncPort", "$username", "$password");
-
-    if (!isset($_GET["p"])) {
-        $page = "main";
+    //Check for page
+    if (!isset($_GET['p'])) {
+        $page = 'status';
     } else {
-        $page = $_GET["p"];
+        $page = $_GET['p'];
     }
-    if (!file_exists("pages/" . $page . ".php")) {
-        $isset = '1';
-        $type = 'staticerror';
-        $message = 'Page \'' . $_GET['p'] . '\' not found! Please check the URL';
+
+    if (!file_exists('pages/' . $page . '.php')) {
+
+        //Page not found, include error page.
+        $errorIsset = '1';
+        $errorType = 'staticerror';
+        $errorMessage = sprintf($lang['pageNotFound'], $_GET['p']);
         $page = "error";
     }
 
-    $content = '';
-
-    //Select template
-    $tpl = new Dwoo_Template_File('template/'.$templateDir.'/header.tpl');
-    $data = new Dwoo_Data();
-
     //Include static values
     include 'inc/static.php';
 
-    //Get the page
-    $content .= $dwoo->get($tpl, $data);
+    //Finally include the page.
+    include 'pages/' . $page . '.php';
 
-    include 'pages/'.$page.'.php';
-
-    //Select template
-    $tpl = new Dwoo_Template_File('template/'.$templateDir.'/footer.tpl');
-    $data = new Dwoo_Data();
-
-    //Include static values
-    include 'inc/static.php';
-
-    //Get the page
-    $content .= $dwoo->get($tpl, $data);
-
-    echo $content;
+    $sbnc->Destroy();
 
 }
-
 ?>

@@ -1,7 +1,8 @@
 <?php
-/*******************************************************************************
+
+/* * *****************************************************************************
  * shroudBNC - an object-oriented framework for IRC                            *
- * Copyright (C) 2005 Gunnar Beutner                                           *
+ * Copyright (C) 2005-2007,2010 Gunnar Beutner                                 *
  *                                                                             *
  * This program is free software; you can redistribute it and/or               *
  * modify it under the terms of the GNU General Public License                 *
@@ -16,9 +17,10 @@
  * You should have received a copy of the GNU General Public License           *
  * along with this program; if not, write to the Free Software                 *
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA. *
- *******************************************************************************/
+ * ***************************************************************************** */
 
 class itype_exception {
+
     var $code;
     var $message;
 
@@ -40,6 +42,7 @@ class itype_exception {
     function GetRawMessage() {
         return $this->code . ' ' . $this->message;
     }
+
 }
 
 function itype_fromphp($value) {
@@ -54,7 +57,9 @@ function itype_fromphp($value) {
         $ret .= '}';
     } else {
         $value = str_replace(
-                array("\r",	"\n",	"\\",	"{",	"}",	"[",	"]",	"(",	")"), array("\\\r",	"\\n",	"\\\\",	"\\{",	"\\}",	"\\[",	"\\]",	"\\(", "\\)"), $value);
+                        array("\r", "\n", "\\", "{", "}", "[", "]", "(", ")"),
+                        array("\\\r", "\\n", "\\\\", "\\{", "\\}", "\\[", "\\]", "\\(", "\\)"),
+                        $value);
 
         $ret = "({$value})";
     }
@@ -224,8 +229,8 @@ function itype_flat($value) {
             return $value[1];
         } else {
             return str_replace(
-                    array("\r",	"\n",	"\\{",	"\\}",	"\\[",	"\\]",	"\\(", "\\)",	"\\\\"),
-                    array("\\r",	"\\n",	"{",	"}",	"[",	"]",	"(",	")",	"\\",),
+                    array("\r", "\n", "\\{", "\\}", "\\[", "\\]", "\\(", "\\)", "\\\\"),
+                    array("\\r", "\\n", "{", "}", "[", "]", "(", ")", "\\",),
                     $value[1]);
         }
     }
