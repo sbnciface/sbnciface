@@ -66,21 +66,21 @@ if (!isset($_SESSION['username'])) {
 
     //Include static values
     include 'inc/static.php';
+    
     //Include login page
     include 'pages/login.php';
 
 } else {
 
     //Make the sBNC connection
-    /*
-    $username = ;
-    $password = ;
-
-    $sbncServer = ;
-    $sbncPort = ;
-    */
+    $username = $_SESSION['username'];
+    $password = $_SESSION['password'];
+    $server = $_SESSION['server'];
     
-    $sbnc = new SBNC($bncServers['0']['ip'], $bncServers['0']['port'], $_SESSION['username'], $_SESSION['password']);
+    $sbncServer = $bncServers[$server]['ip'];
+    $sbncPort = $bncServers[$server]['port'];
+    
+    $sbnc = new SBNC($sbncServer, $sbncPort, $username, $password);
 
     //Check for page
     if (!isset($_GET['p'])) {

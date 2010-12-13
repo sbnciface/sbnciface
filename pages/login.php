@@ -20,14 +20,19 @@
 ?>
 <?php
 
+if (isset($_COOKIE['activeServer'])) {
+    $activeServer = $_COOKIE['activeServer'];
+}
+
 if (isset($_POST['do'])) {
     if (isset($_POST['username']) && isset($_POST['password'])) {
 
         $username = $_POST['username'];
         $password = $_POST['password'];
+        $server = $_POST['server'];
 
-        $sbncServer = $bncServers['0']['ip'];
-        $sbncPort = $bncServers['0']['port'];
+        $sbncServer = $bncServers[$server]['ip'];
+        $sbncPort = $bncServers[$server]['port'];
 
         $sbnc = new SBNC($sbncServer, $sbncPort, $username, $password);
         $result = $sbnc->Call("commands");
@@ -41,6 +46,8 @@ if (isset($_POST['do'])) {
 
             $_SESSION['username'] = $username;
             $_SESSION['password'] = $password;
+            $_SESSION['server'] = $server;
+            setcookie('activeServer', "$server", $expire);
             header('Location:' . $interfaceRoot);
         }
     } else {
@@ -49,6 +56,10 @@ if (isset($_POST['do'])) {
         $error['type'] = 'error';
         $error['message'] = $lang['wrong_user_pass'];
     }
+}
+
+for ($i='0';$i<count($bncServers);$i++) {
+    $bncServers[$i]['num'] = $i;
 }
 
 //Set data
@@ -62,6 +73,12 @@ $data->assign('usernameText', $lang['username']);
 $data->assign('passwordText', $lang['password']);
 $data->assign('serverText', $lang['server']);
 $data->assign('submitText', $lang['login']);
+$data->assign('bncServers', $bncServers);
+if (isset($activeServer)) {
+    $data->assign('bncServerActive', $activeServer);
+}else{
+    $data->assign('bncServerActive', FALSE);
+}
 
 //Get the page
 $dwoo->output(new Dwoo_Template_File('template/' . $template . '/login.html'), $data);

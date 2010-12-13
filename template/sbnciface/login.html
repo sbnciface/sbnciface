@@ -46,8 +46,7 @@
                     <table cellpadding="4" align="center">
                         <tr><td>{$usernameText}:</td><td><input type="text" name="username" /></td></tr>
                         <tr><td>{$passwordText}:</td><td><input type="password" name="password" /></td></tr>
-                        <!--<tr><td>{$serverText}:</td><td><select name="server" style="width: 145px;">{foreach $bncServers server}<option value="{$server.num}"{if $server.num == $_parent.bncServerActive} selected{/if}>{$server.name}</option>{/foreach}</select></td></tr>-->
-                        <!--<tr><td colspan="2" style="text-align: left;"><input type="checkbox" name="remember" value="1"  /> {$rememberMeText}</td></tr>-->
+                        <tr><td>{$serverText}:</td><td><select name="server" style="width: 145px;">{foreach $bncServers server}<option value="{$server.num}"{if $server.num == $_parent.bncServerActive} selected{/if}>{$server.name}</option>{/foreach}</select></td></tr>
                         <tr><td colspan="2" style="text-align: right;"><input type="submit" name="do" value="{$submitText}" /></td></tr>
                     </table>
                 </form>

@@ -22,6 +22,11 @@
 
 //BNC Servers
 $bncServers = array(
+    $sbncsrv0 = array(
+        'name'  =>  'DarkServ',
+        'ip'    =>  'bnc.darkserv.net',
+        'port'  =>  '9000'
+    ),
     $sbncsrv1 = array(
         'name'  =>  'Mustis BNC',
         'ip'    =>  'localhost',
