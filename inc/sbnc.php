@@ -32,7 +32,7 @@ class SBNC {
         $this->socket = @fsockopen($host, $port);
 
         if ($this->socket == FALSE) {
-//			die('Socket could not be connected.');
+			die('Could not connect, edit config.php, and check if iface2.tcl is loaded.');
             return;
         }
 
@@ -44,7 +44,7 @@ class SBNC {
             }
 
             if (strstr($line, "[RPC_BLOCK]") != FALSE) {
-                //die('Runtime error occured in the RPC system: This IP address is blocked.');
+                die('Runtime error occured in the RPC system: This IP address is blocked.');
             }
         }
     }

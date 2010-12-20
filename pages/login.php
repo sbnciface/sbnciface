@@ -1,4 +1,5 @@
 <?php
+
 /*
  * $Id$
  *
@@ -37,7 +38,12 @@ if (isset($_POST['do'])) {
         $sbnc = new SBNC($sbncServer, $sbncPort, $username, $password);
         $result = $sbnc->Call("commands");
 
-        if (strlen($result['0']) < 6) {
+        if (is_a($result, 'itype_exception')) {
+            
+            $isset = '1';
+            $type = 'error';
+            $message = $lang['wrongUserPass'];
+        } elseif (strlen($result['0']) < 6) {
 
             $isset = '1';
             $type = 'error';
@@ -58,7 +64,7 @@ if (isset($_POST['do'])) {
     }
 }
 
-for ($i='0';$i<count($bncServers);$i++) {
+for ($i = '0'; $i < count($bncServers); $i++) {
     $bncServers[$i]['num'] = $i;
 }
 
@@ -76,7 +82,7 @@ $data->assign('submitText', $lang['login']);
 $data->assign('bncServers', $bncServers);
 if (isset($activeServer)) {
     $data->assign('bncServerActive', $activeServer);
-}else{
+} else {
     $data->assign('bncServerActive', FALSE);
 }
 

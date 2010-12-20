@@ -1,4 +1,5 @@
 <?php
+
 /*
  * $Id$
  *
@@ -66,20 +67,19 @@ if (!isset($_SESSION['username'])) {
 
     //Include static values
     include 'inc/static.php';
-    
+
     //Include login page
     include 'pages/login.php';
-
 } else {
 
     //Make the sBNC connection
     $username = $_SESSION['username'];
     $password = $_SESSION['password'];
     $server = $_SESSION['server'];
-    
+
     $sbncServer = $bncServers[$server]['ip'];
     $sbncPort = $bncServers[$server]['port'];
-    
+
     $sbnc = new SBNC($sbncServer, $sbncPort, $username, $password);
 
     //Check for page
@@ -105,6 +105,5 @@ if (!isset($_SESSION['username'])) {
     include 'pages/' . $page . '.php';
 
     $sbnc->Destroy();
-
 }
 ?>
