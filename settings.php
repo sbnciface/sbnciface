@@ -37,9 +37,6 @@ $bncServers = array(
 //Cookie Settings
 $expire = time() + 60 * 60 * 24 * 30;
 
-//Interface root
-$interfaceRoot = '/sbnciface4';
-
 //Default language
 $defaultLang = 'en';
 
