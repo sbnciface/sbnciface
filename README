@@ -36,7 +36,7 @@ $bncServers = array(
 $expire = time() + 60 * 60 * 24 * 30;   // Cookie lifetime Default: 30 days
 
 //Template directory
-$interfaceRoot = '/sbnciface4';         // www.example.com/interface => /interface
+$interfaceRoot = '/sbnciface/';         // www.example.com/interface => '/interface/' -- If www.example.com => '/'
 
 //Default language
 $defaultLang = 'en';                    // Default language for sbnciface.

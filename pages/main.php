@@ -1,9 +1,5 @@
 <?php
 
-//Select template
-$tpl = new Dwoo_Template_File('template/'.$templateDir.'/main.tpl');
-$data = new Dwoo_Data();
-
 //Set data
 $data->assign('uptimeText', $lang['uptime']);
 $data->assign('uptimeValue', $sbnc->Call("getvalue", array("uptime")));
@@ -28,10 +24,9 @@ $traff = $sbnc->Call("gettraffic");
 $data->assign('trafficText', $lang['traffic']);
 $data->assign('trafficValue', 'In: ' . byte_format($traff[2], 2) . '<br />Out: ' . byte_format($traff[3], 2));
 
-//Include static values
-include 'inc/static.php';
-
-//Get the page
-$content .= $dwoo->get($tpl, $data);
+//Output the page
+$data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));
+$data->assign('footer', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/footer.html'), $data));
+$dwoo->output(new Dwoo_Template_File('template/' . $template . '/auth.html'), $data);
 
 ?>

@@ -36,7 +36,7 @@ if (isset($_SESSION['username']) && !isset($_SESSION['isAdmin'])) {
 }
 
 //Static Interface Vars
-$data->assign('ifaceName', 'sBNC Interface 1.1');
+$data->assign('ifaceName', 'sBNC Interface v1.1');
 $data->assign('ifaceVersion', 'Version 1.1');
 $data->assign('ifaceCodename', 'BRB');
 $data->assign('ifaceRoot', $interfaceRoot);
