@@ -39,7 +39,7 @@ if (isset($_SESSION['username']) && !isset($_SESSION['isAdmin'])) {
 $data->assign('ifaceName', 'sBNC Interface v1.1');
 $data->assign('ifaceVersion', 'Version 1.1');
 $data->assign('ifaceCodename', 'BRB');
-$data->assign('ifaceRoot', $interfaceRoot);
+$data->assign('ifaceRoot', $_SERVER['REQUEST_URI']);
 
 //Admin & Vadmin Vars
 if (isset($admin)) {
