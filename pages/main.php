@@ -27,6 +27,6 @@ $data->assign('trafficValue', 'In: ' . byte_format($traff[2], 2) . '<br />Out: '
 //Output the page
 $data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));
 $data->assign('footer', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/footer.html'), $data));
-$dwoo->output(new Dwoo_Template_File('template/' . $template . '/auth.html'), $data);
+$dwoo->output(new Dwoo_Template_File('template/' . $template . '/status.html'), $data);
 
 ?>

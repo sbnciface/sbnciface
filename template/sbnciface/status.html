@@ -15,10 +15,10 @@
                     </table>
                 </form>
                 <script type="text/javascript">
-                    {if $uptimeValue == 0}
-                    {else}
+{if $uptimeValue == 0}
+{else}
                     var UptimeTicks = {$uptimeValue};
-                    {/if}
+{/if}
                     function UptimeRefresh ()
                     {
                         var days = Math.floor(UptimeTicks /60/60/24);
