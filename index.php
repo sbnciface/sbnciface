@@ -23,6 +23,9 @@
 //Start the session
 session_start();
 
+//Get interfaceRoot
+$interfaceRoot = substr($_SERVER['REQUEST_URI'], '0', strrpos($_SERVER['REQUEST_URI'], '/')+1);
+
 //Main includes
 include 'settings.php';
 include 'inc/functions.php';
