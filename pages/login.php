@@ -53,14 +53,16 @@ if (isset($_POST['do'])) {
             $_SESSION['password'] = $password;
             $_SESSION['server'] = $server;
             setcookie('activeServer', "$server", $expire);
-            header('Location:' . $interfaceRoot);
         }
+		
     } else {
 
         $error['set'] = '1';
         $error['type'] = 'error';
         $error['message'] = $lang['wrong_user_pass'];
     }
+	
+	header('Location:' . $interfaceRoot);
 }
 
 for ($i = '0'; $i < count($bncServers); $i++) {

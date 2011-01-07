@@ -45,7 +45,7 @@ if (isset($_POST['part'])) {
 }
 
 if (isset($_POST['part']) || isset($_POST['join'])) {
-    sleep(1);
+    sleep(2);
 }
 
 $i = 0;

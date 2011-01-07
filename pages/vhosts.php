@@ -1,4 +1,5 @@
 <?php
+
 /*
  * $Id$
  *
@@ -32,8 +33,8 @@ if ($admin == '1') {
             $errorIsset = 1;
             $errorType = 'error';
             $errorMessage = $lang['limitNotNumerical'];
-        }
-        elseif (is_ip($newVhostIp) == TRUE) {
+            
+        } elseif (is_ip($newVhostIp) == TRUE) {
 
             $newVhostLimit = $_POST['limit'];
             $newVhostHost = $_POST['host'];
@@ -61,8 +62,8 @@ if ($admin == '1') {
         $errorType = 'success';
         $errorMessage = $lang['vhostRemoved'];
     }
-
-    $vhosts = $sbnc->Call('getvhosts');
+	
+	$vhosts = $sbnc->Call('getvhosts');
 
     //Set data
     if (!empty($errorIsset)) {
