@@ -70,3 +70,8 @@
                     </ul>
                 </div>
             <div id="content">
+                {if $errorSet == 1}
+                <div class="{$errorType}">
+                    {$errorMessage}
+                </div>
+                {/if}

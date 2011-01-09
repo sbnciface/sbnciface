@@ -132,5 +132,7 @@ $lang = array(
     'vhostRemoved'          =>  'Vhost successfully removed',
     'limitNotNumerical'     =>  'Entered limit is not numerical',
     'invalidUser'           =>  'User \'%s\' is not valid',
+
+    'autoAddIp'             =>  'Automaticly added webserver (%s) to trusted IP\'s',
 );
 ?>

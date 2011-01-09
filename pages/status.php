@@ -1,4 +1,5 @@
 <?php
+
 /*
  * $Id$
  *
@@ -19,6 +20,31 @@
  */
 ?>
 <?php
+
+//Check for trusted IP
+if ($admin == '1') {
+    $trustedIps = $sbnc->Call('gettrustedips');
+    $settingsHost = $bncServers[$server]['ip'];
+    $serverIp = $_SERVER['SERVER_ADDR'];
+
+    if ($settingsHost == 'localhost' || $settingsHost == '127.0.0.1') {
+        if (in_array('127.0.0.1', $trustedIps) || in_array('localhost', $trustedIps)) {
+            //Do nothing
+        } else {
+            $sbnc->Call('addtrustedip', array('127.0.0.1'));
+
+            $errorIsset = '1';
+            $errorType = 'info';
+            $errorMessage = sprintf($autoAddIp, '127.0.0.1');
+        }
+    } elseif (!in_array($serverIp, $trustedIps)) {
+        $sbnc->Call('addtrustedip', array($serverIp));
+
+        $errorIsset = '1';
+        $errorType = 'info';
+        $errorMessage = sprintf($autoAddIp, $serverIp);
+    }
+}
 
 //Set data
 if (!empty($errorIsset)) {
@@ -50,5 +76,4 @@ $data->assign('trafficValue', 'In: ' . byte_format($traff[2], 2) . '<br />Out: '
 $data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));
 $data->assign('footer', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/footer.html'), $data));
 $dwoo->output(new Dwoo_Template_File('template/' . $template . '/status.html'), $data);
-
 ?>

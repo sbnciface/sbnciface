@@ -132,5 +132,7 @@ $lang = array(
     'vhostRemoved'          =>  'Vhost borttagen',
     'limitNotNumerical'     =>  'Angivet värde är inte numeriskt',
     'invalidUser'           =>  'Användare \'%s\' är inte giltig',
+
+    'autoAddIp'             =>  'Webservern (%s) lades automatiskt till som betrodd IP',
 );
 ?>
