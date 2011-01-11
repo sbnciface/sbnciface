@@ -132,5 +132,7 @@ $lang = array(
     'vhostRemoved'          =>  'Vhost edukalt eemaldatud',
     'limitNotNumerical'     =>  'Sisestatud piirang pole numbriline',
     'invalidUser'           =>  'Kasutaja \'%s\' pole valiidne',
+
+    'autoAddIp'             =>  'Automaatselt lisatud veebiserver (%s) usaldatud IP -desse',
 );
 ?>

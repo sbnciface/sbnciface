@@ -1,4 +1,5 @@
 <?php
+
 /*
  * $Id$
  *
@@ -38,31 +39,28 @@ if (isset($_POST['do'])) {
         $result = $sbnc->Call("commands");
 
         if (is_a($result, 'itype_exception')) {
-            
-            $isset = '1';
-            $type = 'error';
-            $message = $lang['wrongUserPass'];
+            header('Location:' . $interfaceRoot . '?s=error');
         } elseif (strlen($result['0']) < 6) {
-
-            $isset = '1';
-            $type = 'error';
-            $message = $lang['wrongUserPass'];
+            header('Location:' . $interfaceRoot . '?s=error');
         } else {
-
             $_SESSION['username'] = $username;
             $_SESSION['password'] = $password;
             $_SESSION['server'] = $server;
             setcookie('activeServer', "$server", $expire);
+            header('Location:' . $interfaceRoot);
         }
-		
     } else {
-
-        $error['set'] = '1';
-        $error['type'] = 'error';
-        $error['message'] = $lang['wrong_user_pass'];
+        header('Location:' . $interfaceRoot . '?s=error');
     }
-	
-	header('Location:' . $interfaceRoot);
+}
+
+//Check for state
+if (isset($_GET['s'])) {
+    if ($_GET['s'] == 'error') {
+        $errorIsset = 1;
+        $errorType = 'error';
+        $errorMessage = $lang['wrongUserPass'];
+    }
 }
 
 for ($i = '0'; $i < count($bncServers); $i++) {
@@ -70,10 +68,10 @@ for ($i = '0'; $i < count($bncServers); $i++) {
 }
 
 //Set data
-if (!empty($isset)) {
-    $data->assign('errorSet', $isset);
-    $data->assign('errorType', $type);
-    $data->assign('errorMessage', $message);
+if (!empty($errorIsset)) {
+    $data->assign('errorSet', $errorIsset);
+    $data->assign('errorType', $errorType);
+    $data->assign('errorMessage', $errorMessage);
 }
 
 $data->assign('usernameText', $lang['username']);
