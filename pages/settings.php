@@ -35,6 +35,7 @@ if (isset($_POST['do'])) {
 
     if (!empty($newPassword)) {
         $sbnc->Call('setvalue', array('password', $newPassword));
+        $_SESSION['password'] = $newPassword;
     }
 
     $errorIsset = 1;
