@@ -36,11 +36,20 @@ if (isset($_POST['do'])) {
     if (!empty($newPassword)) {
         $sbnc->Call('setvalue', array('password', $newPassword));
         $_SESSION['password'] = $newPassword;
+        header('Location:' . $interfaceRoot . '?p=settings&s=y');
     }
 
     $errorIsset = 1;
     $errorType = 'success';
     $errorMessage = $lang['settingsSaved'];
+}
+
+if (isset($_GET['s'])) {
+    if ($_GET['s'] == 'y') {
+        $errorIsset = 1;
+        $errorType = 'success';
+        $errorMessage = $lang['settingsSaved'];
+    }
 }
 
 //Set data
