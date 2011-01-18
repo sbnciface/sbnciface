@@ -51,7 +51,8 @@
                     <table cellpadding="4" align="center">
                         <tr><td>{$usernameText}:</td><td><input type="text" name="username" /></td></tr>
                         <tr><td>{$passwordText}:</td><td><input type="password" name="password" /></td></tr>
-                        {if $numBncServers > 1}<tr><td>{$serverText}:</td><td><select name="server" style="width: 145px;">{foreach $bncServers server}<option value="{$server.num}"{if $server.num == $_parent.bncServerActive} selected{/if}>{$server.name}</option>{/foreach}</select></td></tr>{/if}
+                        {if $numBncServers > 1}<tr><td>{$serverText}:</td><td><select name="server" style="width: 145px;">{foreach $bncServers server}<option value="{$server.num}"{if $server.num == $_parent.bncServerActive} selected{/if}>{$server.name}</option>{/foreach}</select></td></tr>
+                        {else}<input type="hidden" name="server" value="0" />{/if}
                         <tr><td colspan="2" style="text-align: right;"><input type="submit" name="do" value="{$submitText}" /></td></tr>
                     </table>
                 </form>
