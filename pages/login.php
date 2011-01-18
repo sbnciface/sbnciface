@@ -63,6 +63,8 @@ if (isset($_GET['s'])) {
     }
 }
 
+$numBncServers = count($bncServers);
+
 for ($i = '0'; $i < count($bncServers); $i++) {
     $bncServers[$i]['num'] = $i;
 }
@@ -78,6 +80,7 @@ $data->assign('usernameText', $lang['username']);
 $data->assign('passwordText', $lang['password']);
 $data->assign('serverText', $lang['server']);
 $data->assign('submitText', $lang['login']);
+$data->assign('numBncServers', $numBncServers);
 $data->assign('bncServers', $bncServers);
 if (isset($activeServer)) {
     $data->assign('bncServerActive', $activeServer);

@@ -2,7 +2,7 @@
 /*
  * $Id: en.php 36 2010-12-21 09:37:38Z biohzn $
  *
- * Copyright (C) 2010-2011 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2011 Leif Johansen <laffen@laffen.info>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
