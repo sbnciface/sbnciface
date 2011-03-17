@@ -26,6 +26,11 @@
 <?php
 $lang = array(
 
+    'days'                  =>  'dagar',
+    'hours'                 =>  'timmar',
+    'minutes'               =>  'minuter',
+    'seconds'               =>  'sekunder',
+
     'pageNotFound'          =>  'Sidan \'%s\' hittades inte, vänligen verifiera sökvägen.',
     'noAccessToPage'        =>  'Du har inte tillgång till den här sidan',
 

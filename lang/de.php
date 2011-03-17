@@ -26,6 +26,11 @@
 <?php
 $lang = array(
 
+    'days'                  =>  'tage',
+    'hours'                 =>  'stunden',
+    'minutes'               =>  'minuten',
+    'seconds'               =>  'sekunden',
+
     'pageNotFound'          =>  '\'%s\' wurde nicht gefunden, bitte &uuml;berpr&uuml;fe Deine Eingabe!',
     'noAccessToPage'        =>  'Du hast keine Berechtigung diese Seite aufzurufen!',
 

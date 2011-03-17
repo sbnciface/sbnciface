@@ -35,14 +35,14 @@ if ($admin == '1') {
 
             $errorIsset = '1';
             $errorType = 'info';
-            $errorMessage = sprintf($autoAddIp, '127.0.0.1');
+            $errorMessage = sprintf($lang['autoAddIp'], '127.0.0.1');
         }
     } elseif (!in_array($serverIp, $trustedIps)) {
         $sbnc->Call('addtrustedip', array($serverIp));
 
         $errorIsset = '1';
         $errorType = 'info';
-        $errorMessage = sprintf($autoAddIp, $serverIp);
+        $errorMessage = sprintf($lang['autoAddIp'], $serverIp);
     }
 }
 

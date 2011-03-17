@@ -26,6 +26,11 @@
 <?php
 $lang = array(
 
+    'days'                  =>  'dager',
+    'hours'                 =>  'timer',
+    'minutes'               =>  'minutes',
+    'seconds'               =>  'sekunder',
+
     'pageNotFound'          =>  'Page \'%s\' ikke funnet, vennligst sjekk url.',
     'noAccessToPage'        =>  'Du har ikke tilgang til denne siden',
 

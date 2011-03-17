@@ -32,7 +32,7 @@ class SBNC {
         $this->socket = @fsockopen($host, $port);
 
         if ($this->socket == FALSE) {
-			die('Could not connect, edit config.php, and check if iface2.tcl is loaded.');
+			die('Could not connect, edit settings.php, and check if iface2.tcl is loaded.');
             return;
         }
 

@@ -29,7 +29,7 @@ $bncServers = array(
     ),
     $sbncsrv1 = array(
         'name'  =>  'Mustis',
-        'ip'    =>  'localhost',
+        'ip'    =>  'mustis.org',
         'port'  =>  '9000'
     ),
 );

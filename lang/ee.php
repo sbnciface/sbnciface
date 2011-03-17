@@ -26,6 +26,11 @@
 <?php
 $lang = array(
 
+    'days'                  =>  'päeva',
+    'hours'                 =>  'tundi',
+    'minutes'               =>  'minutit',
+    'seconds'               =>  'sekundit',
+
     'pageNotFound'          =>  'Lehekülge \'%s\' ei leitud, palun kontrollige aadressi.',
     'noAccessToPage'        =>  'Teil pole õigusi selle lehekülje külastamiseks.',
 

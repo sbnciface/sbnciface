@@ -77,4 +77,11 @@ $data->assign('globalMsg', $lang['globalMsg']);
 $data->assign('mainLog', $lang['mainLog']);
 
 $data->assign('logout', $lang['logout']);
+
+//Time
+$data->assign('days', $lang['days']);
+$data->assign('hours', $lang['hours']);
+$data->assign('minutes', $lang['minutes']);
+$data->assign('seconds', $lang['seconds']);
+
 ?>

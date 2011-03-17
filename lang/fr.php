@@ -26,6 +26,11 @@
 <?php
 $lang = array(
 
+    'days'                  =>  'jours',
+    'hours'                 =>  'heures',
+    'minutes'               =>  'minutes',
+    'seconds'               =>  'seconde',
+
     'pageNotFound'          =>  'La page \'%s\' n\'a pas était trouvé, regardé l\'url.',
     'noAccessToPage'        =>  'Tu n\'a pas l\'acces à cette page',
 
