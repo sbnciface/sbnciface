@@ -31,13 +31,8 @@
                 <div id="langselect">
                     <form action="" method="post" name="langselector">
                         <input type="hidden" name="lang" value="" />
-                        <a href="javascript:" onclick="pickLanguage('en');"><img src="{$ifaceRoot}lang/img/en.png" alt="en" /></a>
-                        <a href="javascript:" onclick="pickLanguage('de');"><img src="{$ifaceRoot}lang/img/de.png" alt="de" /></a>
-                        <a href="javascript:" onclick="pickLanguage('fr');"><img src="{$ifaceRoot}lang/img/fr.png" alt="fr" /></a>
-                        <a href="javascript:" onclick="pickLanguage('sv');"><img src="{$ifaceRoot}lang/img/sv.png" alt="sv" /></a>
-                        <a href="javascript:" onclick="pickLanguage('no');"><img src="{$ifaceRoot}lang/img/no.png" alt="no" /></a>
-                        <a href="javascript:" onclick="pickLanguage('da');"><img src="{$ifaceRoot}lang/img/da.png" alt="da" /></a>
-			<a href="javascript:" onclick="pickLanguage('ee');"><img src="{$ifaceRoot}lang/img/ee.png" alt="ee" /></a>
+                        {foreach $langArray lang}{$lang}
+                        {/foreach}
                     </form>
                 </div>
                 <div id="header">

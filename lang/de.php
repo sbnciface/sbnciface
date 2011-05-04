@@ -1,6 +1,6 @@
 <?php
 /*
- * $Id: de.php 3 2011-05-04 16:02:41Z BiohZn $
+ * $Id$
  *
  * Copyright (C) 2010-2011 André Friedrich <info@andre-friedrich.eu>
  *

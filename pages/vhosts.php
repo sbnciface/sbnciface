@@ -1,7 +1,7 @@
 <?php
 
 /*
- * $Id: vhosts.php 3 2011-05-04 16:02:41Z BiohZn $
+ * $Id$
  *
  * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
  *

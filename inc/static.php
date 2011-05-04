@@ -1,7 +1,7 @@
 <?php
 
 /*
- * $Id: static.php 3 2011-05-04 16:02:41Z BiohZn $
+ * $Id$
  *
  * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
  *
@@ -34,6 +34,20 @@ if (isset($_SESSION['username']) && !isset($_SESSION['isAdmin'])) {
         $vgroup = 'none';
     }
 }
+
+//Languages
+$langArray = getLangs();
+$flagArray = getFlags();
+ksort($langArray);
+$i=0;
+foreach ($langArray as $langKey=>$langFile) {
+    if (array_key_exists($langKey, $flagArray)) {
+        $availLangs[$i] = "<a href=\"javascript:\" onclick=\"pickLanguage('$langKey');\"><img src=\"".$interfaceRoot."lang/img/$flagArray[$langKey]\" alt=\"$langKey\" /></a>";
+        $i++;
+    }
+}
+
+$data->assign('langArray', $availLangs);
 
 //Static Interface Vars
 $data->assign('ifaceName', 'sBNC Interface v1.2');

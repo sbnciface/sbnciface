@@ -1,6 +1,6 @@
 <?php
 /*
- * $Id: functions.php 3 2011-05-04 16:02:41Z BiohZn $
+ * $Id$
  *
  * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
  *
@@ -112,11 +112,37 @@ function userOnlineCheck($ident) {
 }
 
 function is_ip($address) {
-  $packed = inet_pton ($address);
-  if (FALSE == $packed || FALSE === inet_ntop ($packed)) {
-    return FALSE;
-  }
-  return TRUE;
+    $packed = inet_pton($address);
+    if (FALSE == $packed || FALSE === inet_ntop($packed)) {
+        return FALSE;
+    }
+    return TRUE;
+}
+
+function getLangs() {
+    if ($handle = opendir('lang/')) {
+        while (false !== ($file = readdir($handle))) {
+            if (strlen($file) > 3) {
+                $filedata = explode('.', $file);
+                $langArray[$filedata[0]] = $file;
+            }
+        }
+        closedir($handle);
+        return $langArray;
+    }
+}
+
+function getFlags() {
+    if ($handle = opendir('lang/img/')) {
+        while (false !== ($file = readdir($handle))) {
+            if (strlen($file) > 3) {
+                $filedata = explode('.', $file);
+                $flagArray[$filedata[0]] = $file;
+            }
+        }
+        closedir($handle);
+        return $flagArray;
+    }
 }
 
 ?>
