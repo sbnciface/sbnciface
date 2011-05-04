@@ -1,0 +1,19 @@
+{$header}
+                <form action="" method="POST">
+                    <table id="tbl" align="center" width="400">
+                        <tr><td colspan="2" align="center">{$activeEditUserText}</td></tr>
+                        <tr><td width="40%">{$accessText}:</td><td width="60%"><select style="width:225px;" name="access">{if $accessValue == 1}<option value="1" selected>{$adminText}</option><option value="0">{$userText}</option>{else}<option value="1">{$adminText}</option><option value="0" selected>{$userText}</option>{/if}</select></td></tr>
+                        <tr><td width="40%">{$realnameText}:</td><td width="60%"><input style="width:223px;" type="text" name="realname" value="{$realnameValue}" /></td></tr>
+                        <tr><td width="40%">{$nicknameText}:</td><td width="60%"><input style="width:223px;" type="text" name="nickname" value="{$nicknameValue}" /></td></tr>
+                        <tr><td width="40%">{$passwordText}:</td><td width="60%"><input style="width:223px;" type="text" name="password" value="" /></td></tr>
+                        <tr><td width="40%">{$serverText}:</td><td width="60%"><input style="width:223px;" type="text" name="server" value="{$serverValue}" /></td></tr>
+                        <tr><td width="40%">{$portText}:</td><td width="60%"><input style="width:223px;" type="text" name="port" value="{$portValue}" /></td></tr>
+                        <tr><td width="40%">{$serverPassText}:</td><td width="60%"><input style="width:223px;" type="text" name="serverpass" value="{$serverPassValue}" /></td></tr>
+                        <tr><td width="40%">{$awaynickText}:</td><td width="60%"><input style="width:223px;" type="text" name="awaynick" value="{$awaynickValue}" /></td></tr>
+                        <tr><td width="40%">{$awaymessageText}:</td><td width="60%"><input style="width:223px;" type="text" name="awaymessage" value="{$awaymessageValue}" /></td></tr>
+                        <tr><td width="40%">{$quitasawayText}:</td><td width="60%"><select style="width:225px;" name="quitasaway">{if $quitasawayValue == 1}<option value="1" selected>{$yesText}</option><option value="0">{$noText}</option>{else}<option value="1">{$yesText}</option><option value="0" selected>{$noText}</option>{/if}</select></td></tr>
+                        <tr><td width="40%">{$vhostText}:</td><td width="60%"><select name="vhost" style="width:225px;" >{loop $vhostValue}{if $_parent.vhostInUse == $0}<option value="{$0}" selected>{$3}</option>{else}<option value="{$0}">{$3}</option>{/if}{/loop}</select></td></tr>
+                        <tr><td colspan="4" align="center"><input type="hidden" value="{$activeUserText}" name="user" /><input type="submit" value="{$submitValue}" name="do" /> <input type="submit" value="{$jumpValue}" name="dojump" /></td></tr>
+                    </table>
+                </form>
+{$footer}

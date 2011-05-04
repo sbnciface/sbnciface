@@ -1,0 +1,27 @@
+sBNC Interface v1.1 Beta (December 13, 2010)
+    * Recoded with Dwoo template engine.
+    * Now optimized for sBNC 1.3
+
+sBNC Interface v0.5 Beta (August 15, 2010)
+    * Removed Urdu because the translation is not complete anymore.
+    * Added Norwegian
+    * Added Theme changer.
+    * Fixed language + IE change bug.
+    * Fixed so users dont get logged out when changing password.
+
+sBNC Interface v0.4 Beta (February 27, 2010)
+
+    * Added the ability to change language.
+    * Added Swedish, Finnish, English, German and Urdu.
+    * Some minor fixes with the design (padding, margin).
+    * Added ability for admin to check user channels.
+    * Added "Remember me" function.
+
+sBNC Interface v0.2 Beta (February 15, 2010)
+
+    * Major changes to the design.
+    * Added adminpage.
+
+sBNC Interface v0.1 Beta (February 12, 2010)
+
+    * First public version.

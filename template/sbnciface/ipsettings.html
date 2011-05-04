@@ -1,0 +1,13 @@
+{$header}
+                <table id="tbl" align="center" width="400">
+                    <tr><form action="" method="post"><td width="60%"><input type="text" name="ip" size="33"/></td><td style="text-align:center;" width="40%"><input class="input-image" type="image" src="template/sbnciface/img/icons/add.png"  value="Add IP" name="addtrustip" /></td></form></tr>
+                </table>
+                <br /><br />
+                <form action="" method="post">
+                    <table id="tbl" align="center" width="400">
+                        <tr><td width="60%"><b>{$ipText}</b></td><td width="40%"><b>{$actionText}</b></td></tr>
+                        {foreach $trustIps trustIp}<tr><form action="" method="post"><td>{$trustIp}</td><td style="text-align:center;"><input type="hidden" value="{$trustIp}" name="ip" /><input class="input-image" type="image" src="template/sbnciface/img/icons/delete.png" value="Del IP" name="deltrustip" /></td></form></td>
+                        {/foreach}
+                    </table>
+                </form>
+{$footer}
