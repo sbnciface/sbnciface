@@ -34,7 +34,7 @@ if (isset($_POST['do'])) {
 
     $errorIsset = 1;
     $errorType = 'success';
-    $errorMessage = $lang['settingsSaved'];
+    $errorMessage = $lang['misc_save_ok'];
 }
 
 //Set data
@@ -44,18 +44,18 @@ if (!empty($errorIsset)) {
     $data->assign('errorMessage', $errorMessage);
 }
 
-$data->assign('authText', $lang['authName']);
-$data->assign('passText', $lang['authPass']);
-$data->assign('useAuthText', $lang['useAuth']);
+$data->assign('authText', $lang['user_auth_username']);
+$data->assign('passText', $lang['user_auth_password']);
+$data->assign('useAuthText', $lang['user_auth_auto']);
 
 $data->assign('authValue', $sbnc->Call("getuser"));
 $data->assign('passValue', $sbnc->Call("getpass"));
 $data->assign('useAuthValue', $sbnc->Call("getauth"));
 
-$data->assign('useAuthValueYes', $lang['on']);
-$data->assign('useAuthValueNo', $lang['off']);
+$data->assign('useAuthValueYes', $lang['misc_on']);
+$data->assign('useAuthValueNo', $lang['misc_off']);
 
-$data->assign('submitValue', $lang['saveChanges']);
+$data->assign('submitValue', $lang['misc_save_changes']);
 
 //Output the page
 $data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));

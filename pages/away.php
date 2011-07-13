@@ -31,7 +31,7 @@ if (isset($_POST['do'])) {
 
     $errorIsset = 1;
     $errorType = 'success';
-    $errorMessage = $lang['settingsSaved'];
+    $errorMessage = $lang['misc_save_ok'];
 }
 
 //Set data
@@ -41,18 +41,18 @@ if (!empty($errorIsset)) {
     $data->assign('errorMessage', $errorMessage);
 }
 
-$data->assign('awaynickText', $lang['awaynick']);
-$data->assign('awaymessageText', $lang['awaymessage']);
-$data->assign('quitasawayText', $lang['quitAsAway']);
+$data->assign('awaynickText', $lang['user_away_awaynick']);
+$data->assign('awaymessageText', $lang['user_away_awaymessage']);
+$data->assign('quitasawayText', $lang['user_away_usequitasaway']);
 
 $data->assign('awaynickValue', $sbnc->Call("getvalue", array("awaynick")));
 $data->assign('awaymessageValue', $sbnc->Call("getvalue", array("awaymessage")));
 $data->assign('quitasawayValue', $sbnc->Call("getvalue", array("quitasaway")));
 
-$data->assign('quitasawayValueYes', $lang['yes']);
-$data->assign('quitasawayValueNo', $lang['no']);
+$data->assign('quitasawayValueYes', $lang['misc_yes']);
+$data->assign('quitasawayValueNo', $lang['misc_no']);
 
-$data->assign('submitValue', $lang['saveChanges']);
+$data->assign('submitValue', $lang['misc_save_changes']);
 
 //Output the page
 $data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));

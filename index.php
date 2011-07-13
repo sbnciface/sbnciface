@@ -96,7 +96,7 @@ if (!isset($_SESSION['username'])) {
         //Page not found, include error page.
         $errorIsset = '1';
         $errorType = 'staticerror';
-        $errorMessage = sprintf($lang['pageNotFound'], $_GET['p']);
+        $errorMessage = sprintf($lang['misc_404'], $_GET['p']);
         $page = "error";
     }
 

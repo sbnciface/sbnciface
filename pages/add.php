@@ -35,7 +35,7 @@ if ($admin == 1) {
 
         $errorIsset = 1;
         $errorType = 'success';
-        $errorMessage = sprintf($lang['userAdded'], $username, $password);
+        $errorMessage = sprintf($lang['admin_adduser_user_added'], $username, $password);
     }
     
     //Set data
@@ -45,10 +45,10 @@ if ($admin == 1) {
         $data->assign('errorMessage', $errorMessage);
     }
 
-    $data->assign('passwordEmptyText', $lang['ifPasswordEmpty']);
-    $data->assign('identText', $lang['ident']);
-    $data->assign('passwordText', $lang['password']);
-    $data->assign('submitValue', $lang['addUser']);
+    $data->assign('passwordEmptyText', $lang['admin_adduser_ifPwEmpty']);
+    $data->assign('identText', $lang['admin_adduser_username']);
+    $data->assign('passwordText', $lang['admin_adduser_password']);
+    $data->assign('submitValue', $lang['admin_adduser_submit']);
 
     $data->assign('identName', 'ident');
     $data->assign('passwordName', 'password');
@@ -64,7 +64,7 @@ if ($admin == 1) {
     //No access, include error page.
     $errorIsset = '1';
     $errorType = 'staticerror';
-    $errorMessage = $lang['noAccessToPage'];
+    $errorMessage = $lang['misc_403'];
 
     include 'error.php';
 }

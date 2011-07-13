@@ -29,7 +29,7 @@ if ($admin == '1') {
 
         $errorIsset = 1;
         $errorType = 'success';
-        $errorMessage = $lang['logErased'];
+        $errorMessage = $lang['admin_mainlog_erased'];
     }
 
     $log = $sbnc->Call('getmainlog', array("0", "999"));
@@ -37,11 +37,11 @@ if ($admin == '1') {
     //Checks for the log, to make it all look nice, and give no errors
     if (is_a($log, 'itype_exception')) {
         $logState = "empty";
-        $logString = "<div class=\"mid\"><b>" . $lang['logEmpty'] . ".</b></div>";
+        $logString = "<div class=\"mid\"><b>" . $lang['admin_mainlog_empty'] . ".</b></div>";
     } else {
         if (count($log) == 0) {
             $logState = "empty";
-            $logString = "<div class=\"mid\"><b>" . $lang['logEmpty'] . ".</b></div>";
+            $logString = "<div class=\"mid\"><b>" . $lang['admin_mainlog_empty'] . ".</b></div>";
         } else {
             $logString = $log;
         }
@@ -59,7 +59,7 @@ if ($admin == '1') {
     }
     $data->assign('logString', $logString);
 
-    $data->assign('submitValue', $lang['emptyLog']);
+    $data->assign('submitValue', $lang['admin_mainlog_erase']);
 
     //Output the page
     $data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));
@@ -70,7 +70,7 @@ if ($admin == '1') {
     //No access, include error page.
     $errorIsset = '1';
     $errorType = 'staticerror';
-    $errorMessage = $lang['noAccessToPage'];
+    $errorMessage = $lang['misc_403'];
 
     include 'error.php';
 }

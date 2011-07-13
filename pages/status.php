@@ -35,14 +35,14 @@ if ($admin == '1') {
 
             $errorIsset = '1';
             $errorType = 'info';
-            $errorMessage = sprintf($lang['autoAddIp'], '127.0.0.1');
+            $errorMessage = sprintf($lang['misc_trustedips_auto_add'], '127.0.0.1');
         }
     } elseif (!in_array($serverIp, $trustedIps)) {
         $sbnc->Call('addtrustedip', array($serverIp));
 
         $errorIsset = '1';
         $errorType = 'info';
-        $errorMessage = sprintf($lang['autoAddIp'], $serverIp);
+        $errorMessage = sprintf($lang['misc_trustedips_auto_add'], $serverIp);
     }
 }
 
@@ -55,14 +55,14 @@ if (!empty($errorIsset)) {
 
 $traff = $sbnc->Call("gettraffic");
 
-$data->assign('nicknameText', $lang['nickname']);
-$data->assign('uptimeText', $lang['uptime']);
-$data->assign('disconnectedText', $lang['disconnected']);
-$data->assign('awaynickText', $lang['awaynick']);
-$data->assign('awaymessageText', $lang['awaymessage']);
-$data->assign('realnameText', $lang['realname']);
-$data->assign('serverText', $lang['server']);
-$data->assign('trafficText', $lang['traffic']);
+$data->assign('nicknameText', $lang['status_nickname']);
+$data->assign('uptimeText', $lang['status_uptime']);
+$data->assign('disconnectedText', $lang['status_disconnected']);
+$data->assign('awaynickText', $lang['status_awaynick']);
+$data->assign('awaymessageText', $lang['status_awaymessage']);
+$data->assign('realnameText', $lang['status_realname']);
+$data->assign('serverText', $lang['status_server']);
+$data->assign('trafficText', $lang['status_traffic']);
 
 $data->assign('nicknameValue', $sbnc->Call('getnick'));
 $data->assign('uptimeValue', $sbnc->Call('getvalue', array('uptime')));

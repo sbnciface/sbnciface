@@ -66,15 +66,37 @@ if (isset($vgroup)) {
     $data->assign('sbncVGroup', $vgroup);
 }
 
+    /* Navigation                           
+    'nav_status'                  => 'Status',
+
+    'nav_user'                    => 'User',
+    'nav_user_settings'           => 'Settings',
+    'nav_user_server'             => 'Server',
+    'nav_user_authsettings'       => 'Auth settings',
+    'nav_user_away'               => 'Away',
+    'nav_user_channels'           => 'Channels',
+    'mav_user_log'                => 'Log',
+
+    'nav_admin'                   => 'Administrator',
+    'nav_admin_users'             => 'Users',
+    'nav_admin_adduser'           => 'Add user',
+    'nav_admin_trustedips'        => 'Trusted IPs',
+    'nav_admin_vhosts'            => 'Vhosts',
+    'nav_admin_globalmsg'         => 'Global message',
+    'nav_admin_mainlog'           => 'Mainlog',
+
+    'nav_logout'                  => 'Logout',
+*/
+
 //User Menu
-$data->assign('status', $lang['status']);
-$data->assign('user', $lang['user']);
-$data->assign('settings', $lang['settings']);
-$data->assign('server', $lang['server']);
-$data->assign('authSettings', $lang['authSettings']);
-$data->assign('away', $lang['away']);
-$data->assign('channels', $lang['channels']);
-$data->assign('log', $lang['log']);
+$data->assign('status', $lang['nav_status']);
+$data->assign('user', $lang['nav_user']);
+$data->assign('settings', $lang['nav_user_settings']);
+$data->assign('server', $lang['nav_user_server']);
+$data->assign('authSettings', $lang['nav_user_authsettings']);
+$data->assign('away', $lang['nav_user_away']);
+$data->assign('channels', $lang['nav_user_channels']);
+$data->assign('log', $lang['nav_user_log']);
 
 //Vadmin Menu
 $data->assign('vAdmin', $lang['vAdmin']);
@@ -82,20 +104,20 @@ $data->assign('users', $lang['users']);
 $data->assign('addUser', $lang['addUser']);
 
 //Admin Menu
-$data->assign('admin', $lang['admin']);
-$data->assign('users', $lang['users']);
-$data->assign('addUser', $lang['addUser']);
-$data->assign('trustedIps', $lang['trustedIps']);
-$data->assign('vhosts', $lang['vhosts']);
-$data->assign('globalMsg', $lang['globalMsg']);
-$data->assign('mainLog', $lang['mainLog']);
+$data->assign('admin', $lang['nav_admin']);
+$data->assign('users', $lang['nav_admin_users']);
+$data->assign('addUser', $lang['nav_admin_adduser']);
+$data->assign('trustedIps', $lang['nav_admin_trustedips']);
+$data->assign('vhosts', $lang['nav_admin_vhosts']);
+$data->assign('globalMsg', $lang['nav_admin_globalmsg']);
+$data->assign('mainLog', $lang['nav_admin_mainlog']);
 
-$data->assign('logout', $lang['logout']);
+$data->assign('logout', $lang['nav_logout']);
 
 //Time
-$data->assign('days', $lang['days']);
-$data->assign('hours', $lang['hours']);
-$data->assign('minutes', $lang['minutes']);
-$data->assign('seconds', $lang['seconds']);
+$data->assign('days', $lang['misc_days']);
+$data->assign('hours', $lang['misc_hours']);
+$data->assign('minutes', $lang['misc_minutes']);
+$data->assign('seconds', $lang['misc_seconds']);
 
 ?>

@@ -28,7 +28,7 @@ if ($admin == '1') {
 
         $errorIsset = 1;
         $errorType = 'success';
-        $errorMessage = $lang['messageSent'];
+        $errorMessage = $lang['admin_globalmsg_ok'];
         
     }
 
@@ -39,8 +39,8 @@ if ($admin == '1') {
         $data->assign('errorMessage', $errorMessage);
     }
 
-    $data->assign('messageText', $lang['message']);
-    $data->assign('submitValue', $lang['send']);
+    $data->assign('messageText', $lang['admin_globalmsg_message']);
+    $data->assign('submitValue', $lang['admin_globalmsg_submit']);
 
     //Output the page
     $data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));
@@ -52,7 +52,7 @@ if ($admin == '1') {
     //No access, include error page.
     $errorIsset = '1';
     $errorType = 'staticerror';
-    $errorMessage = $lang['noAccessToPage'];
+    $errorMessage = $lang['misc_403'];
 
     include 'error.php';
 }

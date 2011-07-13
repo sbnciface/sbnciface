@@ -29,7 +29,7 @@ if ($admin == '1') {
 
         $errorIsset = 1;
         $errorType = 'success';
-        $errorMessage = sprintf($lang['userDeleted'], $delIdent);
+        $errorMessage = sprintf($lang['admin_users_user_deleted'], $delIdent);
     }
 
     //Get userlist and push into array
@@ -50,9 +50,9 @@ if ($admin == '1') {
             $adminArray[$numAdmins]['nick'] = $sbnc->CallAs($users[$i], 'getnick');
 
             if (userOnlineCheck($users[$i]) == 'online') {
-                $adminArray[$numAdmins]['lastseen'] = $lang['now'];
+                $adminArray[$numAdmins]['lastseen'] = $lang['admin_users_seen_now'];
             } elseif ($sbnc->Call('tcl', array("getbncuser $users[$i] seen")) == '0') {
-                $adminArray[$numAdmins]['lastseen'] = $lang['never'];
+                $adminArray[$numAdmins]['lastseen'] = $lang['admin_users_seen_never'];
             } else {
                 $adminArray[$numAdmins]['lastseen'] = date("d.m.Y H:i:s", $sbnc->Call('tcl', array("getbncuser $users[$i] seen")));
             }
@@ -63,9 +63,9 @@ if ($admin == '1') {
             $userArray[$numUsers]['nick'] = $sbnc->CallAs($users[$i], 'getnick');
 
             if (userOnlineCheck($users[$i]) == 'online') {
-                $userArray[$numUsers]['lastseen'] = $lang['now'];
+                $userArray[$numUsers]['lastseen'] = $lang['admin_users_seen_now'];
             } elseif ($sbnc->Call('tcl', array("getbncuser $users[$i] seen")) == '0') {
-                $userArray[$numUsers]['lastseen'] = $lang['never'];
+                $userArray[$numUsers]['lastseen'] = $lang['admin_users_seen_never'];
             } else {
                 $userArray[$numUsers]['lastseen'] = date("d.m.Y H:i:s", $sbnc->Call('tcl', array("getbncuser $users[$i] seen")));
             }
@@ -80,18 +80,18 @@ if ($admin == '1') {
         $data->assign('errorMessage', $errorMessage);
     }
 
-    $data->assign('identText', $lang['ident']);
-    $data->assign('nickText', $lang['nickname']);
-    $data->assign('lastseenText', $lang['lastSeen']);
-    $data->assign('actionText', $lang['action']);
-    $data->assign('userText', $lang['users']);
-    $data->assign('adminText', $lang['administrators']);
-    $data->assign('reallyDeleteText', $lang['reallyDelete']);
+    $data->assign('identText', $lang['admin_users_username']);
+    $data->assign('nickText', $lang['admin_users_nickname']);
+    $data->assign('lastseenText', $lang['admin_users_last_seen']);
+    $data->assign('actionText', $lang['admin_users_action']);
+    $data->assign('userText', $lang['admin_users_title_users']);
+    $data->assign('adminText', $lang['admin_users_title_admins']);
+    $data->assign('reallyDeleteText', $lang['admin_users_confirm_delete']);
 
     $data->assign('adminArray', $adminArray);
     $data->assign('userArray', $userArray);
-    $data->assign('numAdmins', $numAdmins . ' ' . $lang['administrators']);
-    $data->assign('numUsers', $numUsers . ' ' . $lang['users']);
+    $data->assign('numAdmins', sprintf($lang['admin_users_end_admins'], $numAdmins));
+    $data->assign('numUsers', sprintf($lang['admin_users_end_users'], $numUsers));
 
     //Output the page
     $data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));
@@ -102,7 +102,7 @@ if ($admin == '1') {
     //No access, include error page.
     $errorIsset = '1';
     $errorType = 'staticerror';
-    $errorMessage = $lang['noAccessToPage'];
+    $errorMessage = $lang['misc_403'];
 
     include 'error.php';
 }

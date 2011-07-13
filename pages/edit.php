@@ -64,7 +64,7 @@ if (!empty($_GET['u'])) {
 
         $errorIsset = 1;
         $errorType = 'success';
-        $errorMessage = $lang['settingsSaved'];
+        $errorMessage = $lang['misc_save_ok'];
     }
 
     if (isset($_POST['dojump'])) {
@@ -72,7 +72,7 @@ if (!empty($_GET['u'])) {
 
         $errorIsset = 1;
         $errorType = 'success';
-        $errorMessage = $lang['reconnecting'];
+        $errorMessage = sprintf($lang['admin_users_edit_reconnecting'], $user);
     }
 
     if (in_array($user, $users)) {
@@ -85,22 +85,22 @@ if (!empty($_GET['u'])) {
         }
 
         $data->assign('activeUserText', $user);
-        $data->assign('activeEditUserText', sprintf($lang['changingOptions'], $user));
-        $data->assign('accessText', $lang['access']);
-        $data->assign('adminText', $lang['admin']);
-        $data->assign('userText', $lang['user']);
-        $data->assign('realnameText', $lang['realname']);
-        $data->assign('nicknameText', $lang['nickname']);
-        $data->assign('passwordText', $lang['password']);
-        $data->assign('serverText', $lang['server']);
-        $data->assign('portText', $lang['port']);
-        $data->assign('serverPassText', $lang['serverPassword']);
-        $data->assign('awaynickText', $lang['awaynick']);
-        $data->assign('awaymessageText', $lang['awaymessage']);
-        $data->assign('quitasawayText', $lang['quitAsAway']);
-        $data->assign('yesText', $lang['yes']);
-        $data->assign('noText', $lang['no']);
-        $data->assign('vhostText', $lang['vhost']);
+        $data->assign('activeEditUserText', sprintf($lang['admin_users_edit_title'], $user));
+        $data->assign('accessText', $lang['admin_users_edit_access']);
+        $data->assign('adminText', $lang['admin_users_rank_admin']);
+        $data->assign('userText', $lang['admin_users_rank_user']);
+        $data->assign('realnameText', $lang['admin_users_edit_realname']);
+        $data->assign('nicknameText', $lang['admin_users_edit_nickname']);
+        $data->assign('passwordText', $lang['admin_users_edit_password']);
+        $data->assign('serverText', $lang['admin_users_edit_server']);
+        $data->assign('portText', $lang['admin_users_edit_port']);
+        $data->assign('serverPassText', $lang['admin_users_edit_serverpass']);
+        $data->assign('awaynickText', $lang['admin_users_edit_awaynick']);
+        $data->assign('awaymessageText', $lang['admin_users_edit_awaymessage']);
+        $data->assign('quitasawayText', $lang['admin_users_edit_quitasaway']);
+        $data->assign('yesText', $lang['misc_yes']);
+        $data->assign('noText', $lang['misc_no']);
+        $data->assign('vhostText', $lang['admin_users_edit_vhost']);
 
         $data->assign('accessValue', $sbnc->CallAs($user, 'getvalue', array('admin')));
         $data->assign('realnameValue', $sbnc->CallAs($user, 'getvalue', array('realname')));
@@ -114,8 +114,8 @@ if (!empty($_GET['u'])) {
         $data->assign('vhostInUse', $sbnc->CallAs($user, "getvalue", array("vhost")));
         $data->assign('vhostValue', $sbnc->CallAs($user, "getvhosts"));
 
-        $data->assign('jumpValue', $lang['jump']);
-        $data->assign('submitValue', $lang['saveChanges']);
+        $data->assign('jumpValue', $lang['admin_users_edit_jump']);
+        $data->assign('submitValue', $lang['misc_save_changes']);
 
         //Output the page
         $data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));
@@ -125,7 +125,7 @@ if (!empty($_GET['u'])) {
 
         $errorIsset = '1';
         $errorType = 'staticerror';
-        $errorMessage = sprintf($lang['invalidUser'], $user);
+        $errorMessage = sprintf($lang['admin_users_edit_invaliduser'], $user);
 
         include 'error.php';
     }

@@ -25,7 +25,7 @@ if (isset($_POST['do'])) {
 
     $errorIsset = 1;
     $errorType = 'success';
-    $errorMessage = $lang['logErased'];
+    $errorMessage = $lang['user_log_erased'];
 }
 
 $log = $sbnc->Call('getlog', array("0", "999"));
@@ -33,11 +33,11 @@ $log = $sbnc->Call('getlog', array("0", "999"));
 //Checks for the log, to make it all look nice, and give no errors
 if (is_a($log, 'itype_exception')) {
     $logState = "empty";
-    $logString = "<div class=\"mid\"><b>" . $lang['logEmpty'] . ".</b></div>";
+    $logString = "<div class=\"mid\"><b>" . $lang['user_log_empty'] . ".</b></div>";
 } else {
     if (count($log) == 0) {
         $logState = "empty";
-        $logString = "<div class=\"mid\"><b>" . $lang['logEmpty'] . ".</b></div>";
+        $logString = "<div class=\"mid\"><b>" . $lang['user_log_empty'] . ".</b></div>";
     } else {
         $logString = $log;
     }
@@ -53,7 +53,7 @@ if (!empty($errorIsset)) {
 $data->assign('logState', $logState);
 $data->assign('logString', $logString);
 
-$data->assign('submitValue', $lang['emptyLog']);
+$data->assign('submitValue', $lang['user_log_erase']);
 
 //Output the page
 $data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));

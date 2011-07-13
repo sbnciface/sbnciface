@@ -59,7 +59,7 @@ if (isset($_GET['s'])) {
     if ($_GET['s'] == 'error') {
         $errorIsset = 1;
         $errorType = 'error';
-        $errorMessage = $lang['wrongUserPass'];
+        $errorMessage = $lang['login_wrong_password'];
     }
 }
 
@@ -76,10 +76,10 @@ if (!empty($errorIsset)) {
     $data->assign('errorMessage', $errorMessage);
 }
 
-$data->assign('usernameText', $lang['username']);
-$data->assign('passwordText', $lang['password']);
-$data->assign('serverText', $lang['server']);
-$data->assign('submitText', $lang['login']);
+$data->assign('usernameText', $lang['login_username']);
+$data->assign('passwordText', $lang['login_password']);
+$data->assign('serverText', $lang['login_server']);
+$data->assign('submitText', $lang['login_submit']);
 $data->assign('numBncServers', $numBncServers);
 $data->assign('bncServers', $bncServers);
 if (isset($activeServer)) {

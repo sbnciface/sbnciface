@@ -32,7 +32,7 @@ if ($admin == '1') {
 
             $errorIsset = 1;
             $errorType = 'error';
-            $errorMessage = $lang['limitNotNumerical'];
+            $errorMessage = $lang['admin_vhosts_numerical'];
             
         } elseif (is_ip($newVhostIp) == TRUE) {
 
@@ -43,12 +43,12 @@ if ($admin == '1') {
 
             $errorIsset = 1;
             $errorType = 'success';
-            $errorMessage = $lang['vhostAdded'];
+            $errorMessage = $lang['admin_vhosts_added'];
         } else {
 
             $errorIsset = 1;
             $errorType = 'error';
-            $errorMessage = $lang['trustIpNotValid'];
+            $errorMessage = $lang['admin_vhosts_ip_invalid'];
         }
     }
 
@@ -60,7 +60,7 @@ if ($admin == '1') {
 
         $errorIsset = 1;
         $errorType = 'success';
-        $errorMessage = $lang['vhostRemoved'];
+        $errorMessage = $lang['admin_vhosts_removed'];
     }
 	
 	$vhosts = $sbnc->Call('getvhosts');
@@ -72,11 +72,11 @@ if ($admin == '1') {
         $data->assign('errorMessage', $errorMessage);
     }
 
-    $data->assign('ipText', $lang['ip']);
-    $data->assign('userLimitText', $lang['userLimit']);
-    $data->assign('hostText', $lang['host']);
-    $data->assign('usersText', $lang['users']);
-    $data->assign('actionsText', $lang['action']);
+    $data->assign('ipText', $lang['admin_vhosts_ip']);
+    $data->assign('userLimitText', $lang['admin_vhosts_userlimit']);
+    $data->assign('hostText', $lang['admin_vhosts_host']);
+    $data->assign('usersText', $lang['admin_vhosts_users']);
+    $data->assign('actionsText', $lang['admin_vhosts_action']);
 
     $data->assign('vhostValue', $vhosts);
 
@@ -89,7 +89,7 @@ if ($admin == '1') {
     //No access, include error page.
     $errorIsset = '1';
     $errorType = 'staticerror';
-    $errorMessage = $lang['noAccessToPage'];
+    $errorMessage = $lang['misc_403'];
 
     include 'error.php';
 }

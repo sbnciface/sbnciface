@@ -35,7 +35,7 @@ if (isset($_POST['do'])) {
 
     $errorIsset = 1;
     $errorType = 'success';
-    $errorMessage = $lang['settingsSaved'];
+    $errorMessage = $lang['misc_save_ok'];
 }
 
 if (isset($_POST['jump'])) {
@@ -43,7 +43,7 @@ if (isset($_POST['jump'])) {
 
     $errorIsset = 1;
     $errorType = 'success';
-    $errorMessage = $lang['reconnecting'];
+    $errorMessage = $lang['user_server_reconnecting'];
 }
 
 //Set data
@@ -53,19 +53,19 @@ if (!empty($errorIsset)) {
     $data->assign('errorMessage', $errorMessage);
 }
 
-$data->assign('serverText', $lang['server']);
-$data->assign('portText', $lang['port']);
-$data->assign('passwordText', $lang['password']);
-$data->assign('vhostText', $lang['vhost']);
+$data->assign('serverText', $lang['user_server_server']);
+$data->assign('portText', $lang['user_server_port']);
+$data->assign('passwordText', $lang['user_server_password']);
+$data->assign('vhostText', $lang['user_server_vhost']);
 
 $data->assign('serverValue', $sbnc->Call("getvalue", array("server")));
 $data->assign('portValue', $sbnc->Call("getvalue", array("port")));
 $data->assign('passwordValue', $sbnc->Call("getvalue", array("serverpass")));
 $data->assign('vhostValue', $sbnc->Call("getvhosts"));
-$data->assign('submitValue', $lang['saveChanges']);
+$data->assign('submitValue', $lang['misc_save_changes']);
 
 $data->assign('vhostInUse', $sbnc->Call("getvalue", array("vhost")));
-$data->assign('jumpValue', $lang['jump']);
+$data->assign('jumpValue', $lang['user_server_jump']);
 
 //Output the page
 $data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));

@@ -41,14 +41,14 @@ if (isset($_POST['do'])) {
 
     $errorIsset = 1;
     $errorType = 'success';
-    $errorMessage = $lang['settingsSaved'];
+    $errorMessage = $lang['misc_save_ok'];
 }
 
 if (isset($_GET['s'])) {
     if ($_GET['s'] == 'y') {
         $errorIsset = 1;
         $errorType = 'success';
-        $errorMessage = $lang['settingsSaved'];
+        $errorMessage = $lang['misc_save_ok'];
     }
 }
 
@@ -59,12 +59,12 @@ if (!empty($errorIsset)) {
     $data->assign('errorMessage', $errorMessage);
 }
 
-$data->assign('realnameText', $lang['realname']);
-$data->assign('nicknameText', $lang['nickname']);
-$data->assign('passwordText', $lang['password']);
-$data->assign('sysnoticesText', $lang['sysnotices']);
-$data->assign('onText', $lang['on']);
-$data->assign('offText', $lang['off']);
+$data->assign('realnameText', $lang['user_settings_realname']);
+$data->assign('nicknameText', $lang['user_settings_nickname']);
+$data->assign('passwordText', $lang['user_settings_password']);
+$data->assign('sysnoticesText', $lang['user_settings_sysnotices']);
+$data->assign('onText', $lang['misc_on']);
+$data->assign('offText', $lang['misc_off']);
 
 $data->assign('realnameValue', $sbnc->Call("getvalue", array("realname")));
 $data->assign('nicknameValue', $sbnc->Call("getnick"));
@@ -74,7 +74,7 @@ if ($admin == '1') {
     $data->assign('sysnoticesValue', $sbnc->Call("getvalue", array("sysnotices")));
 }
 
-$data->assign('submitValue', $lang['saveChanges']);
+$data->assign('submitValue', $lang['misc_save_changes']);
 
 //Output the page
 $data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));
