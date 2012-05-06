@@ -1,8 +1,7 @@
 <?php
 /*
- * $Id$
- *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Arne Jensen   <darkdevil@darkdevil.dk>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,13 +22,13 @@
 //Start the session
 session_start();
 
-//Get interfaceRoot
-$interfaceRoot = substr($_SERVER['REQUEST_URI'], '0', strrpos($_SERVER['REQUEST_URI'], '/')+1);
-
 //Main includes
 include 'settings.php';
 include 'inc/functions.php';
 include 'inc/sbnc.php';
+
+//Get interfaceRoot
+$interfaceRoot = sbnciface_get_root();
 
 //Language selector
 if (isset($_POST['lang'])) {
@@ -52,6 +51,11 @@ if (isset($includeLang)) {
     include 'lang/' . $_COOKIE['includeLang'] . '.php';
 }
 
+//Check for session expired, if it appears so - redirect to interfaceRoot!
+if (isset($_GET['p']) && !isset($_SESSION['username'])) {
+    header('Location:' . $interfaceRoot);
+}
+
 if (isset($_GET['logout'])) {
     session_destroy();
     header('Location:' . $interfaceRoot);
@@ -61,7 +65,13 @@ if (isset($_GET['logout'])) {
 include 'dwoo/dwooAutoload.php';
 
 //New page & dataset
-$dwoo = new Dwoo();
+sbnciface_create_temp_if_necessary();
+if (($interfaceTemp = sbnciface_get_temp_dir())) {
+  $dwoo = new Dwoo($interfaceTemp);
+}
+if (!isset($dwoo)) {
+  die("Error: Couldn't find a writable directory to use. Please create 'dwoo/compiled'");
+}
 $data = new Dwoo_Data();
 
 //Check for user session
@@ -96,7 +106,7 @@ if (!isset($_SESSION['username'])) {
         //Page not found, include error page.
         $errorIsset = '1';
         $errorType = 'staticerror';
-        $errorMessage = sprintf($lang['pageNotFound'], $_GET['p']);
+        $errorMessage = sprintf($lang['misc_404'], $_GET['p']);
         $page = "error";
     }
 

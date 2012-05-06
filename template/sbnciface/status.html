@@ -2,21 +2,20 @@
                 <form action="" method="post">
                     <table id="tbl" align="center" width="400">
                         {if $uptimeValue == 0}
-                        <tr><td width="40%">{$uptimeText}</td><td width="60%" id="uptime">{$disconnectedText}</td></tr>
+                        <tr><td width="40%">{$lang.status_uptime}</td><td width="60%" id="uptime">{$lang.status_disconnected}</td></tr>
                         {else}
-                        <tr><td width="40%">{$uptimeText}</td><td width="60%" id="uptime"></td></tr>
+                        <tr><td width="40%">{$lang.status_uptime}</td><td width="60%" id="uptime"></td></tr>
                         {/if}
-                        <tr><td width="40%">{$nicknameText}</td><td width="60%">{$nicknameValue}</td></tr>
-                        <tr><td width="40%">{$awaynickText}</td><td width="60%">{$awaynickValue}</td></tr>
-                        <tr><td width="40%">{$awaymessageText}</td><td width="60%">{$awaymessageValue}</td></tr>
-                        <tr><td width="40%">{$realnameText}</td><td width="60%">{$realnameValue}</td></tr>
-                        <tr><td width="40%">{$serverText}</td><td width="60%">{$serverValue}</td></tr>
-                        <tr><td width="40%">{$trafficText}</td><td width="60%">{$trafficValue}</td></tr>
+                        <tr><td width="40%">{$lang.status_nickname}</td><td width="60%">{$nicknameValue}</td></tr>
+                        <tr><td width="40%">{$lang.status_awaynick}</td><td width="60%">{$awaynickValue}</td></tr>
+                        <tr><td width="40%">{$lang.status_awaymessage}</td><td width="60%">{$awaymessageValue}</td></tr>
+                        <tr><td width="40%">{$lang.status_realname}</td><td width="60%">{$realnameValue}</td></tr>
+                        <tr><td width="40%">{$lang.status_server}</td><td width="60%">{$serverValue}</td></tr>
+                        <tr><td width="40%">{$lang.status_traffic}</td><td width="60%">{$trafficValue}</td></tr>
                     </table>
                 </form>
+{if $uptimeValue > 0}
                 <script type="text/javascript">
-{if $uptimeValue == 0}
-{else}
                     var UptimeTicks = {$uptimeValue};
                     function UptimeRefresh ()
                     {
@@ -24,7 +23,7 @@
                         var hours = Math.floor((UptimeTicks - days*60*60*24)/60/60);
                         var minutes = Math.floor((UptimeTicks - days*60*60*24 - hours*60*60)/60);
                         var seconds = (UptimeTicks - days*60*60*24 - hours*60*60 - minutes*60);
-                        document.getElementById('uptime').innerHTML = days + ' {$days} ' + hours + ' {$hours} ' + minutes + ' {$minutes} ' + seconds + ' {$seconds}';
+                        document.getElementById('uptime').innerHTML = days + ' {$lang.misc_days} ' + hours + ' {$lang.misc_hours} ' + minutes + ' {$lang.misc_minutes} ' + seconds + ' {$lang.misc_seconds}';
                         UptimeTicks++;
                     }
                     UptimeRefresh();

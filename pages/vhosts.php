@@ -1,9 +1,7 @@
 <?php
-
 /*
- * $Id$
- *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Arne Jensen   <darkdevil@darkdevil.dk>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,75 +20,71 @@
 <?php
 
 if ($admin == '1') {
+  if (isset($_POST['addvhost'])) {
+    $newVhostIp = $_POST['ip'];
+    $newVhostLimit = $_POST['limit'];
+    $newVhostHost = $_POST['host'];
 
-    if (isset($_POST['addvhost'])) {
-        $newVhostIp = $_POST['ip'];
-        $newVhostLimit = $_POST['limit'];
-        $newVhostHost = $_POST['host'];
+    if (!is_numeric($newVhostLimit)) {
 
-        if (!is_numeric($newVhostLimit)) {
-
-            $errorIsset = 1;
-            $errorType = 'error';
-            $errorMessage = $lang['limitNotNumerical'];
+      $errorIsset = 1;
+      $errorType = 'error';
+      $errorMessage = $lang['admin_vhosts_numerical'];
             
-        } elseif (is_ip($newVhostIp) == TRUE) {
+    } elseif (is_ip($newVhostIp) == TRUE) {
 
-            $newVhostLimit = $_POST['limit'];
-            $newVhostHost = $_POST['host'];
+      $newVhostLimit = $_POST['limit'];
+      $newVhostHost = $_POST['host'];
 
-            $sbnc->Call('addvhost', array($newVhostIp, $newVhostLimit, $newVhostHost));
+      $sbnc->Call('addvhost', array($newVhostIp, $newVhostLimit, $newVhostHost));
 
-            $errorIsset = 1;
-            $errorType = 'success';
-            $errorMessage = $lang['vhostAdded'];
-        } else {
-
-            $errorIsset = 1;
-            $errorType = 'error';
-            $errorMessage = $lang['trustIpNotValid'];
-        }
+      $errorIsset = 1;
+      $errorType = 'success';
+      $errorMessage = $lang['admin_vhosts_added'];
+    } else {
+      $errorIsset = 1;
+      $errorType = 'error';
+      $errorMessage = $lang['admin_vhosts_ip_invalid'];
     }
-
-    if (isset($_POST['delvhost'])) {
-
-        $delVhostIp = $_POST['delvhost'];
-
-        $sbnc->Call('delvhost', array($delVhostIp));
-
-        $errorIsset = 1;
-        $errorType = 'success';
-        $errorMessage = $lang['vhostRemoved'];
+    if (isset($ifaceCmds["getvhosts"])) {
+      $vhostList = $sbnc->Call("getvhosts");
+      $data->assign('vhostValue', $vhostList);
     }
+  }
+
+  if (isset($_POST['delvhost'])) {
+
+    $delVhostIp = $_POST['delvhost'];
+
+    $sbnc->Call('delvhost', array($delVhostIp));
+
+    $errorIsset = 1;
+    $errorType = 'success';
+    $errorMessage = $lang['admin_vhosts_removed'];
+
+    if (isset($ifaceCmds["getvhosts"])) {
+      $vhostList = $sbnc->Call("getvhosts");
+      $data->assign('vhostValue', $vhostList);
+    }
+  }
 	
-	$vhosts = $sbnc->Call('getvhosts');
+  //Set data
+  if (!empty($errorIsset)) {
+    $data->assign('errorSet', $errorIsset);
+    $data->assign('errorType', $errorType);
+    $data->assign('errorMessage', $errorMessage);
+  }
 
-    //Set data
-    if (!empty($errorIsset)) {
-        $data->assign('errorSet', $errorIsset);
-        $data->assign('errorType', $errorType);
-        $data->assign('errorMessage', $errorMessage);
-    }
-
-    $data->assign('ipText', $lang['ip']);
-    $data->assign('userLimitText', $lang['userLimit']);
-    $data->assign('hostText', $lang['host']);
-    $data->assign('usersText', $lang['users']);
-    $data->assign('actionsText', $lang['action']);
-
-    $data->assign('vhostValue', $vhosts);
-
-    //Output the page
-    $data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));
-    $data->assign('footer', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/footer.html'), $data));
-    $dwoo->output(new Dwoo_Template_File('template/' . $template . '/vhosts.html'), $data);
+  //Output the page
+  $data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));
+  $data->assign('footer', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/footer.html'), $data));
+  $dwoo->output(new Dwoo_Template_File('template/' . $template . '/vhosts.html'), $data);
 } else {
+  //No access, include error page.
+  $errorIsset = '1';
+  $errorType = 'staticerror';
+  $errorMessage = $lang['misc_403'];
 
-    //No access, include error page.
-    $errorIsset = '1';
-    $errorType = 'staticerror';
-    $errorMessage = $lang['noAccessToPage'];
-
-    include 'error.php';
+  include 'error.php';
 }
 ?>

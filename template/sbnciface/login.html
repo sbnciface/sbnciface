@@ -5,7 +5,7 @@
         <meta name="keywords" content="" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link href="{$ifaceRoot}template/sbnciface/style.css" rel="stylesheet" type="text/css" />
-        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+        <script src="{$ifaceRoot}template/sbnciface/jquery-latest.min.js" type="text/javascript"></script>
         <title>{$ifaceName}</title>
         <script type="text/javascript">
             $.fn.pause = function(duration) {
@@ -31,13 +31,8 @@
                 <div id="langselect">
                     <form action="" method="post" name="langselector">
                         <input type="hidden" name="lang" value="" />
-                        <a href="javascript:" onclick="pickLanguage('en');"><img src="{$ifaceRoot}lang/img/en.png" alt="en" /></a>
-                        <a href="javascript:" onclick="pickLanguage('de');"><img src="{$ifaceRoot}lang/img/de.png" alt="de" /></a>
-                        <a href="javascript:" onclick="pickLanguage('fr');"><img src="{$ifaceRoot}lang/img/fr.png" alt="fr" /></a>
-                        <a href="javascript:" onclick="pickLanguage('sv');"><img src="{$ifaceRoot}lang/img/sv.png" alt="sv" /></a>
-                        <a href="javascript:" onclick="pickLanguage('no');"><img src="{$ifaceRoot}lang/img/no.png" alt="no" /></a>
-                        <a href="javascript:" onclick="pickLanguage('da');"><img src="{$ifaceRoot}lang/img/da.png" alt="da" /></a>
-			<a href="javascript:" onclick="pickLanguage('ee');"><img src="{$ifaceRoot}lang/img/ee.png" alt="ee" /></a>
+                        {foreach $langArray langSelector}{$langSelector}
+                        {/foreach}
                     </form>
                 </div>
                 <div id="loginheader">
@@ -50,11 +45,11 @@
                 {/if}
                 <form action="" method="post" name="loginfield">
                     <table cellpadding="4" align="center">
-                        <tr><td>{$usernameText}:</td><td><input type="text" name="username" /></td></tr>
-                        <tr><td>{$passwordText}:</td><td><input type="password" name="password" /></td></tr>
-                        {if $numBncServers > 1}<tr><td>{$serverText}:</td><td><select name="server" style="width: 145px;">{foreach $bncServers server}<option value="{$server.num}"{if $server.num == $_parent.bncServerActive} selected{/if}>{$server.name}</option>{/foreach}</select></td></tr>
+                        <tr><td>{$lang.login_username}:</td><td><input type="text" name="username" /></td></tr>
+                        <tr><td>{$lang.login_password}:</td><td><input type="password" name="password" /></td></tr>
+                        {if $numBncServers > 1}<tr><td>{$lang.login_server}:</td><td><select name="server" style="width: 145px;">{foreach $bncServers server}<option value="{$server.num}"{if $server.num == $_parent.bncServerActive} selected{/if}>{$server.name}</option>{/foreach}</select></td></tr>
                         {else}<input type="hidden" name="server" value="0" />{/if}
-                        <tr><td colspan="2" style="text-align: right;"><input type="submit" name="do" value="{$submitText}" /></td></tr>
+                        <tr><td colspan="2" style="text-align: right;"><input type="submit" name="do" value="{$lang.login_submit}" /></td></tr>
                     </table>
                 </form>
                 <div id="version">{$ifaceVersion} '{$ifaceCodename}'</div>

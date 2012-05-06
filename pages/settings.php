@@ -1,8 +1,7 @@
 <?php
 /*
- * $Id$
- *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Arne Jensen   <darkdevil@darkdevil.dk>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,14 +40,14 @@ if (isset($_POST['do'])) {
 
     $errorIsset = 1;
     $errorType = 'success';
-    $errorMessage = $lang['settingsSaved'];
+    $errorMessage = $lang['misc_save_ok'];
 }
 
 if (isset($_GET['s'])) {
     if ($_GET['s'] == 'y') {
         $errorIsset = 1;
         $errorType = 'success';
-        $errorMessage = $lang['settingsSaved'];
+        $errorMessage = $lang['misc_save_ok'];
     }
 }
 
@@ -59,13 +58,6 @@ if (!empty($errorIsset)) {
     $data->assign('errorMessage', $errorMessage);
 }
 
-$data->assign('realnameText', $lang['realname']);
-$data->assign('nicknameText', $lang['nickname']);
-$data->assign('passwordText', $lang['password']);
-$data->assign('sysnoticesText', $lang['sysnotices']);
-$data->assign('onText', $lang['on']);
-$data->assign('offText', $lang['off']);
-
 $data->assign('realnameValue', $sbnc->Call("getvalue", array("realname")));
 $data->assign('nicknameValue', $sbnc->Call("getnick"));
 $data->assign('passwordValue', '');
@@ -73,8 +65,6 @@ $data->assign('passwordValue', '');
 if ($admin == '1') {
     $data->assign('sysnoticesValue', $sbnc->Call("getvalue", array("sysnotices")));
 }
-
-$data->assign('submitValue', $lang['saveChanges']);
 
 //Output the page
 $data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));

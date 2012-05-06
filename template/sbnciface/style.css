@@ -201,7 +201,7 @@ select {
 }
 
 .menu li a{
-    background:#333333 url("./img/seperator.gif") bottom right no-repeat;
+    background:#333333;
     color:#cccccc;
     display:block;
     font-weight:normal;
@@ -212,7 +212,7 @@ select {
     text-decoration:none;
 }
 .menu li a:hover, .menu ul li:hover a{
-    background: #2580a2 url("./img/hover.gif") bottom center no-repeat;
+    background: #2580a2;
     color:#FFFFFF;
     text-decoration:none;
 }
@@ -233,7 +233,6 @@ select {
     display:block;
 }
 .menu li li {
-    background:url('./img/sub_sep.gif') bottom left no-repeat;
     display:block;
     float:none;
     margin:0px;
@@ -253,7 +252,7 @@ select {
     text-align:left;
 }
 .menu li ul a:hover, .menu li ul li:hover a{
-    background:#2580a2 url('./img/hover_sub.gif') center left no-repeat;
+    background:#2580a2;
     border:0px;
     color:#ffffff;
     text-decoration:none;

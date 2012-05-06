@@ -1,6 +1,7 @@
-sBNC Interface 0.5 Beta - <http://www.mustis.org/>
+sBNC Interface 1.3 Biofix - <http://www.sbnciface.org/>
 
-Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+Copyright (C) 2010-2012 Conny Sjöblom <biohzn@mustis.org>
+Copyright (C) 2010-2012 Arne Jensen   <darkdevil@darkdevil.dk>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -34,9 +35,6 @@ $bncServers = array(
 
 //Cookie Settings
 $expire = time() + 60 * 60 * 24 * 30;   // Cookie lifetime Default: 30 days
-
-//Template directory
-$interfaceRoot = '/sbnciface/';         // www.example.com/interface => '/interface/' -- If www.example.com => '/'
 
 //Default language
 $defaultLang = 'en';                    // Default language for sbnciface.

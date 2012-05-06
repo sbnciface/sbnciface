@@ -1,12 +1,12 @@
 {$header}
                 <table id="tbl" align="center" width="400">
-                    <tr><form action="" method="post"><td width="60%"><input type="text" name="ip" size="33"/></td><td style="text-align:center;" width="40%"><input class="input-image" type="image" src="template/sbnciface/img/icons/add.png"  value="Add IP" name="addtrustip" /></td></form></tr>
+                    <tr><form action="" method="post"><td width="60%"><input type="text" name="ip" size="33"/></td><td style="text-align:center;" width="40%"><input type="hidden" name="addtrustip" value="Add IP"><input class="input-image" type="image" name="addtrustip" value="Add IP" src="template/sbnciface/img/icons/add.png" /></td></form></tr>
                 </table>
                 <br /><br />
                 <form action="" method="post">
                     <table id="tbl" align="center" width="400">
-                        <tr><td width="60%"><b>{$ipText}</b></td><td width="40%"><b>{$actionText}</b></td></tr>
-                        {foreach $trustIps trustIp}<tr><form action="" method="post"><td>{$trustIp}</td><td style="text-align:center;"><input type="hidden" value="{$trustIp}" name="ip" /><input class="input-image" type="image" src="template/sbnciface/img/icons/delete.png" value="Del IP" name="deltrustip" /></td></form></td>
+                        <tr><td width="60%"><b>{$lang.admin_trustedips_ip}</b></td><td width="40%"><b>{$lang.admin_trustedips_action}</b></td></tr>
+                        {foreach $trustIps trustIp}<tr><form action="" method="post"><td>{$trustIp}</td><td style="text-align:center;"><input type="hidden" name="ip" value="{$trustIp}" /><input type="hidden" name="deltrustip" value="Del IP"><input class="input-image" type="image" name="deltrustip" value="Del IP" src="template/sbnciface/img/icons/delete.png" /></td></form></td>
                         {/foreach}
                     </table>
                 </form>

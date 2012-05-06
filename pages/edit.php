@@ -1,8 +1,7 @@
 <?php
 /*
- * $Id$
- *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Arne Jensen   <darkdevil@darkdevil.dk>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,7 +38,7 @@ if (!empty($_GET['u'])) {
         $newAwaynick = $_POST['awaynick'];
         $newAwaymessage = $_POST['awaymessage'];
         $newQuitasaway = $_POST['quitasaway'];
-        $newVhost = $_POST['vhost'];
+        $newVhost = (isset($_POST['vhostText']))?$_POST['vhostInput']:$_POST['vhost'];
 
 
         if ($newAccess == '1') {
@@ -64,7 +63,7 @@ if (!empty($_GET['u'])) {
 
         $errorIsset = 1;
         $errorType = 'success';
-        $errorMessage = $lang['settingsSaved'];
+        $errorMessage = $lang['misc_save_ok'];
     }
 
     if (isset($_POST['dojump'])) {
@@ -72,7 +71,7 @@ if (!empty($_GET['u'])) {
 
         $errorIsset = 1;
         $errorType = 'success';
-        $errorMessage = $lang['reconnecting'];
+        $errorMessage = sprintf($lang['admin_users_edit_reconnecting'], $user);
     }
 
     if (in_array($user, $users)) {
@@ -85,22 +84,7 @@ if (!empty($_GET['u'])) {
         }
 
         $data->assign('activeUserText', $user);
-        $data->assign('activeEditUserText', sprintf($lang['changingOptions'], $user));
-        $data->assign('accessText', $lang['access']);
-        $data->assign('adminText', $lang['admin']);
-        $data->assign('userText', $lang['user']);
-        $data->assign('realnameText', $lang['realname']);
-        $data->assign('nicknameText', $lang['nickname']);
-        $data->assign('passwordText', $lang['password']);
-        $data->assign('serverText', $lang['server']);
-        $data->assign('portText', $lang['port']);
-        $data->assign('serverPassText', $lang['serverPassword']);
-        $data->assign('awaynickText', $lang['awaynick']);
-        $data->assign('awaymessageText', $lang['awaymessage']);
-        $data->assign('quitasawayText', $lang['quitAsAway']);
-        $data->assign('yesText', $lang['yes']);
-        $data->assign('noText', $lang['no']);
-        $data->assign('vhostText', $lang['vhost']);
+        $data->assign('activeEditUserText', sprintf($lang['admin_users_edit_title'], $user));
 
         $data->assign('accessValue', $sbnc->CallAs($user, 'getvalue', array('admin')));
         $data->assign('realnameValue', $sbnc->CallAs($user, 'getvalue', array('realname')));
@@ -114,9 +98,6 @@ if (!empty($_GET['u'])) {
         $data->assign('vhostInUse', $sbnc->CallAs($user, "getvalue", array("vhost")));
         $data->assign('vhostValue', $sbnc->CallAs($user, "getvhosts"));
 
-        $data->assign('jumpValue', $lang['jump']);
-        $data->assign('submitValue', $lang['saveChanges']);
-
         //Output the page
         $data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));
         $data->assign('footer', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/footer.html'), $data));
@@ -125,7 +106,7 @@ if (!empty($_GET['u'])) {
 
         $errorIsset = '1';
         $errorType = 'staticerror';
-        $errorMessage = sprintf($lang['invalidUser'], $user);
+        $errorMessage = sprintf($lang['admin_users_edit_invaliduser'], $user);
 
         include 'error.php';
     }

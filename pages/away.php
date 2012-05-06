@@ -1,8 +1,7 @@
 <?php
 /*
- * $Id$
- *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Arne Jensen   <darkdevil@darkdevil.dk>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +30,7 @@ if (isset($_POST['do'])) {
 
     $errorIsset = 1;
     $errorType = 'success';
-    $errorMessage = $lang['settingsSaved'];
+    $errorMessage = $lang['misc_save_ok'];
 }
 
 //Set data
@@ -41,18 +40,9 @@ if (!empty($errorIsset)) {
     $data->assign('errorMessage', $errorMessage);
 }
 
-$data->assign('awaynickText', $lang['awaynick']);
-$data->assign('awaymessageText', $lang['awaymessage']);
-$data->assign('quitasawayText', $lang['quitAsAway']);
-
 $data->assign('awaynickValue', $sbnc->Call("getvalue", array("awaynick")));
 $data->assign('awaymessageValue', $sbnc->Call("getvalue", array("awaymessage")));
 $data->assign('quitasawayValue', $sbnc->Call("getvalue", array("quitasaway")));
-
-$data->assign('quitasawayValueYes', $lang['yes']);
-$data->assign('quitasawayValueNo', $lang['no']);
-
-$data->assign('submitValue', $lang['saveChanges']);
 
 //Output the page
 $data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));

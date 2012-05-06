@@ -1,9 +1,7 @@
 <?php
-
 /*
- * $Id$
- *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Arne Jensen   <darkdevil@darkdevil.dk>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,68 +18,91 @@
  */
 ?>
 <?php
+  define('APP_NAME'        , "sbnciface");
+  define('VERSION_MAJOR'   , 1);
+  define('VERSION_MINOR'   , 3);
+  define('VERSION_REVISION', 0);
+  define('VERSION_CODENAME', "Biofix");
+  define('AGENT_STRING'    , sprintf("%s/%s.%s%s (%s)", APP_NAME, VERSION_MAJOR, VERSION_MINOR, ((VERSION_REVISION)>0?".".VERSION_REVISION:""), VERSION_CODENAME));
 
-//sBNC Checks
-if (isset($_SESSION['username']) && !isset($_SESSION['isAdmin'])) {
+  $ifaceCmds = array();
+  $userLocks = array();
+  $vhostList = array();
 
+  //sBNC Checks
+  if (isset($_SESSION['username']) && !isset($_SESSION['isAdmin'])) {
     $admin = $sbnc->Call('getvalue', array('admin'));
     $vadmin = $sbnc->Call('isvadmin', array($_SESSION['username']));
 
     if ($admin == '0' && $vadmin == '1') {
-        $vgroup = $sbnc->Call('getmygroup');
+      $vgroup = $sbnc->Call('getmygroup');
     } else {
-        $vadmin = '0';
-        $vgroup = 'none';
+      $vadmin = '0';
+      $vgroup = 'none';
     }
-}
 
-//Static Interface Vars
-$data->assign('ifaceName', 'sBNC Interface v1.2');
-$data->assign('ifaceVersion', 'Version 1.2');
-$data->assign('ifaceCodename', 'Cindi');
-$data->assign('ifaceRoot', $interfaceRoot);
+    $cmdCheck = $sbnc->Call("commands");
+    $cmdResult = GetResult($cmdCheck);
+    foreach ($cmdResult as $ifaceCmd) {
+      $ifaceCmds[$ifaceCmd] = 1;
+    }
+    if (isset($ifaceCmds["getuserlocks"])) {
+      $lockCheck = $sbnc->Call("getuserlocks");
+      $lockResult = GetResult($lockCheck);
+      foreach ($lockResult as $userLock) {
+        $userLocks[$userLock] = 1;
+      }
+    } else { $userLocks = NULL; }
+    if (isset($ifaceCmds["getvhosts"])) {
+      $vhostList = $sbnc->Call("getvhosts");
+    }
+  }
 
-//Admin & Vadmin Vars
-if (isset($admin)) {
+  if (isset($_SESSION["username"])) {
+    if (!isset($_SESSION["uc"])) {
+      include 'update.php';
+    }
+    $data->assign('updateCheck', $_SESSION["uc"]);
+    $data->assign('updateStatus', $_SESSION["uc_status"]);
+  }
+
+  //Languages
+  $langArray = getLangs();
+  $flagArray = getFlags();
+  ksort($langArray);
+  $i=0;
+  foreach ($langArray as $langKey=>$langFile) {
+    if (array_key_exists($langKey, $flagArray)) {
+      $availLangs[$i] = "<a href=\"javascript:\" onclick=\"pickLanguage('$langKey');\"><img src=\"".$interfaceRoot."lang/img/$flagArray[$langKey]\" alt=\"$langKey\" /></a>";
+      $i++;
+    }
+  }
+
+  $data->assign('langArray', $availLangs);
+
+  //Static Interface Vars
+  $data->assign('ifaceName', sprintf("sBNC Interface v%s.%s%s", VERSION_MAJOR, VERSION_MINOR, ((VERSION_REVISION)>0?".".VERSION_REVISION:"")));
+  $data->assign('ifaceVersion', sprintf("Version %s.%s%s", VERSION_MAJOR, VERSION_MINOR, ((VERSION_REVISION)>0?".".VERSION_REVISION:"")));
+  $data->assign('ifaceCodename', VERSION_CODENAME);
+  $data->assign('ifaceRoot', $interfaceRoot);
+
+  //Admin & Vadmin Vars
+  if (isset($admin)) {
     $data->assign('sbncAdmin', $admin);
-}
-if (isset($vadmin)) {
+  }
+  if (isset($vadmin)) {
     $data->assign('sbncVAdmin', $vadmin);
-}
-if (isset($vgroup)) {
+  }
+  if (isset($vgroup)) {
     $data->assign('sbncVGroup', $vgroup);
-}
+  }
 
-//User Menu
-$data->assign('status', $lang['status']);
-$data->assign('user', $lang['user']);
-$data->assign('settings', $lang['settings']);
-$data->assign('server', $lang['server']);
-$data->assign('authSettings', $lang['authSettings']);
-$data->assign('away', $lang['away']);
-$data->assign('channels', $lang['channels']);
-$data->assign('log', $lang['log']);
+  // Global list of available iface commands, lock setting, vhosts, etc.
+  $data->assign('ifaceCmds', $ifaceCmds);
+  $data->assign('userLocks', $userLocks);
+  $data->assign('vhostValue', $vhostList);
 
-//Vadmin Menu
-$data->assign('vAdmin', $lang['vAdmin']);
-$data->assign('users', $lang['users']);
-$data->assign('addUser', $lang['addUser']);
-
-//Admin Menu
-$data->assign('admin', $lang['admin']);
-$data->assign('users', $lang['users']);
-$data->assign('addUser', $lang['addUser']);
-$data->assign('trustedIps', $lang['trustedIps']);
-$data->assign('vhosts', $lang['vhosts']);
-$data->assign('globalMsg', $lang['globalMsg']);
-$data->assign('mainLog', $lang['mainLog']);
-
-$data->assign('logout', $lang['logout']);
-
-//Time
-$data->assign('days', $lang['days']);
-$data->assign('hours', $lang['hours']);
-$data->assign('minutes', $lang['minutes']);
-$data->assign('seconds', $lang['seconds']);
+  // Language
+  $data->assign('lang', $lang);
 
 ?>

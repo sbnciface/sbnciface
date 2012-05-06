@@ -1,8 +1,7 @@
 <?php
 /*
- * $Id$
- *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Arne Jensen   <darkdevil@darkdevil.dk>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,20 +33,20 @@ if ($admin == '1') {
 
                 $errorIsset = 1;
                 $errorType = 'error';
-                $errorMessage = $lang['trustIpAlreadyAdded'];
+                $errorMessage = $lang['admin_trustedips_already'];
             } else {
 
                 $sbnc->Call('addtrustedip', array($newTrustIp));
 
                 $errorIsset = 1;
                 $errorType = 'success';
-                $errorMessage = $lang['trustIpAdded'];
+                $errorMessage = $lang['admin_trustedips_added'];
             }
         } else {
 
             $errorIsset = 1;
             $errorType = 'error';
-            $errorMessage = $lang['trustIpNotValid'];
+            $errorMessage = $lang['admin_trustedips_ip_invalid'];
         }
     }
 
@@ -57,7 +56,7 @@ if ($admin == '1') {
 
         $errorIsset = 1;
         $errorType = 'success';
-        $errorMessage = $lang['trustIpDeleted'];
+        $errorMessage = $lang['admin_trustedips_removed'];
     }
 
     $trustip = $sbnc->Call('gettrustedips');
@@ -68,9 +67,6 @@ if ($admin == '1') {
         $data->assign('errorType', $errorType);
         $data->assign('errorMessage', $errorMessage);
     }
-
-    $data->assign('ipText', $lang['ip']);
-    $data->assign('actionText', $lang['action']);
 
     $data->assign('trustIps', $trustip);
 
@@ -83,7 +79,7 @@ if ($admin == '1') {
     //No access, include error page.
     $errorIsset = '1';
     $errorType = 'staticerror';
-    $errorMessage = $lang['noAccessToPage'];
+    $errorMessage = $lang['misc_403'];
 
     include 'error.php';
 }

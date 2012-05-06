@@ -1,8 +1,7 @@
 <?php
 /*
- * $Id$
- *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Arne Jensen   <darkdevil@darkdevil.dk>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +23,7 @@ if (isset($_POST['do'])) {
     $newServer = $_POST['server'];
     $newPort = $_POST['port'];
     $newPassword = $_POST['password'];
-    $newVhost = $_POST['vhost'];
+    $newVhost = (isset($_POST['vhostText']))?$_POST['vhostInput']:$_POST['vhost'];
 
     $sbnc->Call('setvalue', array('server', $newServer));
     $sbnc->Call('setvalue', array('port', $newPort));
@@ -35,7 +34,7 @@ if (isset($_POST['do'])) {
 
     $errorIsset = 1;
     $errorType = 'success';
-    $errorMessage = $lang['settingsSaved'];
+    $errorMessage = $lang['misc_save_ok'];
 }
 
 if (isset($_POST['jump'])) {
@@ -43,7 +42,7 @@ if (isset($_POST['jump'])) {
 
     $errorIsset = 1;
     $errorType = 'success';
-    $errorMessage = $lang['reconnecting'];
+    $errorMessage = $lang['user_server_reconnecting'];
 }
 
 //Set data
@@ -53,19 +52,11 @@ if (!empty($errorIsset)) {
     $data->assign('errorMessage', $errorMessage);
 }
 
-$data->assign('serverText', $lang['server']);
-$data->assign('portText', $lang['port']);
-$data->assign('passwordText', $lang['password']);
-$data->assign('vhostText', $lang['vhost']);
-
 $data->assign('serverValue', $sbnc->Call("getvalue", array("server")));
 $data->assign('portValue', $sbnc->Call("getvalue", array("port")));
 $data->assign('passwordValue', $sbnc->Call("getvalue", array("serverpass")));
-$data->assign('vhostValue', $sbnc->Call("getvhosts"));
-$data->assign('submitValue', $lang['saveChanges']);
 
 $data->assign('vhostInUse', $sbnc->Call("getvalue", array("vhost")));
-$data->assign('jumpValue', $lang['jump']);
 
 //Output the page
 $data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));

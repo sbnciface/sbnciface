@@ -1,8 +1,7 @@
 <?php
 /*
- * $Id$
- *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Arne Jensen   <darkdevil@darkdevil.dk>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +34,7 @@ if ($admin == 1) {
 
         $errorIsset = 1;
         $errorType = 'success';
-        $errorMessage = sprintf($lang['userAdded'], $username, $password);
+        $errorMessage = sprintf($lang['admin_adduser_user_added'], $username, $password);
     }
     
     //Set data
@@ -44,11 +43,6 @@ if ($admin == 1) {
         $data->assign('errorType', $errorType);
         $data->assign('errorMessage', $errorMessage);
     }
-
-    $data->assign('passwordEmptyText', $lang['ifPasswordEmpty']);
-    $data->assign('identText', $lang['ident']);
-    $data->assign('passwordText', $lang['password']);
-    $data->assign('submitValue', $lang['addUser']);
 
     $data->assign('identName', 'ident');
     $data->assign('passwordName', 'password');
@@ -64,7 +58,7 @@ if ($admin == 1) {
     //No access, include error page.
     $errorIsset = '1';
     $errorType = 'staticerror';
-    $errorMessage = $lang['noAccessToPage'];
+    $errorMessage = $lang['misc_403'];
 
     include 'error.php';
 }

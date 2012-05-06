@@ -1,9 +1,7 @@
 <?php
-
 /*
- * $Id$
- *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Arne Jensen   <darkdevil@darkdevil.dk>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -59,7 +57,7 @@ if (isset($_GET['s'])) {
     if ($_GET['s'] == 'error') {
         $errorIsset = 1;
         $errorType = 'error';
-        $errorMessage = $lang['wrongUserPass'];
+        $errorMessage = $lang['login_wrong_password'];
     }
 }
 
@@ -76,10 +74,6 @@ if (!empty($errorIsset)) {
     $data->assign('errorMessage', $errorMessage);
 }
 
-$data->assign('usernameText', $lang['username']);
-$data->assign('passwordText', $lang['password']);
-$data->assign('serverText', $lang['server']);
-$data->assign('submitText', $lang['login']);
 $data->assign('numBncServers', $numBncServers);
 $data->assign('bncServers', $bncServers);
 if (isset($activeServer)) {

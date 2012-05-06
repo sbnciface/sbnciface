@@ -1,10 +1,16 @@
 {$header}
                 <form action="" method="POST">
                     <table id="tbl" align="center" width="400">
-                        <tr><td width="40%">{$awaynickText}:</td><td width="60%"><input type="text" name="awaynick" size="33" value="{$awaynickValue}" /></td></tr>
-                        <tr><td width="40%">{$awaymessageText}:</td><td width="60%"><input type="text" name="awaymessage" size="33" value="{$awaymessageValue}" /></td></tr>
-                        <tr><td width="40%">{$quitasawayText}:</td><td width="60%"><select name="quitasaway" style="width:225px;" >{if $quitasawayValue == 1}<option value="1" selected>{$quitasawayValueYes}</option><option value="0">{$quitasawayValueNo}</option>{else}<option value="1">{$quitasawayValueYes}</option><option value="0" selected>{$quitasawayValueNo}</option>{/if}</select></td></tr>
-                        <tr><td colspan="2" align="center"><input type="submit" value="{$submitValue}" name="do" /></td></tr>
+{if !$userLocks.awaynick}
+                        <tr><td width="40%">{$lang.user_away_awaynick}:</td><td width="60%"><input type="text" name="awaynick" size="33" value="{$awaynickValue}" /></td></tr>
+{/if}
+{if !$userLocks.awaymessage}
+                        <tr><td width="40%">{$lang.user_away_awaymessage}:</td><td width="60%"><input type="text" name="awaymessage" size="33" value="{$awaymessageValue}" /></td></tr>
+{/if}
+{if !$userLocks.usequitasaway}
+                        <tr><td width="40%">{$lang.user_away_usequitasaway}:</td><td width="60%"><select name="quitasaway" style="width:225px;" >{if $quitasawayValue == 1}<option value="1" selected>{$lang.misc_yes}</option><option value="0">{$lang.misc_no}</option>{else}<option value="1">{$lang.misc_yes}</option><option value="0" selected>{$lang.misc_no}</option>{/if}</select></td></tr>
+{/if}
+                        <tr><td colspan="2" align="center"><input type="submit" value="{$lang.misc_save_changes}" name="do" /></td></tr>
                     </table>
                 </form>
 {$footer}

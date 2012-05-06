@@ -1,11 +1,37 @@
 {$header}
                 <form action="" method="post">
                     <table id="tbl" align="center" width="400">
-                        <tr><td width="40%">{$serverText}:</td><td width="60%"><input type="text" name="server" size="33" value="{$serverValue}" /></td></tr>
-                        <tr><td width="40%">{$portText}:</td><td width="60%"><input type="text" name="port" size="33" value="{$portValue}" /></td></tr>
-                        <tr><td width="40%">{$passwordText}:</td><td width="60%"><input type="password" name="password" size="33" value="{$passwordValue}" /></td></tr>
-                        <tr><td width="40%">{$vhostText}:</td><td width="60%"><select name="vhost" style="width:225px;" >{loop $vhostValue}{if $_parent.vhostInUse == $0}<option value="{$0}" selected>{$3}</option>{else}<option value="{$0}">{$3}</option>{/if}{/loop}</select></td></tr>
-                        <tr><td colspan="2" align="center"><input type="submit" value="{$submitValue}" name="do" /> <input type="submit" value="{$jumpValue}" name="jump" /></td></tr>
+{if !$userLocks.server}
+                        <tr><td width="40%">{$lang.user_server_server}:</td><td width="60%"><input type="text" name="server" size="33" value="{$serverValue}" /></td></tr>
+{/if}
+{if !$userLocks.port}
+                        <tr><td width="40%">{$lang.user_server_port}:</td><td width="60%"><input type="text" name="port" size="33" value="{$portValue}" /></td></tr>
+{/if}
+{if !$userLocks.serverpass}
+                        <tr><td width="40%">{$lang.user_server_password}:</td><td width="60%"><input type="password" name="password" size="33" value="{$passwordValue}" /></td></tr>
+{/if}
+{if !$userLocks.vhost}
+                        <tr><td width="40%">{$lang.user_server_vhost}:</td><td width="60">
+  {if $ifaceCmds.getvhosts == 1}
+    <select name="vhost" style="width:225px;">
+    {foreach $vhostValue vhost}
+      {if $_parent.vhostInUse == $vhost.0}
+        <option value="{$vhost.0}" selected>{$vhost.3}</option>
+      {elseif $vhost.2 <= $vhost.1 && $sbncAdmin == 0}
+      {else}
+        <option value="{$vhost.0}">{$vhost.3}</option>
+      {/if}
+    {/foreach}
+    </select>
+  {else}
+    <input type="text" name="vhost" size="33" value="{$vhostInUse}" />
+  {/if}
+                        </td>
+  {if $sbncAdmin == 1 && $ifaceCmds.getvhosts}
+                        <tr><td width="40%">{$lang.user_server_vhost_custom}:</td><td width="60"><input type="text" name="vhostInput" size="33" value="{$vhostInUse}" /></td>
+  {/if}
+{/if}
+                        <tr><td colspan="2" align="center"><input type="submit" value="{$lang.misc_save_changes}" name="do" /> <input type="submit" value="{$lang.user_server_jump}" name="jump" /></td></tr>
                     </table>
                 </form>
 {$footer}

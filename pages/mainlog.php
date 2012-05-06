@@ -1,9 +1,7 @@
 <?php
-
 /*
- * $Id$
- *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Arne Jensen   <darkdevil@darkdevil.dk>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,19 +27,19 @@ if ($admin == '1') {
 
         $errorIsset = 1;
         $errorType = 'success';
-        $errorMessage = $lang['logErased'];
+        $errorMessage = $lang['admin_mainlog_erased'];
     }
 
-    $log = $sbnc->Call('getmainlog', array("0", "999"));
+    $log = $sbnc->Call('getmainlog', array("end-999", "end"));
 
     //Checks for the log, to make it all look nice, and give no errors
     if (is_a($log, 'itype_exception')) {
         $logState = "empty";
-        $logString = "<div class=\"mid\"><b>" . $lang['logEmpty'] . ".</b></div>";
+        $logString = "<div class=\"mid\"><b>" . $lang['admin_mainlog_empty'] . ".</b></div>";
     } else {
         if (count($log) == 0) {
             $logState = "empty";
-            $logString = "<div class=\"mid\"><b>" . $lang['logEmpty'] . ".</b></div>";
+            $logString = "<div class=\"mid\"><b>" . $lang['admin_mainlog_empty'] . ".</b></div>";
         } else {
             $logString = $log;
         }
@@ -59,8 +57,6 @@ if ($admin == '1') {
     }
     $data->assign('logString', $logString);
 
-    $data->assign('submitValue', $lang['emptyLog']);
-
     //Output the page
     $data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));
     $data->assign('footer', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/footer.html'), $data));
@@ -70,7 +66,7 @@ if ($admin == '1') {
     //No access, include error page.
     $errorIsset = '1';
     $errorType = 'staticerror';
-    $errorMessage = $lang['noAccessToPage'];
+    $errorMessage = $lang['misc_403'];
 
     include 'error.php';
 }

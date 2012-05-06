@@ -1,9 +1,7 @@
 <?php
-
 /*
- * $Id$
- *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Arne Jensen   <darkdevil@darkdevil.dk>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,14 +33,14 @@ if ($admin == '1') {
 
             $errorIsset = '1';
             $errorType = 'info';
-            $errorMessage = sprintf($lang['autoAddIp'], '127.0.0.1');
+            $errorMessage = sprintf($lang['misc_trustedips_auto_add'], '127.0.0.1');
         }
     } elseif (!in_array($serverIp, $trustedIps)) {
         $sbnc->Call('addtrustedip', array($serverIp));
 
         $errorIsset = '1';
         $errorType = 'info';
-        $errorMessage = sprintf($lang['autoAddIp'], $serverIp);
+        $errorMessage = sprintf($lang['misc_trustedips_auto_add'], $serverIp);
     }
 }
 
@@ -54,15 +52,6 @@ if (!empty($errorIsset)) {
 }
 
 $traff = $sbnc->Call("gettraffic");
-
-$data->assign('nicknameText', $lang['nickname']);
-$data->assign('uptimeText', $lang['uptime']);
-$data->assign('disconnectedText', $lang['disconnected']);
-$data->assign('awaynickText', $lang['awaynick']);
-$data->assign('awaymessageText', $lang['awaymessage']);
-$data->assign('realnameText', $lang['realname']);
-$data->assign('serverText', $lang['server']);
-$data->assign('trafficText', $lang['traffic']);
 
 $data->assign('nicknameValue', $sbnc->Call('getnick'));
 $data->assign('uptimeValue', $sbnc->Call('getvalue', array('uptime')));

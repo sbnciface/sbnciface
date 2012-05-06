@@ -1,8 +1,7 @@
 <?php
 /*
- * $Id$
- *
- * Copyright (C) 2010 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2012 Arne Jensen   <darkdevil@darkdevil.dk>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +30,7 @@ if (isset($_POST['join'])) {
 
     $errorIsset = 1;
     $errorType = 'success';
-    $errorMessage = sprintf($lang['successfullyJoined'], $newChannel);
+    $errorMessage = sprintf($lang['user_channels_join_ok'], $newChannel);
 }
 
 if (isset($_POST['part'])) {
@@ -41,7 +40,7 @@ if (isset($_POST['part'])) {
 
     $errorIsset = 1;
     $errorType = 'success';
-    $errorMessage = sprintf($lang['successfullyParted'], $partChannel);
+    $errorMessage = sprintf($lang['user_channels_part_ok'], $partChannel);
 }
 
 if (isset($_POST['part']) || isset($_POST['join'])) {
@@ -52,7 +51,7 @@ $channels = $sbnc->Call("getchannels");
 
 $i = 0;
 if (is_a($channels, 'itype_exception')) {
-    $sbncChans[$i]['channel'] = $lang['notConnected'];
+    $sbncChans[$i]['channel'] = $lang['user_channels_not_connected'];
 } else {
     foreach ($channels as $channel) {
         $sbncChans[$i]['channel'] = $channel;
@@ -70,18 +69,8 @@ if (!empty($errorIsset)) {
     $data->assign('errorMessage', $errorMessage);
 }
 
-$data->assign('joinchannelText', $lang['joinChannel']);
-$data->assign('jchannelText', $lang['channel']);
-$data->assign('submitJoinValue', $lang['join']);
-$data->assign('submitPartValue', $lang['part']);
-$data->assign('channelText', $lang['channel']);
-$data->assign('modesText', $lang['modes']);
-$data->assign('actionText', $lang['action']);
-
 $data->assign('sbncChannels', $sbncChans);
 $data->assign('sbncNumChannels', $sbncNumChans);
-
-$data->assign('submitValue', $lang['saveChanges']);
 
 //Output the page
 $data->assign('header', $dwoo->get(new Dwoo_Template_File('template/' . $template . '/header.html'), $data));

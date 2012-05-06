@@ -1,3 +1,24 @@
+sBNC Interface v1.3 Biofix (May 7, 2012)
+    * Fixed BiohZn's commit history fuckup - hi shroud!
+    * Attempted to make the sbnciface work out of the box by searching for an usable temporary path for Dwoo.
+    * Removed old useless language files build for the old language template.
+    * Added some new languages we have got translated so far using the new template.
+    * Fixed bug with adding/deleting vhost.
+    * Fixed bug with adding/deleting trusted (webserver) ip addresses.
+    * Fixed bug with leaving channels.
+    * Changed the way we behave no matter if we find vhost.tcl loaded or not.
+    * Added support for lock.tcl and hiding the locked settings for normal users.
+    * Renamed settings.php to settings.php.example, so we're not overwriting during an update, suggested by Mathias.
+    * Added some update checker thing, to warn people if they are using older versions.
+
+sBNC Interface v1.2 Cindi (July 13, 2011)
+    * Updated language system to be more specific about which variables are used where.
+      Eg. for the administrator section, we have the userlist, with variables like admin_users_*, as we're going admin->users on the menus.
+    * Deleted unused pages/qauth.php.
+
+sBNC Interface v1.2 Cindi (May 4, 2011)
+    * Lazy description (hi BiohZn!)
+
 sBNC Interface v1.1 Beta (December 13, 2010)
     * Recoded with Dwoo template engine.
     * Now optimized for sBNC 1.3
