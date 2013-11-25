@@ -18,14 +18,19 @@
 ?>
 <?php
 require_once 'lib/Twig/Autoloader.php';
+require_once 'settings.php';
 class tpl
 {
     var $data = array();
 
     function __construct()
     {
+        global $sbnciface_settings;
+
         Twig_Autoloader::register();
         $loader = new Twig_Loader_Filesystem('views/');
+
+        $this->settings = $sbnciface_settings;
         $this->twig = new Twig_Environment($loader, array(
 //            'cache' => 'cache/',
             'debug' => true
@@ -39,7 +44,14 @@ class tpl
 
     function display($page)
     {
-        print $this->twig->render($page . '.twig', $this->data);
+        $template = $this->settings['template'];
+        print $this->twig->render($template . '/' . $page . '.twig', $this->data);
+    }
+
+    function display_error()
+    {
+        $template = $this->settings['template'];
+        print $this->twig->render($template . '/error/error.twig', $this->data);
     }
 }
 

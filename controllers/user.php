@@ -18,20 +18,24 @@
 ?>
 <?php
 
-class user extends controller {
+class user extends controller
+{
 
-    function login() {
+    function login()
+    {
 
         if (!empty($_POST)) {
             $this->tpl->assign('username', $_POST['inputUsername']);
 
             $alert = array(
-                'type'      => 'error',
-                'message'   => 'Wrong username or password.'
+                'type' => 'danger',
+                'message' => '<strong>Error!</strong> Wrong username or password.'
             );
+
             $this->tpl->assign('alert', $alert);
         }
         $this->tpl->display('login', false);
     }
 }
+
 ?>

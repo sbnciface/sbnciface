@@ -21,12 +21,14 @@
 /*
  *  Servers
  */
+$sbnciface_settings['template'] = 'sbnciface';
+
 $sbnciface_settings['servers'][0]['name'] = 'Mustis.org Bouncer';
 $sbnciface_settings['servers'][0]['host'] = 'dummy.host';
 $sbnciface_settings['servers'][0]['port'] = '9000';
 
 $sbnciface_settings['servers'][1]['name'] = 'DarkServ.net Bouncer';
 $sbnciface_settings['servers'][1]['host'] = 'dummy.host';
-$sbnciface_settings['servers'][1]['host'] = '9000';
+$sbnciface_settings['servers'][1]['port'] = '9000';
 
 ?>

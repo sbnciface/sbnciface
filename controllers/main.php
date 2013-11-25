@@ -18,21 +18,29 @@
 ?>
 <?php
 
-class main extends controller {
+class main extends controller
+{
 
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
     }
-    function index() {
+
+    function index()
+    {
         redirect('user/login');
     }
-    function template() {
+
+    function template()
+    {
         $alert = array(
             'type' => 'info',
             'message' => 'This is only for testing'
         );
+
         $this->tpl->assign('alert', $alert);
         $this->tpl->display('login');
     }
 }
+
 ?>

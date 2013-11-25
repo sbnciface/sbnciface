@@ -18,18 +18,41 @@
 ?>
 <?php
 
-class error {
+class error extends controller
+{
 
-    function file_not_found() {
-        print "OMG HOUSTON, LE PROBLEM, NO FILEZ!";
+    function file_not_found()
+    {
+        $alert = array(
+            'type' => 'danger',
+            'message' => '<strong>404!</strong> page not found.'
+        );
+
+        $this->tpl->assign('alert', $alert);
+        $this->tpl->display_error();
     }
 
-    function funct_not_found() {
-        print "OMG HOUSTON, LE PROBLEM, NO FUNCTIONS!";
+    function funct_not_found()
+    {
+        $alert = array(
+            'type' => 'danger',
+            'message' => '<strong>404!</strong> page not found.'
+        );
+
+        $this->tpl->assign('alert', $alert);
+        $this->tpl->display_error();
     }
 
-    function class_not_found() {
-        print "OMG HOUSTON, LE PROBLEM, NO CLASSES!";
+    function class_not_found()
+    {
+        $alert = array(
+            'type' => 'danger',
+            'message' => '<strong>404!</strong> page not found.'
+        );
+
+        $this->tpl->assign('alert', $alert);
+        $this->tpl->display_error();
     }
 }
+
 ?>
