@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+@import url('bootstrap.min.css');
+@import url('font-awesome.min.css');
+
+/* Override some defaults */
+/*html, body { background-color: #eee; }*/
+html, body { background-color: #333333; }
+
+body {
+    /*font-family: 'Ubuntu', Tahoma, sans-serif;
+    font-size: 13px;*/
+    line-height: 20px;
+    color: #333333;
+    /*padding: 20px 0 0 0; /* 40px to make the container go all the way to the bottom of the topbar */
+}
+
+/* The white background content wrapper */
+.container > .content {
+    background-color: #fff;
+    margin: 20px -20px 40px; /* negative indent the amount of the padding to maintain the grid system */
+    padding: 20px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+    box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+
+/* Login */
+.login-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -220px;
+    margin-left: -150px;
+}
+.login-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.login-body { text-align: center; }
+.login-body form { margin-top: 15px; }
+.login-body input[type="text"],
+.login-body input[type="password"] {
+    width: 260px;
+}
+.login-body select { width: 274px; }
+.login-body input[type="submit"] {
+    width: 300px;
+    margin: 10px 0 -10px 0;
+}
+.login-body .version {
+    font-size: 10px;
+    margin-bottom: -10px;
+}
+/* /Login */
+
+/* misc */
+.authors {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    color: #F3F3F3;
+}
+/* /misc */
