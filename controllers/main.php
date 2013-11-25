@@ -32,7 +32,7 @@ class main extends controller {
             'message' => 'This is only for testing'
         );
         $this->tpl->assign('alert', $alert);
-        $this->tpl->display('blank');
+        $this->tpl->display('login');
     }
 }
 ?>

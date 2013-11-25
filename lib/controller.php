@@ -30,6 +30,7 @@ class controller {
         $this->tpl = new tpl();
         $this->tpl->assign('sbnciface', $sbnciface_constants);
 		$this->tpl->assign('sbncroot', sbnciface_get_root());
+        $this->tpl->assign('assets', sbnciface_get_root() . '/assets');
 		$this->tpl->assign('sbncsettings', $sbnciface_settings);
     }
 

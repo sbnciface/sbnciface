@@ -1,66 +1,72 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+@import url('bootstrap-theme.min.css');
 @import url('bootstrap.min.css');
 @import url('font-awesome.min.css');
 
-/* Override some defaults */
-/*html, body { background-color: #eee; }*/
-html, body { background-color: #333333; }
-
 body {
-    /*font-family: 'Ubuntu', Tahoma, sans-serif;
-    font-size: 13px;*/
-    line-height: 20px;
-    color: #333333;
-    /*padding: 20px 0 0 0; /* 40px to make the container go all the way to the bottom of the topbar */
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-/* The white background content wrapper */
-.container > .content {
-    background-color: #fff;
-    margin: 20px -20px 40px; /* negative indent the amount of the padding to maintain the grid system */
-    padding: 20px;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    border-radius: 6px;
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-    box-shadow: 0 1px 2px rgba(0,0,0,.15);
+.header,
+.padding,
+.footer {
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
-/* Login */
-.login-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -220px;
-    margin-left: -150px;
+.header {
+    border-bottom: 1px solid #e5e5e5;
 }
-.login-header {
+.header h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding-bottom: 19px;
+}
+
+.footer {
+    padding-top: 19px;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 730px;
+    }
+}
+.container-narrow > hr {
+    margin: 30px 0;
+}
+
+.jumbotron {
     text-align: center;
-    margin-bottom: 20px;
+    border-bottom: 1px solid #e5e5e5;
 }
-.login-body { text-align: center; }
-.login-body form { margin-top: 15px; }
-.login-body input[type="text"],
-.login-body input[type="password"] {
-    width: 260px;
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
 }
-.login-body select { width: 274px; }
-.login-body input[type="submit"] {
-    width: 300px;
-    margin: 10px 0 -10px 0;
-}
-.login-body .version {
-    font-size: 10px;
-    margin-bottom: -10px;
-}
-/* /Login */
 
-/* misc */
-.authors {
-    position: absolute;
-    bottom: 5px;
-    right: 10px;
-    color: #F3F3F3;
+.padding {
+    margin: 40px 0;
 }
-/* /misc */
+.padding p + h4 {
+    margin-top: 28px;
+}
+
+@media screen and (min-width: 768px) {
+    .header,
+    .padding,
+    .footer {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .header {
+        margin-bottom: 30px;
+    }
+    .jumbotron {
+        border-bottom: 0;
+    }
+}

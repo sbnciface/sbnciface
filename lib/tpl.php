@@ -18,9 +18,12 @@
 ?>
 <?php
 require_once 'lib/Twig/Autoloader.php';
-class tpl {
+class tpl
+{
     var $data = array();
-    function __construct() {
+
+    function __construct()
+    {
         Twig_Autoloader::register();
         $loader = new Twig_Loader_Filesystem('views/');
         $this->twig = new Twig_Environment($loader, array(
@@ -28,13 +31,16 @@ class tpl {
             'debug' => true
         ));
     }
-    function assign($var, $key) {
+
+    function assign($var, $key)
+    {
         $this->data[$var] = $key;
     }
-    function display($page, $wrap = true) {
-        if ($wrap) print $this->twig->render('static/header.twig', $this->data);
+
+    function display($page)
+    {
         print $this->twig->render($page . '.twig', $this->data);
-        if ($wrap) print $this->twig->render('static/footer.twig', $this->data);
     }
 }
+
 ?>
