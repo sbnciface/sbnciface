@@ -97,7 +97,7 @@ $lang = array(
     'user_channels_join_ok'         => 'Liityit onnistuneesti kanavalle %s',
     'user_channels_part_ok'         => 'Poistuit onnistuneesti kanavalta %s',
     'user_channels_not_connected'   => 'Et ole yhdistettynä IRC:iin.',
-    'user_channels_already_20chans' => 'You have already joined 20 channels.',
+    'user_channels_already_20chans' => 'Olet jo 20:ssä kanavassa.',
 
     /* Page: user->log                      */
     'user_log_empty'                => 'Loki tyhjä',
