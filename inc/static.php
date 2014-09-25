@@ -1,7 +1,7 @@
 <?php
 /*
- * Copyright (C) 2010-2012 Conny Sjöblom <biohzn@mustis.org>
- * Copyright (C) 2010-2012 Arne Jensen   <darkdevil@darkdevil.dk>
+ * Copyright (C) 2010-2014 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2014 Arne Jensen   <darkdevil@darkdevil.dk>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -58,13 +58,12 @@
     }
   }
 
-  if (isset($_SESSION["username"])) {
-    if (!isset($_SESSION["uc"])) {
-      include 'update.php';
-    }
-    $data->assign('updateCheck', $_SESSION["uc"]);
-    $data->assign('updateStatus', $_SESSION["uc_status"]);
+  if (!isset($_SESSION["uc"])) {
+    include 'update.php';
   }
+  $data->assign('nst', $_SESSION["nst"]);
+  $data->assign('updateCheck', $_SESSION["uc"]);
+  $data->assign('updateStatus', $_SESSION["uc_status"]);
 
   //Languages
   $langArray = getLangs();
@@ -82,8 +81,7 @@
 
   //Static Interface Vars
   $data->assign('ifaceName', sprintf("sBNC Interface v%s.%s%s", VERSION_MAJOR, VERSION_MINOR, ((VERSION_REVISION)>0?".".VERSION_REVISION:"")));
-  $data->assign('ifaceVersion', sprintf("Version %s.%s%s", VERSION_MAJOR, VERSION_MINOR, ((VERSION_REVISION)>0?".".VERSION_REVISION:"")));
-  $data->assign('ifaceCodename', VERSION_CODENAME);
+  $data->assign('ifaceCopyright', sprintf("<a href=\"http://www.sbnciface.org\">sbnciface</a> v%s.%s%s '%s' &copy 2010-2014 Conny Sjöblom, Arne Jensen and the sbnciface project.", VERSION_MAJOR, VERSION_MINOR, ((VERSION_REVISION)>0?".".VERSION_REVISION:""), VERSION_CODENAME));
   $data->assign('ifaceRoot', $interfaceRoot);
 
   //Admin & Vadmin Vars

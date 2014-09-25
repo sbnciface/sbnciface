@@ -1,3 +1,25 @@
+<?php
+  session_start();
+  header("Content-Type: text/css; charset=utf-8");
+?>
+/*
+<?php if (!empty($_SESSION["nst"])) { echo " * " . $_SESSION["nst"] . "\n"; } ?>
+ * Copyright (C) 2010-2014 Conny Sjöblom
+ * Copyright (C) 2010-2014 Arne Jensen
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /* Main Site Vars */
 /* Funky green @ #99FF00 */
 body {
@@ -44,7 +66,8 @@ a:hover {
 
 #loginbody {
     margin-top: 15px;
-    width: 460px;
+    margin-bottom: 15px;
+    width: 520px;
     margin-right: auto;
     margin-left: auto;
 }
@@ -95,7 +118,8 @@ a:hover {
     margin-right: 5px;
 }
 
-#version{
+#copyright{
+    font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
     width: 100%;
     padding-top: 15px;
     text-align: center;
@@ -123,6 +147,13 @@ a:hover {
 
 .bold {
     font-weight: bold;
+}
+
+.nsg {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    color: #333900;
 }
 
 /* Table Vars */

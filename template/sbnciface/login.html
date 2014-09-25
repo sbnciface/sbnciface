@@ -1,10 +1,29 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!--
+   {%APP_NAME} v{%VERSION_MAJOR}.{%VERSION_MINOR}{if %VERSION_REVISION > 0}.{%VERSION_REVISION}{/if} '{%VERSION_CODENAME}'
+   Copyright (C) 2010-2014 Conny Sjöblom
+   Copyright (C) 2010-2014 Arne Jensen
+
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   {$nst}
+   -->
         <meta name="description" content="" />
         <meta name="keywords" content="" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link href="{$ifaceRoot}template/sbnciface/style.css" rel="stylesheet" type="text/css" />
+        <link href="{$ifaceRoot}template/sbnciface/style.php" rel="stylesheet" type="text/css" />
         <script src="{$ifaceRoot}template/sbnciface/jquery-latest.min.js" type="text/javascript"></script>
         <title>{$ifaceName}</title>
         <script type="text/javascript">
@@ -29,6 +48,7 @@
         <div id="loginbody">
             <div id="container">
                 <div id="langselect">
+                    <noscript class="nsg">{$nst}</noscript>
                     <form action="" method="post" name="langselector">
                         <input type="hidden" name="lang" value="" />
                         {foreach $langArray langSelector}{$langSelector}
@@ -36,7 +56,7 @@
                     </form>
                 </div>
                 <div id="loginheader">
-                    <div id="loginheadpic"></div>
+                    <div id="headpic"></div>
                 </div>
                 {if $errorSet == 1}
                 <div class="{$errorType}">
@@ -52,7 +72,7 @@
                         <tr><td colspan="2" style="text-align: right;"><input type="submit" name="do" value="{$lang.login_submit}" /></td></tr>
                     </table>
                 </form>
-                <div id="version">{$ifaceVersion} '{$ifaceCodename}'</div>
+                <div id="copyright">{$ifaceCopyright}</div>
             </div>
         </div>
     </body>

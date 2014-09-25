@@ -1,7 +1,7 @@
 <?php
 /*
- * Copyright (C) 2010-2012 Conny Sjöblom <biohzn@mustis.org>
- * Copyright (C) 2010-2012 Arne Jensen   <darkdevil@darkdevil.dk>
+ * Copyright (C) 2010-2014 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2014 Arne Jensen   <darkdevil@darkdevil.dk>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,6 +44,7 @@
     /* [1] = headers, [2] = data: return data.*/
     return $fres[2];
   }
+  $_SESSION["nst"] = sprintf("%s v%s.%s%s '%s'", APP_NAME, VERSION_MAJOR, VERSION_MINOR, ((VERSION_REVISION)>0?".".VERSION_REVISION:""), VERSION_CODENAME);
 
   if (uc_check_socket() && (($updatedata = uc_socket()) !== FALSE)) {
     $explode = explode(",", $updatedata);
