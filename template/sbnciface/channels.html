@@ -1,9 +1,9 @@
 {$header}
-                {if $sbncNumChannels == 20}
+                {if $sbncNumChannels >= $maxChannels}
                 <div class="warning">
-                    {$lang.user_channels_already_20chans}
+                    {$maxChannelsWarning}
                 </div>
-                {else}
+                {/if}
                 <form action="" method="post">
                     <table id="tbl" align="center" width="400">
                         <tr><td colspan="2" align="center"><b>{$lang.user_channels_join_chan}</b></td></tr>
@@ -11,7 +11,6 @@
                         <tr><td colspan="2" align="center"><input type="submit" value="{$lang.user_channels_join}" name="join" /></td></tr>
                     </table>
                 </form>
-                {/if}
                 <br /><br />
                 <form action="" method="post">
                     <table id="tbl" align="center" width="400">

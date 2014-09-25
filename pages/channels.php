@@ -62,6 +62,12 @@ if (is_a($channels, 'itype_exception')) {
 
 $sbncNumChans = count($channels);
 
+$maxChannels = intval($sbnc->Call("getisupport", array("MAXCHANNELS"));
+ $data->assign('maxChannels', $maxChannels);
+if ($sbncNumChans >= $maxChannels) {
+  $data->assign('maxChannelsWarning', sprintf($lang['user_channels_already_maxchannels'], $maxChannels));
+}
+
 //Set data
 if (!empty($errorIsset)) {
     $data->assign('errorSet', $errorIsset);
