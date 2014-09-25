@@ -23,7 +23,9 @@
 session_start();
 
 //Main includes
-include 'settings.php';
+if (!@include("settings.php")) {
+  die("Error: Couldn't find configuration file. Please create 'settings.php'");
+}
 include 'inc/functions.php';
 include 'inc/sbnc.php';
 
