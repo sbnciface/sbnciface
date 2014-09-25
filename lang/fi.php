@@ -19,7 +19,7 @@
 ?>
 <?php
 /*
- * English language file.
+ * Finnish language file.
 */
 ?>
 <?php
