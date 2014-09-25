@@ -89,7 +89,7 @@ $lang = array(
     /* Page: user->away                     */
     'user_away_awaynick'                => 'Away nick',
     'user_away_awaymessage'             => 'Away besked',
-    'user_away_usequitasaway'           => 'Brug quit som away besked',
+    'user_away_usequitasaway'           => 'Brug afslutningsmeddelelsen som away besked',
 
     /* Page: user->channels                 */
     'user_channels_join_chan'           => 'Join kanal',
@@ -135,7 +135,7 @@ $lang = array(
     'admin_users_edit_serverpass'       => 'Server adgangskode',
     'admin_users_edit_awaynick'         => 'Away nick',
     'admin_users_edit_awaymessage'      => 'Away besked',
-    'admin_users_edit_quitasaway'       => 'Brug quit som away besked',
+    'admin_users_edit_quitasaway'       => 'Brug afslutningsmeddelelsen som away besked',
     'admin_users_edit_vhost'            => 'Vhost',
     'admin_users_edit_vhost_custom'     => '...eller definer dit eget vhost',
     'admin_users_edit_jump'             => 'Jump',
