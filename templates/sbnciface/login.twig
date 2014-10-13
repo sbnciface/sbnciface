@@ -6,7 +6,7 @@
 {% if alert %}
                 <div class="alert alert-{{ alert.type }} alert-dismissable fade in">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    {{ alert.message }}
+                    {{ alert.message | raw}}
                 </div>
 {% endif %}
                 <form role="form" method="post" action="">
