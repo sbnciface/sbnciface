@@ -48,11 +48,7 @@ if (file_exists('controllers/' . $class . '.php')) {
     if (class_exists($class)) {
         $page = new $class();
         if (method_exists($page, $funct)) {
-            if ($param) {
-                call_user_func_array(array($page, $funct), $param);
-            } else {
-                call_user_func(array($page, $funct));
-            }
+            call_user_func_array(array($page, $funct), $param);
         } else {
             // TODO
             call_user_func(array($error, 'funct_not_found'));

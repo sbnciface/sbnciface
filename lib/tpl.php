@@ -28,7 +28,7 @@ class tpl
         global $sbnciface_settings;
 
         Twig_Autoloader::register();
-        $loader = new Twig_Loader_Filesystem('views/');
+        $loader = new Twig_Loader_Filesystem('templates/');
 
         $this->settings = $sbnciface_settings;
         $this->twig = new Twig_Environment($loader, array(

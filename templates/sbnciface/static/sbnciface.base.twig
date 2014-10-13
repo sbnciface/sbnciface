@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="sbnciface.org">
+    <title>sbnciface v2</title>
+    <link href="/templates/sbnciface/assets/css/style.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="/templates/sbnciface/assets/js/html5shiv.js"></script>
+    <script src="/templates/sbnciface/assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="container">
+    <div class="header">
+        <ul class="nav nav-pills pull-right">
+            <li class="active"><a href="{{ sbncroot }}/">Home</a></li>
+        </ul>
+        <h3 class="text-muted">sbnciface</h3>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+    <div class="footer">
+        <p>&copy; sbnciface.org 2013<span
+                    class="pull-right">sbnciface {{ sbnciface.version_num }} :: {{ sbnciface.version_name }}</span></p>
+    </div>
+</div>
+<script src="/templates/sbnciface/assets/js/jquery-1.10.2.min.js"></script>
+<script src="/templates/sbnciface/assets/js/bootstrap.min.js"></script>
+</body>
+</html>
