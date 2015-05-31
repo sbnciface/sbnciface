@@ -4,8 +4,8 @@
 ?>
 /*
 <?php if (!empty($_SESSION["nst"])) { echo " * " . $_SESSION["nst"] . "\n"; } ?>
- * Copyright (C) 2010-2014 Conny Sjöblom
- * Copyright (C) 2010-2014 Arne Jensen
+ * Copyright (C) 2010-2015 Conny Sjöblom
+ * Copyright (C) 2010-2015 Arne Jensen
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

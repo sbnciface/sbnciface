@@ -1,7 +1,7 @@
 <?php
 /*
- * Copyright (C) 2010-2014 Conny Sjöblom <biohzn@mustis.org>
- * Copyright (C) 2010-2014 Arne Jensen   <darkdevil@darkdevil.dk>
+ * Copyright (C) 2010-2015 Conny Sjöblom <biohzn@mustis.org>
+ * Copyright (C) 2010-2015 Arne Jensen   <darkdevil@darkdevil.dk>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -81,7 +81,7 @@
 
   //Static Interface Vars
   $data->assign('ifaceName', sprintf("sBNC Interface v%s.%s%s", VERSION_MAJOR, VERSION_MINOR, ((VERSION_REVISION)>0?".".VERSION_REVISION:"")));
-  $data->assign('ifaceCopyright', sprintf("<a href=\"http://www.sbnciface.org\">sbnciface</a> v%s.%s%s '%s' &copy 2010-2014 Conny Sjöblom, Arne Jensen and the sbnciface project.", VERSION_MAJOR, VERSION_MINOR, ((VERSION_REVISION)>0?".".VERSION_REVISION:""), VERSION_CODENAME));
+  $data->assign('ifaceCopyright', sprintf("<a href=\"http://www.sbnciface.org\">sbnciface</a> v%s.%s%s '%s' &copy 2010-2015 Conny Sjöblom, Arne Jensen and the sbnciface project.", VERSION_MAJOR, VERSION_MINOR, ((VERSION_REVISION)>0?".".VERSION_REVISION:""), VERSION_CODENAME));
   $data->assign('ifaceRoot', $interfaceRoot);
 
   //Admin & Vadmin Vars
