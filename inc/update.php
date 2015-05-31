@@ -19,7 +19,7 @@
 ?>
 <?php
   function uc_check_socket() {
-    if (function_exists('fsockopen') && function_exists('fputs') && function_exists('feof') && function_exists('fgets') && function_exists('fclose') && function_exists('preg_split')) {
+    if (function_exists('fsockopen') && function_exists('fputs') && function_exists('feof') && function_exists('fgets') && function_exists('fclose') && function_exists('preg_split') && function_exists('fopen') && function_exists('fwrite')) {
       return TRUE;
     }
     return FALSE;
@@ -46,7 +46,25 @@
   }
   $_SESSION["nst"] = sprintf("%s v%s.%s%s '%s'", APP_NAME, VERSION_MAJOR, VERSION_MINOR, ((VERSION_REVISION)>0?".".VERSION_REVISION:""), VERSION_CODENAME);
 
-  if (uc_check_socket() && (($updatedata = uc_socket()) !== FALSE)) {
+  function uc_data() {
+    if (($file = (sbnciface_get_temp_dir()!==FALSE)?sbnciface_get_temp_dir()."updatecheck":FALSE)!==FALSE) {
+      if (!file_exists($file) || (filemtime($file) < (time() - 10800))) {
+        if (($data = uc_socket())!==FALSE) {
+          $fp = @fopen($file, "w");
+          @fwrite($fp, $data);
+          @fclose($fp);
+        }
+      } else {
+        $fp = @fopen($file, "r");
+        $data = @fgets($fp, 512);
+        @fclose($fp);
+      }
+      return $data;
+    }
+    return FALSE;
+  }
+
+  if (uc_check_socket() && (($updatedata = uc_data()) !== FALSE)) {
     $explode = explode(",", $updatedata);
     $version = sprintf("%d.%d.%d", VERSION_MAJOR, VERSION_MINOR, VERSION_REVISION);
     if(version_compare($explode[0], $version) > 0) {
